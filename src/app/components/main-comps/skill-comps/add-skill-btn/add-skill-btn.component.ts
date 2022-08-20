@@ -5,8 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SkillService } from 'src/app/services/skill.service';
 @Component({
   selector: 'app-add-skill-btn',
-  templateUrl: './add-skill-btn.component.html',
-  styleUrls: ['./add-skill-btn.component.css']
+  templateUrl: './add-skill-btn.component.html'
 })
 export class AddSkillBtnComponent implements OnInit {
 
@@ -25,7 +24,7 @@ ngOnInit(): void {
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-//crear formulario de aniadir experiencia laboral, validar y guardar
+//crear formulario de aniadir hard skill, validar y guardar
 //////////////////////////////////////////////////////////////////////////////////
 createAddSkillForm(){
 
@@ -68,13 +67,13 @@ this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.th
 }
 
 private getDismissReason(reason: any): string {
-if (reason === ModalDismissReasons.ESC) {
-  return 'by pressing ESC';
-} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  return 'by clicking on a backdrop';
-} else {
-  return `with: ${reason}`;
-}
+  if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+  } else {
+      return `with: ${reason}`;
+  }
 }
 //
 }
