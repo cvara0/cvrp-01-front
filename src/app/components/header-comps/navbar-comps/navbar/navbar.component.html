@@ -1,0 +1,25 @@
+<nav class="container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-xxl-5 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-7"><!--col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12-->
+            <div class="row justify-content-start">
+                <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6"><app-navbar-link-btn [btnClass]="'circle-img-big'" pageName="ap" [pageImage]="'https://i.postimg.cc/2860Tdf2/ap-logo-circular.png'">ap logo</app-navbar-link-btn></div>
+                <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6"><app-navbar-link-btn [btnClass]="'circle-img-big'" pageName="" [pageImage]="'https://i.postimg.cc/MwNTSZMf/cvra-logo-circular.png'">mi logo</app-navbar-link-btn></div>   
+            </div>
+        </div>
+        <div class="col-xxl-5 col-xl-7 col-lg-7 col-md-7 col-sm-4 col-5">
+            <div class="row justify-content-end" style="margin-top: 20px;">  
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"><app-navbar-link-btn [btnClass]="'circle-img'" pageName="linkedin" [pageImage]="'https://i.postimg.cc/2mxjsjCY/2048px-Linked-In-icon-circle-svg.png'">ln logo</app-navbar-link-btn></div>
+               <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"> <app-navbar-link-btn [btnClass]="'circle-img'" pageName="facebook" [pageImage]="'https://i.postimg.cc/zBFRnhQN/2048px-2021-Facebook-icon-svg.png'">fb logo</app-navbar-link-btn></div>
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4"><app-navbar-link-btn [btnClass]="'circle-img'" pageName="instagram" [pageImage]="'https://i.postimg.cc/cHFLxBjv/instagram-colourful-icon.png'">in logo</app-navbar-link-btn></div>
+            </div>
+        </div>
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-12">
+            <div class="row justify-content-end" style="margin-top: 20px;"> 
+                <!--<li style="float: right;"><app-rect-btn class="nav-link" [rectBtnText]="'Cerrar Sesion'"></app-rect-btn></li>--><!--active... routerlikn recive rutas en forma de array ['home','seccion1','etc']-->
+                <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-5 col-5"><app-navbar-login-btn [loginIcon]="'https://i.postimg.cc/wBNpgbZV/login-icon.png'">login</app-navbar-login-btn></div>
+                <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-5 col-5"><app-navbar-register-btn [registerIcon]="'https://i.postimg.cc/QxYmDtXs/registration-icon-png-6-300x300.png'">register</app-navbar-register-btn></div>
+                <!--<div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-5 col-5"><app-circle-btn [circleBtnImg]="'https://i.postimg.cc/v8J9tVH4/Button-Log-Off-icon.png'">logout</app-circle-btn></div>-->
+            </div>
+        </div>
+        </div>
+  </nav>

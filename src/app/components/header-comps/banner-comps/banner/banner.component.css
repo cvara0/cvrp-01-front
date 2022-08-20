@@ -1,0 +1,9 @@
+.banner-style{
+    width: inherit; 
+    height: 500px; 
+    margin-top: 30px; 
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    border-radius: 50px;  
+}

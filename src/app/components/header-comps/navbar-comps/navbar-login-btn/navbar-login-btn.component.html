@@ -1,0 +1,19 @@
+<button (click)="open(loginModal)" class="btn-42 circle-btn circle-img">
+    <img class="circle-img" src={{loginIcon}} alt="navbar-login-btn">
+</button>
+
+
+<ng-template #loginModal let-modal>
+    <form class="text-l rounded-box neonBox" [formGroup]="loginForm" (ngSubmit)="saveLogin()" autocomplete="off">
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Iniciar sesion</h1>
+        <label for="emailLoginText">Email</label>
+            <small class="form-text" *ngIf="validLoginEmail"><br>Ingrese email valido</small>
+                <input #emailLoginText class="mb-3 form-control" type="email" formControlName="emailLogin">
+        <label for="passwordLoginText">Contrasenia</label>
+            <small class="form-text" *ngIf="validLoginPassword"><br>Ingrese entre 4 y 80 caracteres</small>
+                <input #passwordLoginText class="mb-3 form-control" type="password" formControlName="passwordLogin"> 
+           <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
+        <button *ngIf="(!validLoginEmail && !validLoginPassword)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+    </form>
+</ng-template>
+

@@ -1,0 +1,31 @@
+
+<button (click)="open(editNaproModal)" class="btn-42 circle-btn circle-img">
+    <img class="circle-img" src="https://i.postimg.cc/TPpTMdv5/editar.png" alt="edit-banner">
+</button>
+
+
+<ng-template #editNaproModal let-modal>
+    <form class="text-l rounded-box neonBox" [formGroup]="editNaproForm" (ngSubmit)="saveEditNapro()" autocomplete="off">
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Nombre y profesion</h1>
+        <label for="naproNameInput">Nombre:</label>    
+            <small class="form-text" *ngIf="validEditNaproName"><br>Ingrese entre 4 y 80 caracteres</small>
+                <input #naproNameInput class="mb-3 form-control" type="text" formControlName="name">
+        <label for="surnameText">Apellido</label>    
+            <small class="form-text" *ngIf="validEditNaproSurname"><br>Ingrese entre 4 y 80 caracteres</small>
+                <input #surnameText class="mb-3 form-control" type="text" formControlName="surname">
+        <label for="professionText">Profesion</label>
+            <small class="form-text" *ngIf="validEditNaproProfession"><br>Ingrese entre 4 y 80 caracteres</small>
+                <input #professionText class="mb-3 form-control" type="text" formControlName="profession">
+        
+        <label for="countryText">Pais</label>
+            <small class="form-text" *ngIf="validEditNaproCountryAndFlag"><br>Ingrese entre 4 y 80 caracteres</small>
+                <select class="form-select" #countryText formControlName="country">
+                    <option *ngFor="let country of this.countryService.countryArray" value={{country.name}}>
+                        {{country.name}}
+                    </option>
+                    
+                </select>
+        <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
+        <button *ngIf="(!validEditNaproName && !validEditNaproSurname && !validEditNaproProfession && !validEditNaproCountryAndFlag)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+    </form>
+</ng-template>

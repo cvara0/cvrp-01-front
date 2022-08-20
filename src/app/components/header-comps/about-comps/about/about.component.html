@@ -1,0 +1,15 @@
+<h1 *ngIf="about.deleted==true" class="text-xl neonText row justify-content-end mt-xl" style="text-align: left;">
+    <app-add-about-btn class="row justify-content-end"></app-add-about-btn> Agregar "Acerca de..." 
+</h1>
+
+<section *ngIf="about.deleted==false" class="container neonText neonBox rounded-box mt-xl">
+    <h1 class="text-xl neonText" style="text-align: left;">
+        <app-edit-about-btn [aboutToEdit]=about class="row justify-content-end"></app-edit-about-btn>
+        <app-delete-about-btn class="row justify-content-end"></app-delete-about-btn>
+        Acerca de: 
+    </h1>
+    <br> 
+    <p class="text-l">
+        {{about.aboutText}}
+    </p>
+</section>

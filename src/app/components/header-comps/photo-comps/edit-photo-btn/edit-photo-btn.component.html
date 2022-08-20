@@ -1,0 +1,14 @@
+<button (click)="open(editPhotoModal)" class="btn-42 circle-btn circle-img">
+    <img class="circle-img" src="https://i.postimg.cc/TPpTMdv5/editar.png" alt="edit-banner">
+</button>
+
+<ng-template #editPhotoModal let-modal>
+    <form class="text-l rounded-box neonBox" [formGroup]="editPhotoForm" (ngSubmit)="saveEditPhoto()" autocomplete="off">
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando imagen de perfil</h1>
+        <label for="photoUrlInput">Url de la imagen</label>
+            <small class="form-text" *ngIf="(validEditPhotoUrl)"><br>Ingrese un enlace valido</small>
+                <input #photoUrlInput class="mb-3 form-control" type="text" formControlName="photoUrl">
+           <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
+        <button *ngIf="(!validEditPhotoUrl)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+    </form>  
+</ng-template>

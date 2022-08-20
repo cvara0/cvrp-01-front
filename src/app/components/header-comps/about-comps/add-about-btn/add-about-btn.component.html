@@ -1,0 +1,14 @@
+<button (click)="open(addAboutModal)" class="btn-42 circle-btn circle-img mb-3">
+    <img class="circle-img" src="https://i.postimg.cc/Hk1YMDMf/aniadir.png" alt="add-about">
+</button>
+
+<ng-template #addAboutModal let-modal>
+    <form class="text-l rounded-box neonBox" [formGroup]="addAboutForm" (ngSubmit)="saveAddAbout()" autocomplete="off">
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Agregando acerca de</h1>
+        <label for="aboutTextArea">Agrega una descripcion personal</label>
+            <small class="text-danger" *ngIf="(validAddAbout)"><br>Maximo 800 caracteres</small>
+                <textarea maxlength="801" #aboutTextArea class="mb-3 form-control" type="text" formControlName="aboutText"></textarea>
+           <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
+        <button *ngIf="(!validAddAbout)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+    </form>  
+</ng-template>
