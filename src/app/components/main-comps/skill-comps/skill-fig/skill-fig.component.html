@@ -1,1 +1,41 @@
-<p>skill-figure works!</p>
+<br>
+<div class="container">
+        
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <app-edit-skill-btn [skillToEdit]=skillToShow></app-edit-skill-btn>
+        </div>
+        <div class="col-2">
+            <app-delete-skill-btn [skillToDelete]=skillToShow></app-delete-skill-btn>
+        </div>
+    </div>
+            <div class="col-6" style="height: 260px;width: 260px;"><!--background-image: url('https://us.123rf.com/450wm/assistant/assistant1706/assistant170600064/79969341-plantilla-para-el-diagrama-de-infograf%C3%ADa-con-8-c%C3%ADrculos-de-opciones-.jpg');background-position: 50% 50%;background-size: 260px 260px; -->
+                <h2 class="text-xl neonText" style="position: relative;top: 115px; width: 135px;margin-left: 60px;"> {{hardSkill | uppercase}}</h2>
+                <figure *ngIf="skillToShow.level>0" href="" class="neonBox skill-fig-style" style="left: 105px;top: -30px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/qBCvJtyh/2esf.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>1" href="" class="neonBox skill-fig-style" style="left: 173px;top:-65px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/02XhMr9D/violeta.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>2" href="" class="neonBox skill-fig-style" style="left: 203px;top:-60px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/qRYpxQTX/azul.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>3" href="" class="neonBox skill-fig-style" style="left: 175px;top:-55px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/KYBwR2c2/cian.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>4" href="" class="neonBox skill-fig-style" style="left: 105px;top:-89px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/xd9TRYx0/verdee.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>5" href="" class="neonBox skill-fig-style" style="left: 35px;top:-182px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/rFwJvLvp/amarilloo.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>6" href="" class="neonBox skill-fig-style" style="left: 7px;top:-316px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/jq8D8WPL/naranjaa.png" alt="img">
+                </figure>
+                <figure *ngIf="skillToShow.level>7" href="" class="neonBox skill-fig-style" style="left: 35px;top:-449px;">
+                    <img style="width: 48px; height:48px;" src="https://i.postimg.cc/c1cRd4YS/rojoo.png" alt="img">
+                </figure>
+ 
+                </div>
+                
+            </div>

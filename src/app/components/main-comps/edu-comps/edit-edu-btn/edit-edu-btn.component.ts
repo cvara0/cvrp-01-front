@@ -47,7 +47,7 @@ createEditEducationForm(){
     eduYearSince    : [this.educationToEdit.yearSince,Validators.required],
     eduYearTo       : [this.educationToEdit.yearTo,Validators.required],
     eduDescription  : [this.educationToEdit.description,[Validators.maxLength(800)]],
-    eduLevel        : [,Validators.required]
+    eduLevel        : [this.educationToEdit.level,Validators.required]
   });
 }
 

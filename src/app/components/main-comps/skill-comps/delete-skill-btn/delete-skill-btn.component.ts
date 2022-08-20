@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Skill } from 'src/app/components/models/skill.models';
 
 @Component({
   selector: 'app-delete-skill-btn',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete-skill-btn.component.css']
 })
 export class DeleteSkillBtnComponent implements OnInit {
+
+  @Input() skillToDelete: Skill;
 
   constructor() { }
 
