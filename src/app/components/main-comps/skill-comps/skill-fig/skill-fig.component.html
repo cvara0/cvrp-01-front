@@ -10,7 +10,7 @@
         </div>
     </div>
             <div class="col-6" style="height: 260px;width: 260px;"><!--background-image: url('https://us.123rf.com/450wm/assistant/assistant1706/assistant170600064/79969341-plantilla-para-el-diagrama-de-infograf%C3%ADa-con-8-c%C3%ADrculos-de-opciones-.jpg');background-position: 50% 50%;background-size: 260px 260px; -->
-                <h2 class="text-xl neonText" style="position: relative;top: 115px; width: 135px;margin-left: 60px;"> {{hardSkill | uppercase}}</h2>
+                <h2 class="text-xl neonText" style="position: relative;top: 115px; width: 135px;margin-left: 60px;"> {{skillToShow.name | uppercase}}</h2>
                 <figure *ngIf="skillToShow.level>0" href="" class="neonBox skill-fig-style" style="left: 105px;top: -30px;">
                     <img style="width: 48px; height:48px;" src="https://i.postimg.cc/qBCvJtyh/2esf.png" alt="img">
                 </figure>
