@@ -30,7 +30,7 @@ ngOnInit(): void {
 createAddSkillForm(){
 
 this.addSkillForm=this.fb.group({
-  skillName          : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(12)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+  skillName          : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
   skillLevel         : [,Validators.required],
 });
 }
@@ -53,7 +53,6 @@ this.skillService.postSkill(
     this.isHardSkill
   )
 ); 
-console.log(this.isHardSkill);
 this.addSkillForm.reset();
 }
 

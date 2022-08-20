@@ -8,14 +8,13 @@ import { SkillService } from 'src/app/services/skill.service';
 })
 export class HardSkillsComponent implements OnInit {
 
-  hardSkillList: Skill[];
+  hardSkillList: Skill[]=[];
   
   constructor(private skillService:SkillService) {
     
     this.skillService.getHardSkillList$().subscribe(skillList=>{
       this.hardSkillList=skillList;
     });
-    this.hardSkillList=[];
    }
 
   ngOnInit(): void {

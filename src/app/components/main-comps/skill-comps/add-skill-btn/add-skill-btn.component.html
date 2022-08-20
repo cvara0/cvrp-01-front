@@ -6,8 +6,8 @@
     <form class="text-l rounded-box neonBox" [formGroup]="addSkillForm" (ngSubmit)="saveAddSkill()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nueva habilidad {{this.isHardSkill?"dura":"blanda"}}</h1>
         <label for="skillNameText">Habilidad</label>    
-            <small class="text-danger" *ngIf="validSkillName"><br>Ingrese entre 4 y 12 caracteres</small>
-                <input #skillNameText maxlength="13" class="mb-3 form-control" type="text" formControlName="skillName">
+            <small class="text-danger" *ngIf="validSkillName"><br>Ingrese entre 4 y 20 caracteres</small>
+                <input #skillNameText maxlength="21" class="mb-3 form-control" type="text" formControlName="skillName">
         
         
         <label for="skillLevelText">Anios de experiencia</label>

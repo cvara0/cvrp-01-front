@@ -34,7 +34,6 @@ export class SkillService {
       this.softSkillList$.next(this.softSkillList);
       alert("Soft skill agregado");
     }
-
   }
 
   putSkill(skillEdited:Skill){
