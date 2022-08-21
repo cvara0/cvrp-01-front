@@ -9,7 +9,6 @@ import { Skill } from 'src/app/components/models/skill.models';
 export class SkillFigComponent implements OnInit {
 
   @Input() skillToShow: Skill;
-
   constructor() { }
 
   ngOnInit(): void {

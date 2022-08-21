@@ -1,16 +1,19 @@
 <br>
 <div class="container">
-        
-    <div class="row justify-content-center">
-        <div class="col-2">
-            <app-edit-skill-btn [skillToEdit]=skillToShow></app-edit-skill-btn>
-        </div>
-        <div class="col-2">
-            <app-delete-skill-btn [skillToDelete]=skillToShow></app-delete-skill-btn>
-        </div>
-    </div>
-            <div class="col-6" style="height: 260px;width: 260px;"><!--background-image: url('https://us.123rf.com/450wm/assistant/assistant1706/assistant170600064/79969341-plantilla-para-el-diagrama-de-infograf%C3%ADa-con-8-c%C3%ADrculos-de-opciones-.jpg');background-position: 50% 50%;background-size: 260px 260px; -->
-                <h2 class="text-xl neonText" style="position: relative;top: 115px; width: 135px;margin-left: 60px; font-size: large;"> {{skillToShow.name | uppercase}}</h2>
+    
+            <div class="col-6 borde-rojo" style="height: 260px;width: 260px;">
+                <div class="row justify-content-center">
+                    <div class="col-2">
+                        <app-edit-skill-btn [skillToEdit]=skillToShow></app-edit-skill-btn>
+                    </div>
+                    <div class="col-2">
+                        <app-delete-skill-btn [skillToDelete]=skillToShow></app-delete-skill-btn>
+                    </div>
+                </div>
+                
+                <figure data-hover="Hello, this is the tooltip" class="hovertext btn-42 circle-btn-big neonBox skill-center-fig-style" style="background-image: url('{{skillToShow.urlImage}}');">
+                    <!--<h2 *ngIf="showText" class="text-xl neonText neonBox rounded-box" style="font-size: large;">{{skillToShow.name | uppercase}} </h2>-->
+                </figure>
                 <figure *ngIf="skillToShow.level>0" href="" class="neonBox skill-fig-style" style="left: 105px;top: -30px;">
                     <img style="width: 48px; height:48px;" src="https://i.postimg.cc/qBCvJtyh/2esf.png" alt="img">
                 </figure>
@@ -35,7 +38,6 @@
                 <figure *ngIf="skillToShow.level>7" href="" class="neonBox skill-fig-style" style="left: 35px;top:-449px;">
                     <img style="width: 48px; height:48px;" src="https://i.postimg.cc/c1cRd4YS/rojoo.png" alt="img">
                 </figure>
- 
                 </div>
-                
+                <!--position: relative;top: 115px; width: 135px;margin-left: 60px; -->
             </div>

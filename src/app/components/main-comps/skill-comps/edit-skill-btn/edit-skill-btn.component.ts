@@ -31,6 +31,7 @@ createAddSkillForm(){
 this.addSkillForm=this.fb.group({
   skillName          : [this.skillToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
   skillLevel         : [this.skillToEdit.level,Validators.required],
+  skillUrlImage      : [this.skillToEdit.urlImage,Validators.required],
 });
 }
 //cambiar los add por edit y ver el html form
@@ -49,7 +50,8 @@ this.skillService.putSkill(
     this.skillToEdit.id,
     this.addSkillForm.get('skillName')?.value,
     this.addSkillForm.get('skillLevel')?.value,
-    this.skillToEdit.hard
+    this.skillToEdit.hard,
+    this.addSkillForm.get('skillUrlImage')?.value,
   )
 ); 
 this.addSkillForm.reset();
