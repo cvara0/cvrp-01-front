@@ -1,4 +1,4 @@
-<button (click)="open(addSkillModal)"class="btn-42 circle-btn circle-img neonBox">
+<button (click)="open(addSkillModal)"class="btn-42 circle-btn circle-img">
     <img class="circle-img" src="https://i.postimg.cc/Hk1YMDMf/aniadir.png" alt="add-img">
 </button>
 
@@ -10,7 +10,10 @@
                 <input #skillNameText maxlength="21" class="mb-3 form-control" type="text" formControlName="skillName">
         
         <label for="skillUrlImageText">Link de una imagen de un simbolo o logo de la habilidad (opcional)</label>
-                <input #skillUrlImage class="mb-3 form-control" type="url" formControlName="skillUrlImage">
+                <input #skillUrlImageText class="mb-3 form-control" type="url" formControlName="skillUrlImage">
+
+        <label for="skillWebText">Link de una pagina informativa del skill (opcional)</label>
+            <input #skillWebText class="mb-3 form-control" type="url" formControlName="skillWeb">
 
         <label for="skillLevelText">Anios de experiencia</label>
                 <select class="form-select mb-3" formControlName="skillLevel">
