@@ -19,7 +19,7 @@
                 <p class="text-l rounded-box neonBox">
                     <span>
                         <app-edit-edu-btn [educationToEdit]=education class="row justify-content-end"></app-edit-edu-btn>
-                        <app-delete-edu-btn [eduToDeleteId]=education.id class="row justify-content-end"></app-delete-edu-btn>
+                        <app-delete-edu-btn [eduToDelete]=education class="row justify-content-end"></app-delete-edu-btn>
                         <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{education.name}}</span> 
                              <br>
                              {{(education.yearTo-education.yearSince)>0?" Desde "+education.yearSince+" hasta "+ education.yearTo:education.yearSince+" ( casi 1 anio de cursada )"}}

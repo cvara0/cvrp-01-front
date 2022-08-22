@@ -5,7 +5,7 @@ export class Skill{
         public name         : string='',
         public level        : number=0,
         public hard         : boolean=false,
-        public urlImage     : string='',
+        public imageUrl     : string='',
         public web          : string=''
     ){
 

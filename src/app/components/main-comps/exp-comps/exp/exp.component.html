@@ -6,7 +6,7 @@
     <div class="row mt-xl">
         <h1  class="text-xl neonText" style="text-align: left;"><app-add-exp-btn></app-add-exp-btn> Experiencia Laboral:</h1>
     </div>
-    <section class="container mt-lg" *ngFor="let experience of experienceList" cdkDrag>{{experience}}>
+    <section class="container mt-lg" *ngFor="let experience of experienceList;">{{experience}}>
 
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
@@ -20,7 +20,7 @@
                 <p class="text-l rounded-box neonBox">
                     <span>
                         <app-edit-exp-btn [experienceToEdit]=experience class="row justify-content-end"></app-edit-exp-btn>
-                        <app-delete-exp-btn [expToDeleteId]=experience.id class="row justify-content-end"></app-delete-exp-btn>
+                        <app-delete-exp-btn [expToDelete]=experience class="row justify-content-end"></app-delete-exp-btn>
                         <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{experience.name}}</span> <br> {{(experience.yearTo-experience.yearSince)>0?" Desde "+experience.yearSince+" hasta "+ experience.yearTo+" ( "+(experience.yearTo-experience.yearSince)+" anio/s de experiencia ) " :experience.yearSince+" ( casi 1 anio de experiencia )"}}
                         </h1>
                     </span>

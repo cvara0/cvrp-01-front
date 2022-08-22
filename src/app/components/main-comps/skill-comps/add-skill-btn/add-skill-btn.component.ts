@@ -29,10 +29,10 @@ ngOnInit(): void {
 createAddSkillForm(){
 
 this.addSkillForm=this.fb.group({
-  skillName          : ['springboot',[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-  skillLevel         : [8,Validators.required],
-  skillUrlImage      : ['',Validators.required],
-  skillWeb           : ['',Validators.required],
+  skillName          : ['',[Validators.required,Validators.maxLength(18)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+  skillLevel         : [,Validators.required],
+  skillImageUrl      : ['',Validators.required],
+  skillWeb           : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
 });
 }
 
@@ -52,7 +52,7 @@ this.skillService.postSkill(
     this.addSkillForm.get('skillName')?.value,
     this.addSkillForm.get('skillLevel')?.value,
     this.isHardSkill,
-    this.addSkillForm.get('skillUrlImage')?.value,
+    this.addSkillForm.get('skillImageUrl')?.value,
     this.addSkillForm.get('skillWeb')?.value
   )
 ); 

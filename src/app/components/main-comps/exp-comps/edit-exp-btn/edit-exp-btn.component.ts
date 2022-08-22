@@ -29,6 +29,7 @@ export class EditExpBtnComponent implements OnInit {
     
   }
   
+  
 
 
   //////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +41,7 @@ createEditExperienceForm(){
     
     expName         : [this.experienceToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
     expWeb          : [this.experienceToEdit.web,[Validators.maxLength(2048),Validators.pattern('https?://.+')]],
-    expImage        : [''],
+    expImage        : [this.experienceToEdit.imageUrl=="https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg"?'':this.experienceToEdit.imageUrl],
     expYearSince    : [this.experienceToEdit.yearSince,Validators.required],
     expYearTo       : [this.experienceToEdit.yearTo,Validators.required],
     expDescription  : [this.experienceToEdit.description,[Validators.maxLength(800)]]
@@ -85,7 +86,7 @@ saveEditExperience(){
       this.editExperienceForm.get('expDescription')?.value,
     )
   );
-  //this.editExperienceForm.reset;
+
 }
 
   /////////////////////////////////////////////////////////////////////////////////

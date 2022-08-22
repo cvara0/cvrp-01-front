@@ -16,13 +16,13 @@ export class EducationService {
     
    }
 
-  postEducation(ducationToAdd:Education){
-    ducationToAdd.id=this.educationList.length;
-    ducationToAdd.imageUrl=ducationToAdd.imageUrl==""||ducationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":ducationToAdd.imageUrl;
+  postEducation(educationToAdd:Education){
+    educationToAdd.id=this.educationList.length;
+    educationToAdd.imageUrl=educationToAdd.imageUrl==""||educationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToAdd.imageUrl;
     //console.log(experieceToAdd.imageUrl);
-    this.educationList.push(ducationToAdd);
+    this.educationList.push(educationToAdd);
     this.educationList$.next(this.educationList);//con esto avisamos que ese array cambio
-    ducationToAdd=new Education;
+    educationToAdd=new Education;
     alert("Experiencia educativa agregada");
   }
 
@@ -30,7 +30,8 @@ export class EducationService {
     
     //this.experienceList[experienceId]=experienceEdited;
     educationEdited.imageUrl=educationEdited.imageUrl==""||educationEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationEdited.imageUrl;
-    this.educationList.splice(educationEdited.id, 1, educationEdited)
+    this.educationList[educationEdited.id]=educationEdited;
+    //this.educationList.splice(educationEdited.id, 1, educationEdited)
     this.educationList$.next(this.educationList);
     alert("Experiencia educativa editada");
   }
@@ -44,10 +45,13 @@ export class EducationService {
     return this.educationList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
-  deleteEducation(eduToDeleteId:number){
-    if (window.confirm("Eliminar experiencia educativa?")){
-    this.educationList = this.educationList.filter(education => education.id !== eduToDeleteId);
+  deleteEducation(eduToDelete:Education){
+    if (window.confirm("Eliminar experiencia educativa "+eduToDelete.name+" ?")){
+    this.educationList = this.educationList.filter(education => education !== eduToDelete);
     //delete this.experienceList[expToDeleteId];
+    for(let i=0;i<this.educationList.length;i++){
+      this.educationList[i].id=i;
+    }
     this.educationList$.next(this.educationList);
     alert("Experiencia educativa eliminada");
     }

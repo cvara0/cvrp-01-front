@@ -1,15 +1,14 @@
 <h1 *ngIf="this.hardSkillList.length==0" class="text-xl neonText row justify-content-start mt-xl" style="text-align: left;">
     <app-add-skill-btn [isHardSkill]=true class="row justify-content-start"></app-add-skill-btn> Agregar hard skill 
 </h1>
-<section *ngIf="this.hardSkillList.length>0" class="container">
+<section *ngIf="this.hardSkillList.length>0" class="container mt-xl">
     <article class="row justify-content-center">
-        <div class="row mt-xl">
+        
             <h1 class="text-xl neonText" style="text-align: left;">
                     <app-add-skill-btn [isHardSkill]=true class="row justify-content-start"></app-add-skill-btn>
-                Hard Skills</h1>
-        </div>
-        
-        <div *ngFor="let skill of this.hardSkillList" class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                Hard Skills:</h1>
+       
+        <div *ngFor="let skill of this.hardSkillList" class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-xl">
             <app-skill-fig [skillToShow]=skill></app-skill-fig>
         </div>
     </article>

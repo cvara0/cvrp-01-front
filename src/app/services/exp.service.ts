@@ -23,15 +23,15 @@ export class ExperienceService {
     //console.log(experieceToAdd.imageUrl);
     this.experienceList.push(experieceToAdd);
     this.experienceList$.next(this.experienceList);//con esto avisamos que ese array cambio
-    experieceToAdd=new Experience;
+    //experieceToAdd=new Experience;
     alert("Experiencia laboral agregada");
   }
 
   putExperience(experienceEdited:Experience){
     
-    //this.experienceList[experienceId]=experienceEdited;
     experienceEdited.imageUrl=experienceEdited.imageUrl==""||experienceEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceEdited.imageUrl;
-    this.experienceList.splice(experienceEdited.id, 1, experienceEdited)
+    //this.experienceList.splice(experienceEdited.id, 1, experienceEdited);
+    this.experienceList[experienceEdited.id]=experienceEdited;
     this.experienceList$.next(this.experienceList);
     alert("Experiencia laboral editada");
   }
@@ -45,9 +45,14 @@ export class ExperienceService {
     return this.experienceList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
-  deleteExperience(expToDeleteId:number){
-    if (window.confirm("Eliminar experiencia laboral?")){
-    this.experienceList = this.experienceList.filter(experience => experience.id !== expToDeleteId);
+  deleteExperience(expToDelete:Experience){
+    if (window.confirm("Eliminar experiencia laboral "+expToDelete.name+" ?")){
+      //this.experienceList.push(this.experienceList.splice(expToDeleteId, 1)[0]);
+      //this.experienceList.pop();
+    this.experienceList = this.experienceList.filter(experience => experience !== expToDelete);
+    for(let i=0;i<this.experienceList.length;i++){
+      this.experienceList[i].id=i;
+    }
     //delete this.experienceList[expToDeleteId];
     this.experienceList$.next(this.experienceList);
     alert("Experiencia laboral eliminada");

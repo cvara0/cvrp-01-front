@@ -43,7 +43,7 @@ createEditEducationForm(){
     
     eduName         : [this.educationToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
     eduWeb          : [this.educationToEdit.web,[Validators.maxLength(2048),Validators.pattern('https?://.+')]],
-    eduImage        : [''],
+    eduImage        : [this.educationToEdit.imageUrl=="https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg"?'':this.educationToEdit.imageUrl],
     eduYearSince    : [this.educationToEdit.yearSince,Validators.required],
     eduYearTo       : [this.educationToEdit.yearTo,Validators.required],
     eduDescription  : [this.educationToEdit.description,[Validators.maxLength(800)]],

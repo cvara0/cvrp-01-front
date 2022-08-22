@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Education } from 'src/app/components/models/education.models';
 import { EducationService } from 'src/app/services/edu.service';
 
 @Component({
@@ -6,13 +7,13 @@ import { EducationService } from 'src/app/services/edu.service';
   templateUrl: './delete-edu-btn.component.html'
 })
 export class DeleteEduBtnComponent implements OnInit {
-  @Input() public eduToDeleteId : number;
+  @Input() public eduToDelete : Education;
   constructor(private educationService:EducationService) { }
 
   ngOnInit(): void {
   }
   delete() {
   
-    this.educationService.deleteEducation(this.eduToDeleteId);
+    this.educationService.deleteEducation(this.eduToDelete);
 }
 }

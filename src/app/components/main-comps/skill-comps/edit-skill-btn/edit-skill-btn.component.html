@@ -3,7 +3,7 @@
 </button>
 
 <ng-template #editSkillModal let-modal>
-    <form class="text-l rounded-box neonBox" [formGroup]="addSkillForm" (ngSubmit)="saveAddSkill()" autocomplete="off">
+    <form class="text-l rounded-box neonBox" [formGroup]="editSkillForm" (ngSubmit)="saveEditSkill()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando habilidad {{this.skillToEdit.hard?"dura":"blanda"}}</h1>
         <label for="skillNameText">Habilidad</label>    
             <small class="text-danger" *ngIf="validSkillName"><br>Ingrese entre 4 y 20 caracteres</small>
@@ -11,6 +11,9 @@
         
         <label for="skillUrlImageText">Link de una imagen de un simbolo o logo de la habilidad (opcional)</label>
                 <input #skillUrlImage class="mb-3 form-control" type="url" formControlName="skillUrlImage">
+
+        <label for="skillWebText">Link de una pagina informativa del skill (opcional)</label>
+            <input #skillWebText class="mb-3 form-control" type="url" formControlName="skillWeb">
         
         <label for="skillLevelText">Anios de experiencia</label>
                 <select class="form-select mb-3" formControlName="skillLevel">

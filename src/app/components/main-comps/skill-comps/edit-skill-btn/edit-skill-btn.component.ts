@@ -12,7 +12,7 @@ export class EditSkillBtnComponent implements OnInit {
   @Input() skillToEdit: Skill;
 
 closeResult = '';
-addSkillForm!        :FormGroup;
+editSkillForm!        :FormGroup;
 levelList            :Number[];
 
 constructor(private fb:FormBuilder,private modalService: NgbModal,private skillService:SkillService) {
@@ -20,41 +20,43 @@ constructor(private fb:FormBuilder,private modalService: NgbModal,private skillS
  }
 
 ngOnInit(): void {
-  this.createAddSkillForm();
+  this.createEditSkillForm();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 //crear formulario de aniadir hard skill, validar y guardar
 //////////////////////////////////////////////////////////////////////////////////
-createAddSkillForm(){
+createEditSkillForm(){
 
-this.addSkillForm=this.fb.group({
+this.editSkillForm=this.fb.group({
   skillName          : [this.skillToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
   skillLevel         : [this.skillToEdit.level,Validators.required],
-  skillUrlImage      : [this.skillToEdit.urlImage,Validators.required],
+  skillUrlImage      : [this.skillToEdit.imageUrl=="https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg"?'':this.skillToEdit.imageUrl],
+  skillWeb           : [this.skillToEdit.web,[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
 });
 }
 //cambiar los add por edit y ver el html form
 get validSkillName(){
-return this.addSkillForm.get('skillName')?.invalid;
+return this.editSkillForm.get('skillName')?.invalid;
 }
 
 get validSkillLevel(){
-return this.addSkillForm.get('skillLevel')?.dirty;
+return this.editSkillForm.get('skillLevel')?.dirty;
 }
 
-saveAddSkill(){
+saveEditSkill(){
 
 this.skillService.putSkill(
   new Skill(
     this.skillToEdit.id,
-    this.addSkillForm.get('skillName')?.value,
-    this.addSkillForm.get('skillLevel')?.value,
+    this.editSkillForm.get('skillName')?.value,
+    this.editSkillForm.get('skillLevel')?.value,
     this.skillToEdit.hard,
-    this.addSkillForm.get('skillUrlImage')?.value,
+    this.editSkillForm.get('skillUrlImage')?.value,
+    this.editSkillForm.get('skillWeb')?.value
   )
 ); 
-this.addSkillForm.reset();
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////
