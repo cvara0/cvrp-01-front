@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Skill } from 'src/app/components/models/skill.models';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-soft-skills',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoftSkillsComponent implements OnInit {
 
-  constructor() { }
+  softSkillList: Skill[]=[];
+  
+  constructor(private skillService:SkillService) {
+    
+    this.skillService.getSoftSkillList$().subscribe(skillList=>{
+      this.softSkillList=skillList;
+    });
+   }
 
   ngOnInit(): void {
   }

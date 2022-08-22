@@ -1,2 +1,37 @@
-<!--simil educacion pero agragar fecha concreta-->
+<h1 *ngIf="projectList.length==0" class="text-xl neonText row justify-content-start mt-xl" style="text-align: left;">
+    <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar proyecto 
+</h1>
+<div *ngIf="projectList.length>0">
+    <div class="row mt-xl">
+        <h1  class="text-xl neonText" style="text-align: left;"><app-add-edu-btn></app-add-edu-btn> Experiencia Educativa:</h1>
+    </div>
+    <section class="container mt-lg" *ngFor="let project of projectList">
+
+        <div class="row">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
+                <br><br>
+                <a type="hidden" target="_blank" href={{project.web}} class="btn-42 circle-btn-big neonBox" style="background-image: url('{{project.imageUrl}}'); background-position: 50% 50%;">
+                </a> 
+            </div>
+            
+            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
+                <br><br>
+                <p class="text-l rounded-box neonBox">
+                    <span>
+                        <app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
+                        <app-delete-pro-btn [projectToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
+                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{education.name}}</span> 
+                             <br>
+                             {{(education.yearTo-education.yearSince)>0?" Desde "+education.yearSince+" hasta "+ education.yearTo:education.yearSince+" ( casi 1 anio de cursada )"}}
+                             -> Nivel: {{education.level}}
+                        </h1>
+                    </span>
+                    <br>
+                    {{education.description}}
+                </p>
+                    
+            </article>
+        </div>
+    </section>
+</div>
 
