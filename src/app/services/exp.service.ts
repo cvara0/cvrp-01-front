@@ -46,7 +46,7 @@ export class ExperienceService {
   }
 
   deleteExperience(expToDelete:Experience){
-    if (window.confirm("Eliminar experiencia laboral "+expToDelete.name+" ?")){
+    if (window.confirm("Eliminar experiencia laboral en "+expToDelete.name+" ?")){
       //this.experienceList.push(this.experienceList.splice(expToDeleteId, 1)[0]);
       //this.experienceList.pop();
     this.experienceList = this.experienceList.filter(experience => experience !== expToDelete);

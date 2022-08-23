@@ -5,15 +5,21 @@
 <ng-template #addExpModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="addExperienceForm" (ngSubmit)="saveAddExperience()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nuevo puesto</h1>
-        <label for="expNameText">Nombre de la empresa:</label>    
+        <label for="expNameText">Nombre de la empresa:*</label>    
             <small class="form-text" *ngIf="validExpName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #expNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="expName">
+
+        <label for="expPositionText">Cargo:*</label>    
+            <small class="form-text" *ngIf="validExpPosition"><br>Ingrese entre 4 y 80 caracteres</small>
+                <input #expPositionText maxlength="81" class="mb-3 form-control" type="text" formControlName="expPosition">
+
         <label for="expWebText">Link de la pagina web de la empresa:</label>    
                 <input #expWebText class="mb-3 form-control" type="url" formControlName="expWeb">
+
         <label for="expImageText">Link de una imagen o logo de la empresa:</label>
                 <input #expImageText class="mb-3 form-control" type="url" formControlName="expImage">
         
-        <label for="expYearSinceText">Anio desde:</label>
+        <label for="expYearSinceText">Anio desde:*</label>
                 <select class="form-select mb-3" formControlName="expYearSince">
                     <option *ngFor="let year of this.yearSinceList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -21,7 +27,7 @@
                 </select>
     
         <div *ngIf="validExpYearSince">
-        <label for="expYearToText">Anio hasta:</label>
+        <label for="expYearToText">Anio hasta:*</label>
                 <select class="form-select mb-3" formControlName="expYearTo">
                     <option *ngFor="let year of getYearToList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -34,7 +40,7 @@
                 <textarea #expDescriptionText maxlength="801" class="mb-3 form-control" type="text" formControlName="expDescription">
                 </textarea>
            <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
-        <button *ngIf="(!validExpName && validExpYearSince && validExpYearTo && !validExpDescription)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+        <button *ngIf="(!validExpName && !validExpPosition && validExpYearSince && validExpYearTo && !validExpDescription)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
     </form>
     
 </ng-template>

@@ -10,7 +10,7 @@
 /*texto*/
 .text-xxl{
   color: rgb(208, 207, 207);
-    font-family: 'Comic Neue';
+    font-family: 'monospace';
     font-size:xx-large;
     text-align: center;
     white-space: pre-line;
@@ -22,7 +22,7 @@
 
 .text-xl{
     color: rgb(208, 207, 207);
-    font-family: 'Comic Neue';
+    font-family:monospace;
     font-size:x-large;
     text-align: center;
     white-space: pre-line;
@@ -35,7 +35,7 @@
   
   .text-l{
     color: #fff;
-    font-family: 'Comic Neue';
+    font-family:Arial, Helvetica, sans-serif;
     font-size:large;
     text-align: justify;
     white-space: pre-line;
@@ -208,15 +208,15 @@
   }
   
   .circle-btn-big{
-    width: 220px; 
-    height:220px;
+    width: 260px; 
+    height:260px;
     margin-left: 65px;
     transition: width 1s, height 1s;
   }
   .circle-btn-big:hover {
     filter: saturate(200%);
-    width: 250px; 
-    height:250px;
+    width: 290px; 
+    height:290px;
     
     }
   /* imagenes circulares--------------------------------------------*/

@@ -40,6 +40,7 @@ createEditExperienceForm(){
   this.editExperienceForm=this.fb.group({
     
     expName         : [this.experienceToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+    expPosition     : [this.experienceToEdit.position,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
     expWeb          : [this.experienceToEdit.web,[Validators.maxLength(2048),Validators.pattern('https?://.+')]],
     expImage        : [this.experienceToEdit.imageUrl=="https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg"?'':this.experienceToEdit.imageUrl],
     expYearSince    : [this.experienceToEdit.yearSince,Validators.required],
@@ -57,6 +58,11 @@ get validExpName(){
 get validExpWeb(){
   return this.editExperienceForm.get('expWeb')?.invalid;
 }
+
+get validExpPosition(){
+  return this.editExperienceForm.get('expPosition')?.invalid;
+}
+
 get validExpYearSince(){
   return this.editExperienceForm.get('expYearSince')?.dirty;
  }

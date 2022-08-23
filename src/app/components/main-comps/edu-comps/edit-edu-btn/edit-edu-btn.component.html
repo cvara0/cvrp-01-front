@@ -5,23 +5,29 @@
 <ng-template #editEduModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="editEducationForm" (ngSubmit)="saveEditEducation()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nueva educacion</h1>
-        <label for="eduNameText">Nombre de la institucion:</label>    
+        <label for="eduNameText">Nombre de la institucion:*</label>    
             <small class="form-text" *ngIf="validEduName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #eduNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="eduName">
+
+        <label for="eduCarrerText">Carrera/s:*</label>    
+            <small class="form-text" *ngIf="validEduCarrer"><br>Ingrese entre 4 y 80 caracteres</small>
+                <textarea #eduCarrerText maxlength="81" class="mb-3 form-control" type="text" formControlName="eduCarrer"></textarea>
+
         <label for="eduWebText">Link de la pagina web de la institucion:</label>    
                 <input #eduWebText class="mb-3 form-control" type="url" formControlName="eduWeb">
+
         <label for="eduImageText">Link de una imagen o logo de la institucion:</label>
                 <input #eduImageText class="mb-3 form-control" type="url" formControlName="eduImage">
         
-        <label for="eduYearSinceText">Anio desde:</label>
+        <label for="eduYearSinceText">Anio desde*:</label>
                 <select class="form-select mb-3" formControlName="eduYearSince">
                     <option *ngFor="let year of this.yearSinceList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
                     </option>
                 </select>
     
-        <div *ngIf="validEduYearSince">
-        <label for="eduYearToText">Anio hasta:</label>
+        <div>
+        <label for="eduYearToText">Anio hasta*:</label>
                 <select class="form-select mb-3" formControlName="eduYearTo">
                     <option *ngFor="let year of getYearToList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -29,10 +35,17 @@
             </select>
         </div>
 
-        <label for="eduLevelText">Nivel educativo:</label>
+        <label for="eduLevelText">Nivel educativo*:</label>
                 <select class="form-select mb-3" formControlName="eduLevel">
                     <option *ngFor="let level of this.educationLevel" value={{level}}>
                         {{level}}
+                    </option>
+                </select>
+
+        <label for="eduStatusText">Estado de cursada*:</label>
+                <select class="form-select mb-3" formControlName="eduStatus">
+                    <option *ngFor="let status of this.educationStatus" value={{status}}>
+                        {{status}}
                     </option>
                 </select>
               

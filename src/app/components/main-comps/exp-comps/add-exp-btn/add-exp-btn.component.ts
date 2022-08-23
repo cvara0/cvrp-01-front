@@ -36,6 +36,7 @@ createAddExperienceForm(){
   this.addExperienceForm=this.fb.group({
     expName         : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
     expWeb          : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
+    expPosition     : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
     expYearSince    : [,[Validators.required]],
     expYearTo       : [,[Validators.required]],
     expImage        : [''],
@@ -50,6 +51,11 @@ get validExpName(){
 get validExpWeb(){
   return this.addExperienceForm.get('expWeb')?.invalid;
 }
+
+get validExpPosition(){
+  return this.addExperienceForm.get('expPosition')?.invalid;
+}
+
 get validExpYearSince(){
  return this.addExperienceForm.get('expYearSince')?.dirty;
 }
@@ -71,6 +77,7 @@ saveAddExperience(){
     new Experience(
       0,
       this.addExperienceForm.get('expName')?.value,
+      this.addExperienceForm.get('expPosition')?.value,
       this.addExperienceForm.get('expWeb')?.value,
       this.addExperienceForm.get('expYearSince')?.value,
       this.addExperienceForm.get('expYearTo')?.value,

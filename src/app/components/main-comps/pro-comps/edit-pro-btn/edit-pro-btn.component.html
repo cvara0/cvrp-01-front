@@ -5,7 +5,7 @@
 <ng-template #editProModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="editProjectForm" (ngSubmit)="saveEditProject()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nuevo proyecto</h1>
-        <label for="proNameText">Nombre del proyecto: </label>    
+        <label for="proNameText">Nombre del proyecto:* </label>    
             <small class="form-text" *ngIf="validProName"><br>Ingrese entre 1 y 80 caracteres</small>
                 <input #proNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="proName">
         <label for="proWebText">Link de la pagina web del proyecto:</label>    
@@ -13,7 +13,7 @@
         <label for="proImageText">Link de una imagen o logo del proyecto:</label>
                 <input #proImageText class="mb-3 form-control" type="url" formControlName="proImage">
         
-        <label for="proDateText">Fecha de finalizacion estimada: (actual: {{this.projectToEdit.date}})</label>
+        <label for="proDateText">Fecha de finalizacion estimada:* (actual: {{this.projectToEdit.date}})</label>
             <div class="input-group mb-3">
                 <input class="form-control" type="date" formControlName="proDate" ngbDatepicker #d="ngbDatepicker">
             </div>

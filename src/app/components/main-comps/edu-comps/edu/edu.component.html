@@ -20,12 +20,15 @@
                     <span>
                         <app-edit-edu-btn [educationToEdit]=education class="row justify-content-end"></app-edit-edu-btn>
                         <app-delete-edu-btn [eduToDelete]=education class="row justify-content-end"></app-delete-edu-btn>
-                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{education.name}}</span> 
-                             <br>
-                             {{(education.yearTo-education.yearSince)>0?" Desde "+education.yearSince+" hasta "+ education.yearTo:education.yearSince+" ( casi 1 anio de cursada )"}}
-                             -> Nivel: {{education.level}}
+                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{education.carrer}}</span> 
+                              ({{education.status}})
+                               <br>
+                               {{education.name}} 
                         </h1>
                     </span>
+                             {{education.status=="Cursando"||education.status=="Finalizando"?" Desde "+education.yearSince+" hasta el momento ":(education.yearTo-education.yearSince)>0?" Desde "+education.yearSince+" hasta "+ education.yearTo:education.yearSince+" ( casi 1 anio de cursada )"}}
+                             <br>
+                             Nivel: {{education.level}}
                     <br>
                     {{education.description}}
                 </p>

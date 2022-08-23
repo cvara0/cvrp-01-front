@@ -12,17 +12,19 @@ import { YearService } from 'src/app/services/year.service';
 export class AddEduBtnComponent implements OnInit {
 
   closeResult = '';
-  addEducationForm!  :FormGroup;
-  newEducation       :Education;
+  addEducationForm!   :FormGroup;
+  newEducation        :Education;
   yearSinceList       :Year[];
   yearToList          :Year[];
   yearSelected        :number;
   educationLevel      :string[];
+  educationStatus     :string[];
 
   constructor(private fb:FormBuilder,private modalService: NgbModal,private educationService:EducationService,public yearService:YearService) {
     this.yearSinceList=yearService.getYearSinceList();
     this.yearToList=[];
     this.educationLevel=['Primario','Secundario','Terciario','Universitario','Curso'];
+    this.educationStatus=['Experiencia','Cursando','Finalizando','Finalizada'];
    }
 
   ngOnInit(): void {
@@ -36,6 +38,8 @@ createAddEducationForm(){
   
   this.addEducationForm=this.fb.group({
     eduName         : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+    eduCarrer       : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
+    eduStatus       : [,[Validators.required]],
     eduWeb          : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
     eduYearSince    : [,[Validators.required]],
     eduYearTo       : [,[Validators.required]],
@@ -47,6 +51,14 @@ createAddEducationForm(){
 
 get validEduName(){
   return this.addEducationForm.get('eduName')?.invalid;
+}
+
+get validEduCarrer(){
+  return this.addEducationForm.get('eduCarrer')?.invalid;
+}
+
+get validEduStatus(){
+  return this.addEducationForm.get('eduStatus')?.dirty;
 }
 
 get validEduWeb(){
@@ -77,6 +89,8 @@ saveAddEducation(){
     new Education(
       0,
       this.addEducationForm.get('eduName')?.value,
+      this.addEducationForm.get('eduCarrer')?.value,
+      this.addEducationForm.get('eduStatus')?.value,
       this.addEducationForm.get('eduWeb')?.value,
       this.addEducationForm.get('eduYearSince')?.value,
       this.addEducationForm.get('eduYearTo')?.value,

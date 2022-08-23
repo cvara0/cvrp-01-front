@@ -17,6 +17,7 @@ export class EditEduBtnComponent implements OnInit {
   closeResult = '';
   editEducationForm!: FormGroup;
   educationLevel      :string[];
+  educationStatus     :string[];
 
   constructor(private educationService:EducationService,public yearService:YearService,private fb:FormBuilder,private modalService: NgbModal) {
     
@@ -24,6 +25,7 @@ export class EditEduBtnComponent implements OnInit {
     //console.log(this.experienceToEdit);
     this.yearSinceList=yearService.getYearSinceList();
     this.educationLevel=['Primario','Secundario','Terciario','Universitario','Curso'];
+    this.educationStatus=['Experiencia','Cursando','Finalizando','Finalizada'];
 
    }
 
@@ -35,13 +37,15 @@ export class EditEduBtnComponent implements OnInit {
 
 
   //////////////////////////////////////////////////////////////////////////////////
-//crear formulario de editar experiencia laboral, validar y guardar
+//crear formulario de editar experiencia educativa, validar y guardar
 //////////////////////////////////////////////////////////////////////////////////
 createEditEducationForm(){
  
   this.editEducationForm=this.fb.group({
     
     eduName         : [this.educationToEdit.name,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+    eduCarrer       : [this.educationToEdit.carrer,[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
+    eduStatus       : [this.educationToEdit.status,[Validators.required]],
     eduWeb          : [this.educationToEdit.web,[Validators.maxLength(2048),Validators.pattern('https?://.+')]],
     eduImage        : [this.educationToEdit.imageUrl=="https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg"?'':this.educationToEdit.imageUrl],
     eduYearSince    : [this.educationToEdit.yearSince,Validators.required],
@@ -55,6 +59,14 @@ createEditEducationForm(){
 
 get validEduName(){
   return this.editEducationForm.get('eduName')?.invalid;
+}
+
+get validEduCarrer(){
+  return this.editEducationForm.get('eduCarrer')?.invalid;
+}
+
+get validEduStatus(){
+  return this.editEducationForm.get('eduStatus')?.dirty;
 }
 
 get validEduWeb(){
@@ -86,6 +98,8 @@ saveEditEducation(){
     new Education(
       this.educationToEdit.id,
       this.editEducationForm.get('eduName')?.value,
+      this.editEducationForm.get('eduCarrer')?.value,
+      this.editEducationForm.get('eduStatus')?.value,
       this.editEducationForm.get('eduWeb')?.value,
       this.editEducationForm.get('eduYearSince')?.value,
       this.editEducationForm.get('eduYearTo')?.value,

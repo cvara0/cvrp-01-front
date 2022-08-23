@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Education } from '../components/models/education.models';
+import { EducationListMy } from '../components/models/educationListMy.models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class EducationService {
     this.educationList$=new Subject();
     
    }
+   
 
   postEducation(educationToAdd:Education){
     educationToAdd.id=this.educationList.length;
@@ -46,7 +48,7 @@ export class EducationService {
   }
 
   deleteEducation(eduToDelete:Education){
-    if (window.confirm("Eliminar experiencia educativa "+eduToDelete.name+" ?")){
+    if (window.confirm("Eliminar experiencia educativa en "+eduToDelete.name+" ?")){
     this.educationList = this.educationList.filter(education => education !== eduToDelete);
     //delete this.experienceList[expToDeleteId];
     for(let i=0;i<this.educationList.length;i++){
