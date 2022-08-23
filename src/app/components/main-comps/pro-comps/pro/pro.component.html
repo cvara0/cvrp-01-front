@@ -17,12 +17,13 @@
             <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
                 <br><br>
                 <p class="text-l rounded-box neonBox">
+                    
                     <span>
-                        <!--<app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
-                        <app-delete-pro-btn [projectToDelete]=project class="row justify-content-end"></app-delete-pro-btn>-->
-                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{project.name}} {{project.date}}</span> 
+                        <app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
+                        <app-delete-pro-btn [proToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
+                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{project.name}}</span> 
                              <br>
-                             <!-- fecha-->
+                             -> Realizacion: {{project.date}}
                         </h1>
                     </span>
                     <br>

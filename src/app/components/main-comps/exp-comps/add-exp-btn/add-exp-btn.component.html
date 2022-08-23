@@ -5,15 +5,15 @@
 <ng-template #addExpModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="addExperienceForm" (ngSubmit)="saveAddExperience()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nuevo puesto</h1>
-        <label for="expNameText">Nombre de la empresa</label>    
+        <label for="expNameText">Nombre de la empresa:</label>    
             <small class="form-text" *ngIf="validExpName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #expNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="expName">
-        <label for="expWebText">Link de la pagina web de la empresa (opcional)</label>    
+        <label for="expWebText">Link de la pagina web de la empresa:</label>    
                 <input #expWebText class="mb-3 form-control" type="url" formControlName="expWeb">
-        <label for="expImageText">Link de una imagen o logo de la empresa (opcional)</label>
+        <label for="expImageText">Link de una imagen o logo de la empresa:</label>
                 <input #expImageText class="mb-3 form-control" type="url" formControlName="expImage">
         
-        <label for="expYearSinceText">Anio desde</label>
+        <label for="expYearSinceText">Anio desde:</label>
                 <select class="form-select mb-3" formControlName="expYearSince">
                     <option *ngFor="let year of this.yearSinceList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -21,7 +21,7 @@
                 </select>
     
         <div *ngIf="validExpYearSince">
-        <label for="expYearToText">Anio hasta</label>
+        <label for="expYearToText">Anio hasta:</label>
                 <select class="form-select mb-3" formControlName="expYearTo">
                     <option *ngFor="let year of getYearToList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -29,7 +29,7 @@
             </select>
         </div>
               
-        <label for="expDescriptionText">Descripcion (opcional)</label>    
+        <label for="expDescriptionText">Descripcion:</label>    
             <small class="text-danger mb-3" *ngIf="validExpDescription"><br>Maximo 800 caracteres</small>
                 <textarea #expDescriptionText maxlength="801" class="mb-3 form-control" type="text" formControlName="expDescription">
                 </textarea>

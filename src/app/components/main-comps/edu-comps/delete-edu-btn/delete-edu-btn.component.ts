@@ -15,5 +15,5 @@ export class DeleteEduBtnComponent implements OnInit {
   delete() {
   
     this.educationService.deleteEducation(this.eduToDelete);
-}
+  }
 }

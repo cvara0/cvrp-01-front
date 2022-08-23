@@ -26,7 +26,7 @@ export class AddProBtnComponent implements OnInit {
   }
 
 /////////////////////////////////////////////////////////////////////////////////
-//crear formulario de aniadir experiencia laboral, validar y guardar
+//crear formulario de aniadir proyecto, validar y guardar
 //////////////////////////////////////////////////////////////////////////////////
 selectToday() {
   this.model = this.calendar.getToday();
@@ -40,7 +40,7 @@ createAddProjectForm(){
   this.addProjectForm=this.fb.group({
     proName         : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
     proWeb          : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
-    proDate         :[],
+    proDate         :[,[Validators.required]],
     proImage        : [''],
     proDescription  : ['',[Validators.maxLength(800)]],
   });
@@ -48,6 +48,10 @@ createAddProjectForm(){
 
 get validProName(){
   return this.addProjectForm.get('proName')?.invalid;
+}
+
+get validProDate(){
+  return this.addProjectForm.get('proDate')?.invalid;
 }
 
 get validProWeb(){
