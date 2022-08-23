@@ -1,9 +1,9 @@
 <h1 *ngIf="projectList.length==0" class="text-xl neonText row justify-content-start mt-xl" style="text-align: left;">
-    <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar proyecto 
+    <app-add-pro-btn class="row justify-content-start"></app-add-pro-btn> Agregar proyecto 
 </h1>
 <div *ngIf="projectList.length>0">
     <div class="row mt-xl">
-        <h1  class="text-xl neonText" style="text-align: left;"><app-add-edu-btn></app-add-edu-btn> Experiencia Educativa:</h1>
+        <h1  class="text-xl neonText" style="text-align: left;"><app-add-pro-btn></app-add-pro-btn> Proyectos:</h1>
     </div>
     <section class="container mt-lg" *ngFor="let project of projectList">
 
@@ -18,16 +18,15 @@
                 <br><br>
                 <p class="text-l rounded-box neonBox">
                     <span>
-                        <app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
-                        <app-delete-pro-btn [projectToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
-                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{education.name}}</span> 
+                        <!--<app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
+                        <app-delete-pro-btn [projectToDelete]=project class="row justify-content-end"></app-delete-pro-btn>-->
+                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{project.name}} {{project.date}}</span> 
                              <br>
-                             {{(education.yearTo-education.yearSince)>0?" Desde "+education.yearSince+" hasta "+ education.yearTo:education.yearSince+" ( casi 1 anio de cursada )"}}
-                             -> Nivel: {{education.level}}
+                             <!-- fecha-->
                         </h1>
                     </span>
                     <br>
-                    {{education.description}}
+                    {{project.description}}
                 </p>
                     
             </article>
