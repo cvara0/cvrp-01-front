@@ -10,7 +10,7 @@
 /*texto*/
 .text-xxl{
   color: rgb(208, 207, 207);
-    font-family: 'monospace';
+    font-family:'monospace';
     font-size:xx-large;
     text-align: center;
     white-space: pre-line;
@@ -22,7 +22,7 @@
 
 .text-xl{
     color: rgb(208, 207, 207);
-    font-family:monospace;
+    font-family: 'monospace';
     font-size:x-large;
     text-align: center;
     white-space: pre-line;
@@ -35,7 +35,7 @@
   
   .text-l{
     color: #fff;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'monospace';
     font-size:large;
     text-align: justify;
     white-space: pre-line;
