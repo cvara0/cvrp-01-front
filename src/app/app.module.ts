@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { AppComponent } from './app.component';
 
+import{ScrollingModule} from '@angular/cdk/scrolling';
+import{DragDropModule} from '@angular/cdk/drag-drop';
 
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";//para que no se refresque el formulario
 
@@ -75,6 +76,7 @@ import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +123,8 @@ import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    ScrollingModule,
+    DragDropModule
     
   ],
   providers: [],

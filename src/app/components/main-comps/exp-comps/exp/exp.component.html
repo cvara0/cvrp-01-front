@@ -1,21 +1,21 @@
 
-<h1 *ngIf="experienceList.length==0" class="text-xl neonText row justify-content-start mt-xl" style="text-align: left;">
+<h1 *ngIf="experienceList.length==0" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
     <app-add-exp-btn class="row justify-content-start"></app-add-exp-btn> Agregar experiencia laboral 
 </h1>
 <div *ngIf="experienceList.length>0">
     <div class="row mt-xl">
-        <h1  class="text-xl neonText" style="text-align: left;"><app-add-exp-btn></app-add-exp-btn> Experiencia Laboral:</h1>
+        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;"><app-add-exp-btn></app-add-exp-btn> Experiencia Laboral:</h1>
     </div>
-    <section class="container mt-lg" *ngFor="let experience of experienceList;">{{experience}}>
+    <section class="container mt-lg" *ngFor="let experience of experienceList;">
 
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
                 <br><br>
-                <a type="hidden" target="_blank" href={{experience.web}} class="btn-42 circle-btn-big neonBox" style="background-image: url('{{experience.imageUrl}}'); background-position: 50% 50%;">
+                <a type="hidden" target="_blank" href={{experience.web}} class="btn-42 circle-btn-big neonBox  animate__animated animate__fadeInLeftBig" style="background-image: url('{{experience.imageUrl}}'); background-position: 50% 50%;">
                 </a> 
             </div>
             
-            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
+            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12  animate__animated animate__fadeInRightBig">
                 <br><br>
                 <p class="text-l rounded-box neonBox">
                     <span>

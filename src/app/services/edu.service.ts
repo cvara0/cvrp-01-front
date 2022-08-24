@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Education } from '../components/models/education.models';
@@ -8,10 +9,12 @@ import { EducationListMy } from '../components/models/educationListMy.models';
 })
 export class EducationService {
 
+  //private readonly API='';//esto representa la url a la caul comunicarse
+
   private educationList: Education[];
   private educationList$: Subject<Education[]>;
 
-  constructor() {
+  constructor(private http:HttpClient) {
     this.educationList=[];
     this.educationList$=new Subject();
     
@@ -29,7 +32,7 @@ export class EducationService {
   }
 
   putEducation(educationEdited:Education){
-    
+    //this.http.put//ver
     //this.experienceList[experienceId]=experienceEdited;
     educationEdited.imageUrl=educationEdited.imageUrl==""||educationEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationEdited.imageUrl;
     this.educationList[educationEdited.id]=educationEdited;
@@ -44,6 +47,10 @@ export class EducationService {
   }
 
   getEducationList$(): Observable<Education[]>{
+    //this.http.get("http//localhost:8080/education").subscribe((resp:any)=>{
+     // this.educationList=resp;
+   // });//nuevo
+    //this.educationList$.next(this.educationList);//nuevo
     return this.educationList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
