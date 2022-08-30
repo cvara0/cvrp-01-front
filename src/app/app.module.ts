@@ -63,7 +63,8 @@ import { NavbarLinkBtnComponent } from './components/header-comps/navbar-comps/n
 import { NavbarLoginBtnComponent } from './components/header-comps/navbar-comps/navbar-login-btn/navbar-login-btn.component';
 import { NavbarRegisterBtnComponent } from './components/header-comps/navbar-comps/navbar-register-btn/navbar-register-btn.component';
 
-
+//rutas
+import {APP_ROUTING } from './app.routes';
 
 import { NameProfessionComponent } from './components/header-comps/name-profession-comps/name-profession/name-profession.component';
 import { EditNaproBtnComponent } from './components/header-comps/name-profession-comps/edit-napro-btn/edit-napro-btn.component';
@@ -73,6 +74,9 @@ import { AboutComponent } from './components/header-comps/about-comps/about/abou
 import { EditAboutBtnComponent } from './components/header-comps/about-comps/edit-about-btn/edit-about-btn.component';
 import { DeleteAboutBtnComponent } from './components/header-comps/about-comps/delete-about-btn/delete-about-btn.component';
 import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-about-btn/add-about-btn.component';
+import { HomeComponent } from './components/home-comps/home/home.component';
+
+
 
 
 
@@ -115,7 +119,8 @@ import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-
     AboutComponent,
     EditAboutBtnComponent,
     DeleteAboutBtnComponent,
-    AddAboutBtnComponent
+    AddAboutBtnComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +129,8 @@ import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-
     ReactiveFormsModule,
     NgbModule,
     ScrollingModule,
-    DragDropModule
+    DragDropModule,
+    APP_ROUTING
     
   ],
   providers: [],

@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from 'src/app/services/register.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-navbar-register-btn',
-  templateUrl: './navbar-register-btn.component.html',
-  styleUrls: ['./navbar-register-btn.component.css']
+  templateUrl: './navbar-register-btn.component.html'
 })
 export class NavbarRegisterBtnComponent implements OnInit {
 
@@ -14,7 +12,7 @@ export class NavbarRegisterBtnComponent implements OnInit {
   registerForm!: FormGroup;
   closeResult = '';
 
-  constructor(private fb:FormBuilder,private modalService: NgbModal,private registerService:RegisterService) { 
+  constructor(private fb:FormBuilder,private modalService: NgbModal) { 
     this.createRegisterForm();
   }
 

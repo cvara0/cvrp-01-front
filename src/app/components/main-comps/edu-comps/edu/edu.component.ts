@@ -12,14 +12,13 @@ export class EduComponent implements OnInit {
   educationList         : Education[];
 
   constructor(private educationService:EducationService) {
-    this.educationList=new EducationListMy().educationListMy;//[];
-    
-  }
-
-  ngOnInit(): void {
+    this.educationList=[];
     this.educationService.getEducationList$().subscribe(educationList=>{
       this.educationList=educationList;
     });
+  }
+
+  ngOnInit(): void {
   }
 
 }

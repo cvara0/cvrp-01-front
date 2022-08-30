@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-navbar-login-btn',
@@ -12,7 +11,7 @@ export class NavbarLoginBtnComponent implements OnInit {
   loginForm!: FormGroup;
   closeResult = '';
  
-  constructor(private fb:FormBuilder,private modalService: NgbModal,private loginService:LoginService) { 
+  constructor(private fb:FormBuilder,private modalService: NgbModal) { 
     this.createLoginForm();
   }
 

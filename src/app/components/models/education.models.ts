@@ -10,7 +10,8 @@ export class Education{
         public yearTo       : number=0,
         public imageUrl     : string='',
         public description  : string='',
-        public level        : string='',  
+        public level        : string='',
+        public userId?      : number, 
     ){
 
     }

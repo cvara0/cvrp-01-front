@@ -4,8 +4,7 @@ import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-soft-skills',
-  templateUrl: './soft-skills.component.html',
-  styleUrls: ['./soft-skills.component.css']
+  templateUrl: './soft-skills.component.html'
 })
 export class SoftSkillsComponent implements OnInit {
 

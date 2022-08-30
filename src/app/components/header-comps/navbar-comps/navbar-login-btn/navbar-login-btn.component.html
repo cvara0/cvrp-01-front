@@ -1,6 +1,10 @@
-<button (click)="open(loginModal)" class="btn-42 circle-btn circle-img neonBox  animate__animated animate__zoomIn">
+<button (click)="open(loginModal)" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn">
     <img class="circle-img" src={{loginIcon}} alt="navbar-login-btn">
 </button>
+
+<!--*ngIf="user.isLogin==false" <button *ngIf="user.isLogin==true" (click)="editAll(true)" class="btn-42 circle-btn circle-img mb-3 neonBox animate__animated animate__zoomIn">
+    <img class="circle-img" src="https://i.postimg.cc/TPpTMdv5/editar.png" alt="edit-banner">
+</button>-->
 
 
 <ng-template #loginModal let-modal>
