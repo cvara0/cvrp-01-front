@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/components/models/user.models';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-navbar-register-btn',
   templateUrl: './navbar-register-btn.component.html'
@@ -12,7 +14,7 @@ export class NavbarRegisterBtnComponent implements OnInit {
   registerForm!: FormGroup;
   closeResult = '';
 
-  constructor(private fb:FormBuilder,private modalService: NgbModal) { 
+  constructor(private fb:FormBuilder,private modalService: NgbModal,private userService:UserService) { 
     this.createRegisterForm();
   }
 
@@ -48,13 +50,13 @@ get validRegisterPassword(){
 }
 
 saveRegister(){
-   /*
-  this.registerService.sharingObservableData={
-    name:this.registerForm.get('name')?.value,
-    surname:this.registerForm.get('surname')?.value,
-    email:this.registerForm.get('email')?.value,
-    password:this.registerForm.get('password')?.value
-  };*/
+  
+  this.userService.register(
+    new User(this.registerForm.get('emailRegister')?.value,
+    this.registerForm.get('passwordRegister')?.value)
+    ).subscribe();
+  this.registerForm.reset();
+  
 }
 
   /////////////////////////////////////////////////////////////////////////////////
