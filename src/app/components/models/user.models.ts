@@ -4,7 +4,7 @@ export class User{
         //public name      :string,
         //public surname   :string,
         public username  :string,
-        public password  :string
-        //public id?       :number
+        public password  :string,
+        public id?       :number
     ){}
 }

@@ -54,9 +54,8 @@ saveRegister(){
   this.userService.register(
     new User(this.registerForm.get('emailRegister')?.value,
     this.registerForm.get('passwordRegister')?.value)
-    ).subscribe();
-  this.registerForm.reset();
-  
+    );
+  //this.registerForm.reset();
 }
 
   /////////////////////////////////////////////////////////////////////////////////
