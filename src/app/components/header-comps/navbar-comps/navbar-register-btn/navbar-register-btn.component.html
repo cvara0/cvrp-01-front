@@ -19,6 +19,6 @@
             <small class="form-text" *ngIf="validRegisterPassword"><br>Ingrese entre 8 y 80 caracteres (ver cantidad de caracteres para clave)</small>
                 <input #passwordRegisterText class="mb-3 form-control" type="password" formControlName="passwordRegister"> 
         <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
-        <button *ngIf="(!validRegisterName && !validRegisterSurname && !validRegisterEmail && !validRegisterPassword)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+        <button *ngIf="(!validRegisterName && !validRegisterSurname && !validRegisterEmail && !validRegisterPassword)" (click)="modal.close('Save click')" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
     </form>
 </ng-template>

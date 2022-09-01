@@ -2,7 +2,7 @@
     <app-add-about-btn class="row justify-content-end"></app-add-about-btn> Agregar "Acerca de..." 
 </h1>
 
-<section *ngIf="about.deleted==false" class="container neonText neonBox rounded-box mt-xl animate__animated animate__fadeInRightBig">
+<section *ngIf="about.deleted==false" class="container neonBox rounded-box mt-xl animate__animated animate__fadeInRightBig">
     <h1 class="text-xl neonText" style="text-align: left;">
         <app-edit-about-btn [aboutToEdit]=about class="row justify-content-end"></app-edit-about-btn>
         <app-delete-about-btn class="row justify-content-end"></app-delete-about-btn>

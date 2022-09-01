@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Login } from 'src/app/components/models/login.models';
+import { User } from 'src/app/components/models/user.models';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-navbar-login-btn',
   templateUrl: './navbar-login-btn.component.html'
@@ -11,7 +14,7 @@ export class NavbarLoginBtnComponent implements OnInit {
   loginForm!: FormGroup;
   closeResult = '';
  
-  constructor(private fb:FormBuilder,private modalService: NgbModal) { 
+  constructor(private fb:FormBuilder,private modalService: NgbModal,private userService:UserService) { 
     this.createLoginForm();
   }
 
@@ -37,11 +40,12 @@ get validLoginPassword(){
 }
 
 saveLogin(){
-   //this.authService.login(this.loginForm.get('emailLogin')?.value,this.loginForm.get('passwordLogin')?.value);
-  /*this.loginService.sharingObservableData={
-   email:this.loginForm.get('emailLogin')?.value,
-    password:this.loginForm.get('passwordLogin')?.value
-  };*/ 
+  
+  this.userService.login(
+    new Login(
+      this.loginForm.get('emailLogin')?.value,
+    this.loginForm.get('passwordLogin')?.value)
+    ); 
 }
 
   /////////////////////////////////////////////////////////////////////////////////

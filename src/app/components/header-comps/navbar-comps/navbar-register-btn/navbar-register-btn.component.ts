@@ -55,7 +55,6 @@ saveRegister(){
     new User(this.registerForm.get('emailRegister')?.value,
     this.registerForm.get('passwordRegister')?.value)
     );
-  //this.registerForm.reset();
 }
 
   /////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +74,7 @@ private getDismissReason(reason: any): string {
   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
     return 'by clicking on a backdrop';
   } else {
+  
     return `with: ${reason}`;
   }
 }

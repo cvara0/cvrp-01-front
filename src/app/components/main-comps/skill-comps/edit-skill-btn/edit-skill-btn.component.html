@@ -22,7 +22,7 @@
                     </option>
                 </select>
       
-        <button *ngIf="(!validSkillName)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+        <button *ngIf="(!validSkillName)" (click)="modal.close('Save click')" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
     </form>
     
 </ng-template>

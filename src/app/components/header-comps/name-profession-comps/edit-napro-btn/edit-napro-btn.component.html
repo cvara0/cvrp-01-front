@@ -26,6 +26,6 @@
                     
                 </select>
         <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
-        <button *ngIf="(!validEditNaproName && !validEditNaproSurname && !validEditNaproProfession && !validEditNaproCountryAndFlag)" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+        <button *ngIf="(!validEditNaproName && !validEditNaproSurname && !validEditNaproProfession && !validEditNaproCountryAndFlag)" (click)="modal.close('Save click')" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
     </form>
 </ng-template>
