@@ -2,11 +2,6 @@
     <img class="circle-img" src={{loginIcon}} alt="navbar-login-btn">
 </button>
 
-<!--*ngIf="user.isLogin==false" <button *ngIf="user.isLogin==true" (click)="editAll(true)" class="btn-42 circle-btn circle-img mb-3 neonBox animate__animated animate__zoomIn">
-    <img class="circle-img" src="https://i.postimg.cc/TPpTMdv5/editar.png" alt="edit-banner">
-</button>-->
-
-
 <ng-template #loginModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="loginForm" (ngSubmit)="saveLogin()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Iniciar sesion</h1>

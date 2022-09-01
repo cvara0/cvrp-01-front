@@ -41,7 +41,7 @@
   .text-l{
     color: #fff;
     font-family: sans-serif;
-
+    letter-spacing: 1px;
     font-size:large;
     text-align: justify;
     white-space: pre-line;

@@ -1,0 +1,12 @@
+<button (click)="open(logoutModal)" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn">
+    <img class="circle-img" src={{logoutIcon}} alt="navbar-logout-btn">
+</button>
+
+<ng-template #logoutModal let-modal>
+    <form class="text-l rounded-box neonBox" (ngSubmit)="saveLogout()" autocomplete="off">
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Seguro desea salir?</h1>
+        <button type="button" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/y8thW5DC/cancel.png');background-position:50% 50%;margin-left: 45%;"></button>
+        <button type="submit" class="btn-42 circle-btn mb-3 mt-5" (click)="modal.close('Save click')" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
+   <!--(click)="activeModal.dismiss('Cross click')" -->
+    </form>
+</ng-template>

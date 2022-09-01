@@ -75,6 +75,8 @@ import { EditAboutBtnComponent } from './components/header-comps/about-comps/edi
 import { DeleteAboutBtnComponent } from './components/header-comps/about-comps/delete-about-btn/delete-about-btn.component';
 import { AddAboutBtnComponent } from './components/header-comps/about-comps/add-about-btn/add-about-btn.component';
 import { HomeComponent } from './components/home-comps/home/home.component';
+import { NavbarLogoutBtnComponent } from './components/header-comps/navbar-comps/navbar-logout-btn/navbar-logout-btn.component';
+import { NavbarEditAllBtnComponent } from './components/header-comps/navbar-comps/navbar-edit-all-btn/navbar-edit-all-btn.component';
 
 
 
@@ -120,7 +122,9 @@ import { HomeComponent } from './components/home-comps/home/home.component';
     EditAboutBtnComponent,
     DeleteAboutBtnComponent,
     AddAboutBtnComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarLogoutBtnComponent,
+    NavbarEditAllBtnComponent
   ],
   imports: [
     BrowserModule,

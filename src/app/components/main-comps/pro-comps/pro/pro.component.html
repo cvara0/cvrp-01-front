@@ -21,12 +21,11 @@
                     <span>
                         <app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
                         <app-delete-pro-btn [proToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
-                        <h1 class="text-xl neonText" style="text-align: left;"><span class="text-xxl neonText">{{project.name}}</span> 
+                        <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{project.name}}</span> 
                              <br>
                              Realizacion: {{project.date}}
                         </h1>
                     </span>
-                    <br>
                     {{project.description}}
                 </p>
                     
