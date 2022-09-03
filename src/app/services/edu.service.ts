@@ -47,11 +47,31 @@ export class EducationService {
   }
 
   getEducationList$(): Observable<Education[]>{
-    //this.http.get("http//localhost:8080/education").subscribe((resp:any)=>{
-     // this.educationList=resp;
-   // });//nuevo
+    //
     //this.educationList$.next(this.educationList);//nuevo
     return this.educationList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+  }
+
+  getEducationList(){
+      return this.http.get("http//localhost:8080/education").subscribe((eduList:any)=>{
+        eduList.map((auxEdu:any)=>{
+          let edu={
+          id           : auxEdu.id,
+          name         : auxEdu.name,
+          carrer       : auxEdu.carrer,
+          status       : auxEdu.status,
+          web          : auxEdu.web,
+          yearSince    : auxEdu.yearSince,
+          yearTo       : auxEdu.yearTo,
+          imageUrl     : auxEdu.imageUrl,
+          description  : auxEdu.description,
+          level        : auxEdu.level,
+          }
+          console.log(auxEdu.name);
+          this.educationList.push(edu);
+          this.educationList$.next(this.educationList);
+        })
+      })
   }
 
   deleteEducation(eduToDelete:Education){

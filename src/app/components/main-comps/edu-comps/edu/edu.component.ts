@@ -12,6 +12,7 @@ export class EduComponent implements OnInit {
   educationList         : Education[];
 
   constructor(private educationService:EducationService) {
+    this.educationService.getEducationList();//TODO mandarle el id de usuario para que busque las educaciones.
     this.educationList=[];
     this.educationService.getEducationList$().subscribe(educationList=>{
       this.educationList=educationList;

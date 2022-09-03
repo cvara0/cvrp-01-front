@@ -9,12 +9,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  isLogin: boolean;
+  isLogin: boolean=false;
   
   public editConfirmIcon:string;
   constructor(public userService:UserService,public editService:EditService) { 
-    this.isLogin=false;
+    console.log(localStorage.getItem("userId"));
     this.userService.getIsLogin$().subscribe(resp=>this.isLogin=resp);
+
+    
   }
 
   ngOnInit(): void {

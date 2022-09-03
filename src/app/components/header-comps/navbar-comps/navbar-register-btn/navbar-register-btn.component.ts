@@ -55,6 +55,7 @@ saveRegister(){
     new User(this.registerForm.get('emailRegister')?.value,
     this.registerForm.get('passwordRegister')?.value)
     );
+  
 }
 
   /////////////////////////////////////////////////////////////////////////////////
