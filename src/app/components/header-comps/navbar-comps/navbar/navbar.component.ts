@@ -13,9 +13,9 @@ export class NavbarComponent implements OnInit {
   
   public editConfirmIcon:string;
   constructor(public userService:UserService,public editService:EditService) { 
-    console.log(localStorage.getItem("userId"));
-    this.userService.getIsLogin$().subscribe(resp=>this.isLogin=resp);
-
+    console.log(sessionStorage.getItem("userId"));
+    //this.userService.getIsLogin$().subscribe(resp=>this.isLogin=resp);
+    this.isLogin=sessionStorage.getItem("userId")!==null;
     
   }
 

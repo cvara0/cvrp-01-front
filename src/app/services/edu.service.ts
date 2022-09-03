@@ -9,12 +9,13 @@ import { EducationListMy } from '../components/models/educationListMy.models';
 })
 export class EducationService {
 
-  //private readonly API='';//esto representa la url a la caul comunicarse
+  private localhost;
 
   private educationList: Education[];
   private educationList$: Subject<Education[]>;
 
   constructor(private http:HttpClient) {
+    this.localhost="http://localhost:8080"
     this.educationList=[];
     this.educationList$=new Subject();
     
@@ -53,25 +54,7 @@ export class EducationService {
   }
 
   getEducationList(){
-      return this.http.get("http//localhost:8080/education").subscribe((eduList:any)=>{
-        eduList.map((auxEdu:any)=>{
-          let edu={
-          id           : auxEdu.id,
-          name         : auxEdu.name,
-          carrer       : auxEdu.carrer,
-          status       : auxEdu.status,
-          web          : auxEdu.web,
-          yearSince    : auxEdu.yearSince,
-          yearTo       : auxEdu.yearTo,
-          imageUrl     : auxEdu.imageUrl,
-          description  : auxEdu.description,
-          level        : auxEdu.level,
-          }
-          console.log(auxEdu.name);
-          this.educationList.push(edu);
-          this.educationList$.next(this.educationList);
-        })
-      })
+      return this.http.get(this.localhost+"/educations/"+(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId")));
   }
 
   deleteEducation(eduToDelete:Education){

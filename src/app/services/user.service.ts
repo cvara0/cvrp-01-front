@@ -22,28 +22,29 @@ export class UserService {
     this.isLogin=false;
     this.isLogin$=new Subject();
     this.userId=0;
+    //this.isLogin=sessionStorage.getItem("userId")!==null;
+    //this.isLogin$.next(this.isLogin);
     
    }
    
   register(newUser: User){// : Observable<User>
     alert("Procesando informacion, puede tardar algunos segundos");
       return this.http.post<Number>(this.localhost+"/auth/singup", newUser).subscribe(resp=>{
-        localStorage.setItem("userId",resp.toString());
-        this.isLogin=localStorage.getItem("userId")!==null;
-        this.isLogin$.next(this.isLogin);
-        setTimeout(this.autoLogout, 10000);
-        return localStorage.getItem("userId")!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")});//el tercer parametro es el header
+        sessionStorage.clear();
+        sessionStorage.setItem("userId",resp.toString());
+        location.reload();
+        //setTimeout(this.autoLogout, 10000);
+        return sessionStorage.getItem("userId")!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")});//el tercer parametro es el header
   }
 
   login(loginData: Login){
     alert("Procesando informacion, puede tardar algunos segundos");
     return this.http.post<Login>(this.localhost+"/auth/singin", loginData).subscribe(resp=>{
-      localStorage.setItem("userId",resp.toString());
-      this.isLogin=localStorage.getItem("userId")!==null;
-      this.isLogin$.next(this.isLogin);
-      setTimeout(this.autoLogout, 10000);
-      
-      return localStorage.getItem("userId")!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
+      sessionStorage.clear();
+      sessionStorage.setItem("userId",resp.toString());
+      location.reload();
+      //setTimeout(this.autoLogout, 10000);
+      return sessionStorage.getItem("userId")!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
   }
 
 
@@ -54,7 +55,8 @@ export class UserService {
   autoLogout(){
     
     //this.http.post(this.localhost+"/logout",'').subscribe();
-    localStorage.clear();
+    this.isLogin=false;
+    sessionStorage.clear();
     location.reload();
     alert("Sesion caducada");
     
@@ -63,7 +65,8 @@ export class UserService {
   logout(){
     if (window.confirm("Cerrar sesion?")){
       alert("Procesando informacion, puede tardar algunos segundos");
-      localStorage.clear();
+      this.isLogin=false;
+      sessionStorage.clear();
       location.reload();
       return this.http.post(this.localhost+"/logout",'').subscribe();
   }
