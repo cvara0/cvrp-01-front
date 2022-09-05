@@ -69,7 +69,7 @@ export class EducationService {
     return eduList;
   }
 
-  deleteEducation(eduToDelete:Education){
+  deleteEducation(eduToDelete:Education){//TODO continuar con eliminar
     if (window.confirm("Eliminar experiencia educativa en "+eduToDelete.name+" ?")){
     this.educationList = this.educationList.filter(education => education !== eduToDelete);
     //delete this.experienceList[expToDeleteId];
