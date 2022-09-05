@@ -1,3 +1,5 @@
+import { User } from "./user.models";
+
 export class Education{
     
     constructor(
@@ -11,8 +13,21 @@ export class Education{
         public imageUrl     : string='',
         public description  : string='',
         public level        : string='',
-        public userId?      : number, 
+        public deleted      : boolean=false,
+        public userId       : number=0 
     ){
+        /*
+        "name":"nombre",
+    "carrer":"carrera",
+    "status":"cursando",
+    "web":"fsdfsdf",
+    "yearSince":"2009",
+    "yeartTo":"2020",
+    "imageUrl":"fgdfgdfg",
+    "description":"dfgfdgdfgfg2",
+    "level":"dfgfdg2",
+    "deleted":"false"
+        */
 
     }
 }

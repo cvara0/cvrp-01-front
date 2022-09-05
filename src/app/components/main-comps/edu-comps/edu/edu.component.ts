@@ -20,9 +20,7 @@ export class EduComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.educationService.getEducationList().subscribe(resp=>{
-      console.log(resp);
-    });
+    this.educationService.getEducationList().subscribe();
   }
 
 }

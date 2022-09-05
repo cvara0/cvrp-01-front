@@ -2,11 +2,11 @@ import { Education } from "./education.models";
 
 export class EducationListMy{
     
-    constructor(
+    constructor(/*
         public educationListMy    : Education[]=[
             
             new Education(
-                0,
+                
                 "Escuela Provincial de Educacion Tecnica",
                 "Secundaria Orientada a Produccion de Bienes y Servicios",
                 "Finalizada",
@@ -19,7 +19,7 @@ export class EducationListMy{
                 "Secundario",
             ),
             new Education(
-                1,
+                
                 "Universidad Nacional de Misiones",
                 "Ingenieria Electromecanica",
                 "Experiencia",
@@ -32,7 +32,7 @@ export class EducationListMy{
                 "Universitario",
             ),
             new Education(
-                2,
+                
                 "Universidad Nacional de Misiones",
                 "Disenio Industrial",
                 "Experiencia",
@@ -45,7 +45,7 @@ export class EducationListMy{
                 "Universitario",
             ),
             new Education(
-                3,
+                
                 "Universidad Nacional de Misiones",
                 "Ingenieria en Computacion",
                 "Experiencia",
@@ -58,7 +58,7 @@ export class EducationListMy{
                 "Universitario",
             ),
             new Education(
-                4,
+                
                 "Instituto Superior Santo Domingo",
                 "Tec. Sup. en Desarrollo de Software ",
                 "Cursando",
@@ -71,7 +71,7 @@ export class EducationListMy{
                 "Terciario",
             )
         ],//aca le relleno y le paso al array del servicio 
-    ){
+    */){
 
     }
 }

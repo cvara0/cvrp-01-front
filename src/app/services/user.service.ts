@@ -34,7 +34,8 @@ export class UserService {
         sessionStorage.setItem("userId",resp.toString());
         location.reload();
         //setTimeout(this.autoLogout, 10000);
-        return sessionStorage.getItem("userId")!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")});//el tercer parametro es el header
+        return sessionStorage.getItem("userId")!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
+      });//el tercer parametro es el header
   }
 
   login(loginData: Login){

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Education } from '../components/models/education.models';
 import { EducationListMy } from '../components/models/educationListMy.models';
 
@@ -23,38 +24,49 @@ export class EducationService {
    
 
   postEducation(educationToAdd:Education){
-    educationToAdd.id=this.educationList.length;
+   
     educationToAdd.imageUrl=educationToAdd.imageUrl==""||educationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToAdd.imageUrl;
-    //console.log(experieceToAdd.imageUrl);
-    this.educationList.push(educationToAdd);
-    this.educationList$.next(this.educationList);//con esto avisamos que ese array cambio
-    educationToAdd=new Education;
+    return this.http.post(this.localhost+"/educations", educationToAdd).subscribe(resp=>{
     alert("Experiencia educativa agregada");
+    location.reload();});
   }
 
-  putEducation(educationEdited:Education){
-    //this.http.put//ver
-    //this.experienceList[experienceId]=experienceEdited;
-    educationEdited.imageUrl=educationEdited.imageUrl==""||educationEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationEdited.imageUrl;
-    this.educationList[educationEdited.id]=educationEdited;
-    //this.educationList.splice(educationEdited.id, 1, educationEdited)
-    this.educationList$.next(this.educationList);
-    alert("Experiencia educativa editada");
+  putEducation(educationToEdit:Education){
+    
+    educationToEdit.imageUrl=educationToEdit.imageUrl==""||educationToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToEdit.imageUrl;
+    return this.http.put(this.localhost+"/educations",educationToEdit).subscribe(resp=>{//+educationToEdit.id
+      alert("Experiencia educativa editada");
+      location.reload();
+      });
   }
 
   getEducation(educationId:number){
-    //console.log(this.experienceList);
     return this.educationList[educationId];
   }
 
   getEducationList$(): Observable<Education[]>{
-    //
-    //this.educationList$.next(this.educationList);//nuevo
     return this.educationList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
   getEducationList(){
-      return this.http.get(this.localhost+"/educations/"+(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId")));
+      return this.http.get(this.localhost+"/educations/"+(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId")))
+      .pipe(
+        map(resp=>{
+          this.educationList=this.createEduList(resp);
+          this.educationList$.next(this.educationList);
+        })//map transforma la info en fuincion de un metodo y regresa algo
+      );
+  }
+
+  private createEduList(eduListObj:any):Education[]{
+    const eduList:Education[]=[];
+    if(eduListObj===null){return [];}
+    Object.keys(eduListObj).forEach(i=>{
+      const edu:Education=eduListObj[i];
+      //edu.id=Number(i); si quiero cambiar los id
+      eduList.push(edu);
+    })
+    return eduList;
   }
 
   deleteEducation(eduToDelete:Education){
@@ -62,7 +74,7 @@ export class EducationService {
     this.educationList = this.educationList.filter(education => education !== eduToDelete);
     //delete this.experienceList[expToDeleteId];
     for(let i=0;i<this.educationList.length;i++){
-      this.educationList[i].id=i;
+      //this.educationList[i].id=i;
     }
     this.educationList$.next(this.educationList);
     alert("Experiencia educativa eliminada");

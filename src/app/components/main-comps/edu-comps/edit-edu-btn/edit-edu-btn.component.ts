@@ -96,6 +96,7 @@ get validEduLevel(){
 saveEditEducation(){
   this.educationService.putEducation(
     new Education(
+      
       this.educationToEdit.id,
       this.editEducationForm.get('eduName')?.value,
       this.editEducationForm.get('eduCarrer')?.value,
@@ -106,6 +107,8 @@ saveEditEducation(){
       this.editEducationForm.get('eduImage')?.value,
       this.editEducationForm.get('eduDescription')?.value,
       this.editEducationForm.get('eduLevel')?.value,
+      false,
+      Number(sessionStorage.getItem("userId"))
     )
   );
   //this.editExperienceForm.reset;

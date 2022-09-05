@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Education } from 'src/app/components/models/education.models';
+import { User } from 'src/app/components/models/user.models';
 import { Year } from 'src/app/components/models/year.models';
 import { EducationService } from 'src/app/services/edu.service';
 import { YearService } from 'src/app/services/year.service';
@@ -37,8 +38,8 @@ export class AddEduBtnComponent implements OnInit {
 createAddEducationForm(){
   
   this.addEducationForm=this.fb.group({
-    eduName         : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    eduCarrer       : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
+    eduName         : ['eduName',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+    eduCarrer       : ['eduCarrer',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
     eduStatus       : [,[Validators.required]],
     eduWeb          : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
     eduYearSince    : [,[Validators.required]],
@@ -46,6 +47,7 @@ createAddEducationForm(){
     eduImage        : [''],
     eduDescription  : ['',[Validators.maxLength(800)]],
     eduLevel        :[,[Validators.required]],
+    
   });
 }
 
@@ -96,7 +98,9 @@ saveAddEducation(){
       this.addEducationForm.get('eduYearTo')?.value,
       this.addEducationForm.get('eduImage')?.value,
       this.addEducationForm.get('eduDescription')?.value,
-      this.addEducationForm.get('eduLevel')?.value
+      this.addEducationForm.get('eduLevel')?.value,
+      false,
+      Number(sessionStorage.getItem("userId"))
     )
   ); 
   this.addEducationForm.reset();
