@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { About } from '../components/models/about.models';
 
 @Injectable({
@@ -7,35 +9,68 @@ import { About } from '../components/models/about.models';
 })
 export class AboutService {
 
-  private about: About;
-  private about$: Subject<About>;
-  
-  private aboutToEdit: About;
-  private aboutToEdit$: Subject<About>;
+  private aboutList: About[];
+  private aboutList$: Subject<About[]>;
 
-  constructor() { 
-    this.about=new About();//https://i.gifer.com/3OO15.gif
-    this.about$=new Subject();
-    this.aboutToEdit=new About;
-    this.aboutToEdit$=new Subject();
+  private localhost;
+  
+  constructor(private http:HttpClient) { 
+    this.localhost="http://localhost:8080";
+    this.aboutList=[];
+    this.aboutList$=new Subject();
   }
 
-  postAbout(newAbout:About){
-    this.about=newAbout;
-    this.about$.next(this.about);//aviso al resto que algo cambio
+ 
+  postAbout(aboutToAdd:About){
+    aboutToAdd.userId=Number(sessionStorage.getItem("userId"));
+    return this.http.post(this.localhost+"/abouts", aboutToAdd).subscribe(resp=>{
     alert("'Acerca de...' guardado");
+    location.reload();});
   }
 
-  deleteAbout(){
-    if (window.confirm("Eliminar acerca de...?")){
-    this.about=new About("",true);
-    this.about$.next(this.about);
-    alert("'Acerca de...' eliminado");
-    }
+
+  putAbout(aboutToEdit:About){
+    
+    return this.http.put(this.localhost+"/abouts",aboutToEdit).subscribe(resp=>{//+educationToEdit.id
+      alert("'Acerca de...' editado");
+      location.reload();
+      });
   }
+
+
+  getAboutList$(): Observable<About[]>{
+    return this.aboutList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+  }
+
+  getAboutList(){
+      return this.http.get(this.localhost+"/abouts/"+1)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+      .pipe(
+        map(resp=>{
+          this.aboutList=this.createAboutList(resp);
+          this.aboutList$.next(this.aboutList);
+        })
+      );
+  }
+
+  private createAboutList(aboutListObj:any):About[]{
+    const aboutList:About[]=[];
+    if(aboutListObj===null){return [];}
+    Object.keys(aboutListObj).forEach(i=>{
+      const abo:About=aboutListObj[i];
+      aboutList.push(abo);
+    })
+    return aboutList;
+  }
+
   
-
-  getAbout$(): Observable<About>{
-    return this.about$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+  deleteAbout(aboutToDelete:About){
+    if (window.confirm("Eliminar acerca de...?")){
+    return this.http.delete(this.localhost+"/abouts/"+aboutToDelete.id).subscribe(resp=>{
+      alert("Acerca de...a eliminado");
+      location.reload();
+    });
+    }
+    return null;
   }
+
 }

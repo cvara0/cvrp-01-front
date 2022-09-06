@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { About } from 'src/app/components/models/about.models';
 import { AboutService } from 'src/app/services/about.service';
 @Component({
   selector: 'app-delete-about-btn',
@@ -6,14 +7,14 @@ import { AboutService } from 'src/app/services/about.service';
 })
 export class DeleteAboutBtnComponent implements OnInit {
 
-  
+  @Input() aboutToDelete: About;
   constructor(private aboutService:AboutService) { }
 
   ngOnInit(): void {
   }
 
  delete() {
-  this.aboutService.deleteAbout();
+  this.aboutService.deleteAbout(this.aboutToDelete);
 }
 
 //

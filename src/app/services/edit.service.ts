@@ -6,23 +6,21 @@ import { Observable, Subject } from 'rxjs';
 })
 export class EditService {
 
-  private isEditAll: boolean;
-  private isEditAll$:Subject<boolean>;
-
+ 
   constructor() {
-    this.isEditAll=false;
-    this.isEditAll$=new Subject();
+    
   }
-  getIsEditAll$(): Observable<boolean>{
-    return this.isEditAll$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
-  }
-
+  
   setIsEditAll(){
-    if(!this.isEditAll)
-      alert("Activado modo edicion");
-    else
-      alert("Guardando cambios, puede tardar unos segundos");
-    this.isEditAll=!this.isEditAll;
-    this.isEditAll$.next(this.isEditAll);
+    if(sessionStorage.getItem("editMode")!=="true"){
+      alert("Modo edicion activado");
+      sessionStorage.setItem("editMode","true");
+      location.reload();
+    }
+    else{
+      alert("Modo edicion desactivado");
+      sessionStorage.setItem("editMode","false");
+      location.reload();
+    }
   }
 }

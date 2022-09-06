@@ -29,7 +29,7 @@ createAddAboutForm(){
 
   this.addAboutForm=this.fb.group({
     //primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    aboutText       : ['',[Validators.maxLength(800)]]
+    aboutText       : ['',[Validators.maxLength(800),Validators.minLength(20)]]
   });
 }
 
@@ -41,8 +41,10 @@ get validAddAbout(){
 saveAddAbout(){
 
   this.aboutService.postAbout(new About(
+    0,
     this.addAboutForm.get('aboutText')?.value,
-    false
+    false,
+    0
   ));
   }
 

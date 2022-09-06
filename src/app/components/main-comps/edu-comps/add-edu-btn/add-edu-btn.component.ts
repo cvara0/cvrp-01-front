@@ -100,7 +100,7 @@ saveAddEducation(){
       this.addEducationForm.get('eduDescription')?.value,
       this.addEducationForm.get('eduLevel')?.value,
       false,
-      Number(sessionStorage.getItem("userId"))
+      0
     )
   ); 
   this.addEducationForm.reset();

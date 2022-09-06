@@ -41,8 +41,10 @@ get validEditAbout(){
 saveEditAbout(){
 
   this.aboutService.postAbout(new About(
-      
+    this.aboutToEdit.id,
     this.editAboutForm.get('aboutText')?.value,
+    false,
+    Number(sessionStorage.getItem("userId"))
   ));
   }
 

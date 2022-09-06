@@ -13,16 +13,15 @@ export class NavbarEditAllBtnComponent implements OnInit {
   editConfirmIcon: string;
 
   constructor(public editService:EditService) { 
-    this.isEdit=false;
-    this.editService.getIsEditAll$().subscribe(resp=>this.isEdit=resp);
-    this.editConfirmIcon="https://i.postimg.cc/TPpTMdv5/editar.png";
+    this.isEdit=sessionStorage.getItem("editMode")==="true"?true:false;
+    this.editConfirmIcon=sessionStorage.getItem("editMode")==="true"?"https://i.postimg.cc/QM60bDct/confirm.png":"https://i.postimg.cc/TPpTMdv5/editar.png";
   }
 
   ngOnInit(): void {
     
   }
  isEditOnOff(){
-  this.editConfirmIcon=this.isEdit?"https://i.postimg.cc/TPpTMdv5/editar.png":"https://i.postimg.cc/QM60bDct/confirm.png";
+  
   this.editService.setIsEditAll();
   
  }

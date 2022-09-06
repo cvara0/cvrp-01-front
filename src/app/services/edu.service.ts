@@ -26,6 +26,7 @@ export class EducationService {
   postEducation(educationToAdd:Education){
    
     educationToAdd.imageUrl=educationToAdd.imageUrl==""||educationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToAdd.imageUrl;
+    educationToAdd.userId=Number(sessionStorage.getItem("userId"));
     return this.http.post(this.localhost+"/educations", educationToAdd).subscribe(resp=>{
     alert("Experiencia educativa agregada");
     location.reload();});
@@ -40,9 +41,9 @@ export class EducationService {
       });
   }
 
-  getEducation(educationId:number){
+  /*getEducation(educationId:number){
     return this.educationList[educationId];
-  }
+  }*/
 
   getEducationList$(): Observable<Education[]>{
     return this.educationList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
@@ -69,16 +70,15 @@ export class EducationService {
     return eduList;
   }
 
-  deleteEducation(eduToDelete:Education){//TODO continuar con eliminar
+  deleteEducation(eduToDelete:Education){
     if (window.confirm("Eliminar experiencia educativa en "+eduToDelete.name+" ?")){
-    this.educationList = this.educationList.filter(education => education !== eduToDelete);
-    //delete this.experienceList[expToDeleteId];
-    for(let i=0;i<this.educationList.length;i++){
-      //this.educationList[i].id=i;
+    
+    return this.http.delete(this.localhost+"/educations/"+eduToDelete.id).subscribe(resp=>{
+      alert("Experiencia educativa eliminada");
+      location.reload();
+    });
     }
-    this.educationList$.next(this.educationList);
-    alert("Experiencia educativa eliminada");
-    }
+    return null;
   }
 
 }

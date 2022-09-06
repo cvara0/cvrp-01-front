@@ -11,52 +11,53 @@ export class UserService {
 
   private localhost:string
 
-  private isLogin: boolean;
-  private isLogin$:Subject<boolean>;
+
 
   private userId: number;
   private token: string;
   
   constructor( private http:HttpClient) {
     this.localhost='http://localhost:8080';
-    this.isLogin=false;
-    this.isLogin$=new Subject();
     this.userId=0;
+    
     //this.isLogin=sessionStorage.getItem("userId")!==null;
     //this.isLogin$.next(this.isLogin);
     
    }
    
   register(newUser: User){// : Observable<User>
+    sessionStorage.clear();
     alert("Procesando informacion, puede tardar algunos segundos");
       return this.http.post<Number>(this.localhost+"/auth/singup", newUser).subscribe(resp=>{
-        sessionStorage.clear();
+        if(resp!==null){
         sessionStorage.setItem("userId",resp.toString());
         location.reload();
+      }
         //setTimeout(this.autoLogout, 10000);
-        return sessionStorage.getItem("userId")!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
+        return resp!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
       });//el tercer parametro es el header
   }
 
   login(loginData: Login){
+    sessionStorage.clear();
     alert("Procesando informacion, puede tardar algunos segundos");
     return this.http.post<Login>(this.localhost+"/auth/singin", loginData).subscribe(resp=>{
-      sessionStorage.clear();
-      sessionStorage.setItem("userId",resp.toString());
-      location.reload();
+      if(resp!==null){
+        sessionStorage.setItem("userId",resp.toString());
+        location.reload();
+      }
+    
       //setTimeout(this.autoLogout, 10000);
-      return sessionStorage.getItem("userId")!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
+      return resp!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
   }
 
 
-  getIsLogin$(): Observable<boolean>{
-    return this.isLogin$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
-  }
+
 
   autoLogout(){
     
-    //this.http.post(this.localhost+"/logout",'').subscribe();
-    this.isLogin=false;
+    this.http.post(this.localhost+"/logout",'').subscribe();
+   
     sessionStorage.clear();
     location.reload();
     alert("Sesion caducada");
@@ -66,7 +67,6 @@ export class UserService {
   logout(){
     if (window.confirm("Cerrar sesion?")){
       alert("Procesando informacion, puede tardar algunos segundos");
-      this.isLogin=false;
       sessionStorage.clear();
       location.reload();
       return this.http.post(this.localhost+"/logout",'').subscribe();
