@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
     this.aboutService.getAboutList$().subscribe(aboutList=>{
     this.aboutList=aboutList;
     });
-    this.isEditAll=sessionStorage.getItem("editMode")=="true"?true:false;
+    this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false;//si esta en otra cuenta que ni aprezca el de editar
 
    }
   ngOnInit(): void {

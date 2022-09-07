@@ -6,12 +6,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class EditService {
 
- 
+ public userId:string;
   constructor() {
     
   }
   
   setIsEditAll(){
+   if(this.userId==sessionStorage.getItem("userId")){
     if(sessionStorage.getItem("editMode")!=="true"){
       alert("Modo edicion activado");
       sessionStorage.setItem("editMode","true");
@@ -22,5 +23,9 @@ export class EditService {
       sessionStorage.setItem("editMode","false");
       location.reload();
     }
+  } else{
+    alert("No tiene permiso para editar esta informacion");
+  }
+
   }
 }

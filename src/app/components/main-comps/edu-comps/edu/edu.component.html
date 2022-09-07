@@ -1,5 +1,5 @@
 <h1 *ngIf="educationList.length==0" class="text-xl neonText row justify-content-start mt-xl  animate__animated animate__fadeInLeftBig" style="text-align: left;">
-    <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
+    <app-add-edu-btn *ngIf="isEditAll" class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
 </h1>
 <div *ngIf="educationList.length>0">
     <div class="row mt-xl">
@@ -19,8 +19,8 @@
                     <br><br>
                     <p class="text-l rounded-box neonBox">
                         <span>
-                            <app-edit-edu-btn [educationToEdit]=education class="row justify-content-end"></app-edit-edu-btn>
-                            <app-delete-edu-btn [eduToDelete]=education class="row justify-content-end"></app-delete-edu-btn>
+                            <app-edit-edu-btn *ngIf="isEditAll" [educationToEdit]=education class="row justify-content-end"></app-edit-edu-btn>
+                            <app-delete-edu-btn *ngIf="isEditAll" [eduToDelete]=education class="row justify-content-end"></app-delete-edu-btn>
                             <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{education.carrer}}</span> 
                                 ({{education.status}})
                                 <br>

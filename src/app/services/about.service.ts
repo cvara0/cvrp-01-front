@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { About } from '../components/models/about.models';
@@ -12,12 +13,15 @@ export class AboutService {
   private aboutList: About[];
   private aboutList$: Subject<About[]>;
 
+  public userId: string;
+
   private localhost;
   
   constructor(private http:HttpClient) { 
     this.localhost="http://localhost:8080";
     this.aboutList=[];
     this.aboutList$=new Subject();
+   
   }
 
  
@@ -42,8 +46,8 @@ export class AboutService {
     return this.aboutList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
-  getAboutList(){
-      return this.http.get(this.localhost+"/abouts/"+1)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+  getAboutList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
+      return this.http.get(this.localhost+"/abouts/"+this.userId)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
           this.aboutList=this.createAboutList(resp);
