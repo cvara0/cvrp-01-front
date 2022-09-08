@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Napro } from 'src/app/components/models/napro.models';
 import { CountryService } from 'src/app/services/country.service';
+import { EditService } from 'src/app/services/edit.service';
 import { NaproService } from 'src/app/services/napro.service';
 
 @Component({
@@ -9,17 +10,20 @@ import { NaproService } from 'src/app/services/napro.service';
 })
 export class NameProfessionComponent implements OnInit {
 
-  napro         : Napro=new Napro();
-  
-  constructor(private naproService:NaproService,private countryService:CountryService) {
-    
-    this.naproService.getNapro$().subscribe(napro=>{
-      this.napro=napro;
+  naproList         : Napro[];
+  isEditAll         : boolean;
+  constructor(private naproService:NaproService,private editService:EditService,private countryService:CountryService) {
+    this.naproService.getNaproList();
+    this.naproList=[];
+    this.naproService.getNaproList$().subscribe(naproList=>{
+    this.naproList=naproList;
     });
-    //console.log(this.napro);
-   }
+    this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false;//si esta en otra cuenta que ni aprezca el de editar
 
+   }
   ngOnInit(): void {
+    this.naproService.getNaproList().subscribe(); 
   }
+
 
 }

@@ -78,6 +78,8 @@ import { HomeComponent } from './components/home-comps/home/home.component';
 import { NavbarLogoutBtnComponent } from './components/header-comps/navbar-comps/navbar-logout-btn/navbar-logout-btn.component';
 import { NavbarEditAllBtnComponent } from './components/header-comps/navbar-comps/navbar-edit-all-btn/navbar-edit-all-btn.component';
 import { DeletePhotoBtnComponent } from './components/header-comps/photo-comps/delete-photo-btn/delete-photo-btn.component';
+import { DeleteNaproBtnComponent } from './components/header-comps/name-profession-comps/delete-napro-btn/delete-napro-btn.component';
+import { AddNaproBtnComponent } from './components/header-comps/name-profession-comps/add-napro-btn/add-napro-btn.component';
 
 
 
@@ -126,7 +128,9 @@ import { DeletePhotoBtnComponent } from './components/header-comps/photo-comps/d
     HomeComponent,
     NavbarLogoutBtnComponent,
     NavbarEditAllBtnComponent,
-    DeletePhotoBtnComponent
+    DeletePhotoBtnComponent,
+    DeleteNaproBtnComponent,
+    AddNaproBtnComponent
   ],
   imports: [
     BrowserModule,

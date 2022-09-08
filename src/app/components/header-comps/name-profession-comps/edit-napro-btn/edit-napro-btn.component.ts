@@ -26,6 +26,7 @@ export class EditNaproBtnComponent implements OnInit {
 
   ngOnInit(): void {
     this.createEditNaproForm();
+    this.countryService.getCountries();
   }
 
 
@@ -70,12 +71,15 @@ saveEditNapro(){
       
   }
 
-  this.naproService.putNapro(new Napro( 
+  this.naproService.putNapro(new Napro(
+    this.naproToEdit.id,
     this.editNaproForm.get('name')?.value,
     this.editNaproForm.get('surname')?.value,
     this.editNaproForm.get('profession')?.value,
     this.editNaproForm.get('country')?.value,
-    flag
+    flag,
+    false,
+    Number(sessionStorage.getItem("userId"))
   ));
  
   }

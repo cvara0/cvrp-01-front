@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Napro } from '../components/models/napro.models';
 
 @Injectable({
@@ -7,27 +8,71 @@ import { Napro } from '../components/models/napro.models';
 })
 export class NaproService {
 
-  private napro: Napro;
-  private napro$: Subject<Napro>;
+  private naproList: Napro[];
+  private naproList$: Subject<Napro[]>;
+
+  public userId: string;
+
+  private localhost;
   
-  private naproToEdit: Napro;
-  private naproToEdit$: Subject<Napro>;
-
-  constructor() { 
-    this.napro=new Napro();
-    this.napro$=new Subject();
-    this.naproToEdit=new Napro();
-    this.naproToEdit$=new Subject();
+  constructor(private http:HttpClient) { 
+    this.localhost="http://localhost:8080";
+    this.naproList=[];
+    this.naproList$=new Subject();
+   
   }
 
-  putNapro(newNapro:Napro){
-    this.napro=newNapro;
-    this.napro$.next(this.napro);
-    alert("Informacion personal editada");
+ 
+  postNapro(naproToAdd:Napro){
+    naproToAdd.userId=Number(sessionStorage.getItem("userId"));
+    return this.http.post(this.localhost+"/napros", naproToAdd).subscribe(resp=>{
+    alert("Datos personales guardados!");
+    location.reload();});
   }
 
-  getNapro$(): Observable<Napro>{
-    return this.napro$.asObservable();
+
+  putNapro(naproToEdit:Napro){
+    
+    return this.http.put(this.localhost+"/napros",naproToEdit).subscribe(resp=>{
+      alert("Datos personales guardados!");
+      location.reload();
+      });
+  }
+
+
+  getNaproList$(): Observable<Napro[]>{
+    return this.naproList$.asObservable();
+  }
+
+  getNaproList(){
+      return this.http.get(this.localhost+"/napros/"+this.userId)
+      .pipe(
+        map(resp=>{
+          this.naproList=this.createNaproList(resp);
+          this.naproList$.next(this.naproList);
+        })
+      );
+  }
+
+  private createNaproList(naproListObj:any):Napro[]{
+    const naproList:Napro[]=[];
+    if(naproListObj===null){return [];}
+    Object.keys(naproListObj).forEach(i=>{
+      const nap:Napro=naproListObj[i];
+      naproList.push(nap);
+    })
+    return naproList;
+  }
+
+  
+  deleteNapro(naproToDelete:Napro){
+    if (window.confirm("Eliminar informacion personal?")){
+    return this.http.delete(this.localhost+"/napros/"+naproToDelete.id).subscribe(resp=>{
+      alert("Informacion personal eliminada");
+      location.reload();
+    });
+    }
+    return null;
   }
 
 }

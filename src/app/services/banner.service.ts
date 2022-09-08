@@ -37,7 +37,7 @@ export class BannerService {
     return this.http.put(`${this.localhost}/banners`,bannerToEdit).subscribe(resp=>{//+educationToEdit.id
       alert("Imagen de portada editada");
       location.reload();
-      });//todo seguir con el back de fotos
+      });
   }
 
 

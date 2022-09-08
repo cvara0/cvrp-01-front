@@ -3,6 +3,6 @@
 </figure>
 
 <figure *ngIf="photoList.length>0"  class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('{{photoList[0].imageUrl}}');background-position: 50% 50%; margin-top: -120px; margin-left: 14%;">
-    <app-edit-photo-btn *ngIf="isEditAll" [photoToEdit]=photoList[0] class="row justify-content-end"></app-edit-photo-btn>
+    <app-edit-photo-btn *ngIf="isEditAll" [photoToEdit]=photoList[0] class="row justify-content-end mb-3"></app-edit-photo-btn>
     <app-delete-photo-btn *ngIf="isEditAll" [photoToDelete]=photoList[0] class="row justify-content-end"></app-delete-photo-btn>       
 </figure>

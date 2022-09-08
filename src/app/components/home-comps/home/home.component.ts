@@ -3,6 +3,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AboutService } from 'src/app/services/about.service';
 import { BannerService } from 'src/app/services/banner.service';
 import { EditService } from 'src/app/services/edit.service';
+import { NaproService } from 'src/app/services/napro.service';
 import { PhotoService } from 'src/app/services/photo.service';
 
 
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit {
     private aboutService:AboutService,
     private bannerService:BannerService,
     private photoService:PhotoService,
+    private naproService:NaproService,
+    
     private editService:EditService
     ) { 
     this.activatedRoute.params.subscribe( params => {
@@ -25,6 +28,8 @@ export class HomeComponent implements OnInit {
       this.bannerService.userId=params['id'];
       this.photoService.userId=params['id'];
       this.aboutService.userId=params['id'];
+      this.naproService.userId=params['id'];
+
       this.editService.userId=params['id'];
   });
     
