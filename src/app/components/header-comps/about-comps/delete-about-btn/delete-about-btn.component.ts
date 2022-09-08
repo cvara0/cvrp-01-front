@@ -14,7 +14,7 @@ export class DeleteAboutBtnComponent implements OnInit {
   }
 
  delete() {
-  this.aboutService.deleteAbout(this.aboutToDelete);
+  this.aboutService.deleteAbout(this.aboutToDelete); 
 }
 
 //

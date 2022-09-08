@@ -10,7 +10,7 @@ import { EditService } from 'src/app/services/edit.service';
 export class AboutComponent implements OnInit {
 
   aboutList         : About[];
-  isEditAll           : boolean;
+  isEditAll         : boolean;
   constructor(private aboutService:AboutService,private editService:EditService) {
     this.aboutService.getAboutList();
     this.aboutList=[];
@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit {
 
    }
   ngOnInit(): void {
-    this.aboutService.getAboutList().subscribe();
+    this.aboutService.getAboutList().subscribe(); 
   }
 
 }

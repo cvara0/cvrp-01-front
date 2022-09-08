@@ -1,3 +1,8 @@
-<figure class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('{{photo.photoUrl}}');background-position: 50% 50%; margin-top: -120px; margin-left: 14%;">
-    <app-edit-photo-btn [photoToEdit]=photo class="row justify-content-end"></app-edit-photo-btn>
+<figure *ngIf="photoList.length==0" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg');background-position: 50% 50%; margin-top: -120px; margin-left: 14%;">
+    <app-edit-photo-btn *ngIf="isEditAll" [photoToEdit]=photoList[0] class="row justify-content-end"></app-edit-photo-btn>
+</figure>
+
+<figure *ngIf="photoList.length>0"  class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('{{photoList[0].imageUrl}}');background-position: 50% 50%; margin-top: -120px; margin-left: 14%;">
+    <app-edit-photo-btn *ngIf="isEditAll" [photoToEdit]=photoList[0] class="row justify-content-end"></app-edit-photo-btn>
+    <app-delete-photo-btn *ngIf="isEditAll" [photoToDelete]=photoList[0] class="row justify-content-end"></app-delete-photo-btn>       
 </figure>

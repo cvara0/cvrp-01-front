@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AboutService } from 'src/app/services/about.service';
+import { BannerService } from 'src/app/services/banner.service';
 import { EditService } from 'src/app/services/edit.service';
-import { UserService } from 'src/app/services/user.service';
-import { About } from '../../models/about.models';
+import { PhotoService } from 'src/app/services/photo.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,23 @@ import { About } from '../../models/about.models';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
+    private activatedRoute: ActivatedRoute,
     private aboutService:AboutService,
+    private bannerService:BannerService,
+    private photoService:PhotoService,
     private editService:EditService
     ) { 
     this.activatedRoute.params.subscribe( params => {
+      
+      this.bannerService.userId=params['id'];
+      this.photoService.userId=params['id'];
       this.aboutService.userId=params['id'];
       this.editService.userId=params['id'];
   });
-    //editar solo si la ruta coincide con la la session
-    //this.aboutService.getAboutList();
+    
+    //this.aboutService.getAboutList();indistinto
+    
   }
 
   ngOnInit(): void {

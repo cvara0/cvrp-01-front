@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { EMPTY, Observable, Subject} from 'rxjs';
 import { Login } from '../components/models/login.models';
 import { User } from '../components/models/user.models';
@@ -16,7 +17,7 @@ export class UserService {
   private userId: number;
   private token: string;
   
-  constructor( private http:HttpClient) {
+  constructor( private http:HttpClient,private router:Router) {
     this.localhost='http://localhost:8080';
     this.userId=0;
     
@@ -31,7 +32,7 @@ export class UserService {
       return this.http.post<Number>(this.localhost+"/auth/singup", newUser).subscribe(resp=>{
         if(resp!==null){
         sessionStorage.setItem("userId",resp.toString());
-        location.reload();
+        window.location.href=`/home/${resp}`;
       }
         //setTimeout(this.autoLogout, 10000);
         return resp!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
@@ -39,16 +40,23 @@ export class UserService {
   }
 
   login(loginData: Login){
-    sessionStorage.clear();
+    
+    
     alert("Procesando informacion, puede tardar algunos segundos");
     return this.http.post<Login>(this.localhost+"/auth/singin", loginData).subscribe(resp=>{
       if(resp!==null){
+        sessionStorage.clear();
         sessionStorage.setItem("userId",resp.toString());
-        location.reload();
+        console.log(resp.toString());
+        
+        //this.router.navigate(['/home',resp]);esta opcion no funciono pero dejo igual pa saber
+        window.location.href=`/home/${resp}`;
+        
       }
-    
+      //
       //setTimeout(this.autoLogout, 10000);
       return resp!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
+   
   }
 
 
@@ -57,7 +65,6 @@ export class UserService {
   autoLogout(){
     
     this.http.post(this.localhost+"/logout",'').subscribe();
-   
     sessionStorage.clear();
     location.reload();
     alert("Sesion caducada");
@@ -68,12 +75,13 @@ export class UserService {
     if (window.confirm("Cerrar sesion?")){
       alert("Procesando informacion, puede tardar algunos segundos");
       sessionStorage.clear();
+      window.location.href+'?eraseCache=true';
       location.reload();
-      return this.http.post(this.localhost+"/logout",'').subscribe();
+      return null;//return this.http.post(this.localhost+"/logout",'').subscribe();
   }
      return null; 
   }
 
-/*TODO seguir con logout y botones de cerrar sesion y editar todo*/
+
   
 }

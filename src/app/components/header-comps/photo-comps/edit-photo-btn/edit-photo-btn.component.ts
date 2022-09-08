@@ -30,19 +30,22 @@ createEditPhotoForm(){
 
   this.editPhotoForm=this.fb.group({
     //primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    photoUrl       : [this.photoToEdit.photoUrl=="https://i.postimg.cc/7h3FJ2mR/perfil-ap.jpg"?"":this.photoToEdit.photoUrl,[Validators.nullValidator,Validators.required]]
+    imageUrl       : ["",[Validators.nullValidator,Validators.required]]
   });
 }
 
 get validEditPhotoUrl(){
-  return this.editPhotoForm.get('photoUrl')?.invalid;
+  return this.editPhotoForm.get('imageUrl')?.invalid;
 }
 
 
 saveEditPhoto(){
 
-  this.photoService.putPhoto(new Photo(
-    this.editPhotoForm.get('photoUrl')?.value,
+  this.photoService.postPhoto(new Photo(
+    0,
+    this.editPhotoForm.get('imageUrl')?.value,
+    false,
+    0
   ));
   }
 

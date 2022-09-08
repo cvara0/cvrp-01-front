@@ -13,7 +13,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class EditBannerBtnComponent implements OnInit {
 
-  @Input() bannerToEdit :Banner;
+  @Input() bannerToEdit :Banner; 
   closeResult = '';
   editBannerForm!: FormGroup;
   urlPattern = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)';
@@ -35,20 +35,22 @@ createEditBannerForm(){
 
   this.editBannerForm=this.fb.group({
     //primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    bannerUrl       : [this.bannerToEdit.bannerUrl=="https://i.postimg.cc/k4ncFz5t/bannerap1.jpg"?"":this.bannerToEdit.bannerUrl,[Validators.nullValidator,Validators.required]]
+    imageUrl       : ["",[Validators.nullValidator,Validators.required]]
   });
 }
 
 get validEditBannerUrl(){
-  return this.editBannerForm.get('bannerUrl')?.invalid;
+  return this.editBannerForm.get('imageUrl')?.invalid;
 }
 
 
 saveEditBanner(){
 
-  this.bannerService.setBanner(new Banner(
-      
-    this.editBannerForm.get('bannerUrl')?.value,
+  this.bannerService.postBanner(new Banner(
+    0,
+    this.editBannerForm.get('imageUrl')?.value,
+    false,
+    0
   ));
   }
 

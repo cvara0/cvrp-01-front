@@ -8,7 +8,7 @@
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando imagen de portada</h1>
         <label for="bannerUrlInput">Url de la imagen</label>
             <small class="form-text" *ngIf="(validEditBannerUrl)"><br>Ingrese un enlace valido</small>
-                <input #bannerUrlInput class="mb-3 form-control" type="file" name="bannerImg" accept="image/*" formControlName="bannerUrl">
+                <input #bannerUrlInput class="mb-3 form-control" type="text" formControlName="imageUrl">
            <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->
         <button *ngIf="(!validEditBannerUrl)" (click)="modal.close('Save click')" type="submit" class="btn-42 circle-btn mb-3 mt-5" style="background-image: url('https://i.postimg.cc/QM60bDct/confirm.png');background-position:50% 50%;margin-left: 45%;"></button>
     </form>  

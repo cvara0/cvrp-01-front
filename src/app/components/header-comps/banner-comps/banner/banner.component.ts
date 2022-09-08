@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Banner } from 'src/app/components/models/banner.models';
 import { BannerService } from 'src/app/services/banner.service';
+import { EditService } from 'src/app/services/edit.service';
 
 @Component({
   selector: 'app-banner',
@@ -9,16 +10,20 @@ import { BannerService } from 'src/app/services/banner.service';
 })
 export class BannerComponent implements OnInit {
   
-  banner         : Banner=new Banner();
-  constructor(private bannerService:BannerService) {
+  bannerList          : Banner[];
+  isEditAll           : boolean;
+  constructor(private bannerService:BannerService,private editService:EditService) {
 
-    this.bannerService.getBanner$().subscribe(banner=>{
-      this.banner=banner;
+    this.bannerService.getBannerList();
+    this.bannerList=[];
+    this.bannerService.getBannerList$().subscribe(bannerList=>{
+    this.bannerList=bannerList;
     });
-
+    this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false; 
    }
   
   ngOnInit(): void {
+    this.bannerService.getBannerList().subscribe();
   }
 
  
