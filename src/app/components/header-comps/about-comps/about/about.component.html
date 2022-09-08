@@ -1,4 +1,4 @@
-<h1 *ngIf="aboutList.length==0" class="text-xl neonText row justify-content-end mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
+<h1 *ngIf="aboutList.length==0 && isEditAll" class="text-xl neonText row justify-content-end mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
     <app-add-about-btn *ngIf="isEditAll" class="row justify-content-end"></app-add-about-btn> Agregar "Acerca de..." 
 </h1>
 

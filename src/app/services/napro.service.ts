@@ -25,6 +25,7 @@ export class NaproService {
  
   postNapro(naproToAdd:Napro){
     naproToAdd.userId=Number(sessionStorage.getItem("userId"));
+    console.log(naproToAdd.country);
     return this.http.post(this.localhost+"/napros", naproToAdd).subscribe(resp=>{
     alert("Datos personales guardados!");
     location.reload();});

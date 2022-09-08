@@ -29,7 +29,8 @@ export class AboutService {
     aboutToAdd.userId=Number(sessionStorage.getItem("userId"));
     return this.http.post(this.localhost+"/abouts", aboutToAdd).subscribe(resp=>{
     alert("'Acerca de...' guardado");
-    location.reload();});
+    location.reload();
+  });
   }
 
 
