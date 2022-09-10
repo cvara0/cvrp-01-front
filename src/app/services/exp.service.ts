@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Experience } from '../components/models/experience.models';
 
 @Injectable({
@@ -8,76 +8,76 @@ import { Experience } from '../components/models/experience.models';
 })
 export class ExperienceService {
 
+  private localhost;
+
   private experienceList: Experience[];
   private experienceList$: Subject<Experience[]>;
-  
 
-  constructor() { 
+  public userId: string;
+
+  constructor(private http:HttpClient) {
+    this.localhost="http://localhost:8080"
     this.experienceList=[];
     this.experienceList$=new Subject();
-  }
-
-  postExperience(experieceToAdd:Experience){
-    experieceToAdd.id=this.experienceList.length;
-    experieceToAdd.imageUrl=experieceToAdd.imageUrl==""||experieceToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experieceToAdd.imageUrl;
-    //console.log(experieceToAdd.imageUrl);
-    this.experienceList.push(experieceToAdd);
-    this.experienceList$.next(this.experienceList);//con esto avisamos que ese array cambio
-    //experieceToAdd=new Experience;
-    alert("Experiencia laboral agregada");
-  }
-
-  putExperience(experienceEdited:Experience){
     
-    experienceEdited.imageUrl=experienceEdited.imageUrl==""||experienceEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceEdited.imageUrl;
-    //this.experienceList.splice(experienceEdited.id, 1, experienceEdited);
-    this.experienceList[experienceEdited.id]=experienceEdited;
-    this.experienceList$.next(this.experienceList);
-    alert("Experiencia laboral editada");
+   }
+   
+
+  postExperience(experienceToAdd:Experience){
+   
+    experienceToAdd.imageUrl=experienceToAdd.imageUrl==""||experienceToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceToAdd.imageUrl;
+    experienceToAdd.userId=Number(this.userId);
+    return this.http.post(`${this.localhost}/experiences`, experienceToAdd).subscribe(resp=>{
+    alert("Experiencia laboral agregada");
+    location.reload();});
   }
 
-  getExperience(experienceId:number){
-    //console.log(this.experienceList);
-    return this.experienceList[experienceId];
+  putExperience(experienceToEdit:Experience){
+    
+    experienceToEdit.imageUrl=experienceToEdit.imageUrl==""||experienceToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceToEdit.imageUrl;
+    return this.http.put(`${this.localhost}/experiences`,experienceToEdit).subscribe(resp=>{//+educationToEdit.id
+      alert("Experiencia laboral editada");
+      location.reload();
+      });
   }
+
+  /*getEducation(educationId:number){
+    return this.educationList[educationId];
+  }*/
 
   getExperienceList$(): Observable<Experience[]>{
     return this.experienceList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
+  getExperienceList(){
+      return this.http.get(`${this.localhost}/experiences/${this.userId}`)
+      .pipe(
+        map(resp=>{
+          this.experienceList=this.createExpList(resp);
+          this.experienceList$.next(this.experienceList);
+        })//map transforma la info en fuincion de un metodo y regresa algo
+      );
+  }
+
+  private createExpList(expListObj:any):Experience[]{
+    const expList:Experience[]=[];
+    if(expListObj===null){return [];}
+    Object.keys(expListObj).forEach(i=>{
+      const exp:Experience=expListObj[i];
+      //edu.id=Number(i); si quiero cambiar los id
+      expList.push(exp);
+    })
+    return expList;
+  }
+
   deleteExperience(expToDelete:Experience){
-    if (window.confirm("Eliminar experiencia laboral en "+expToDelete.name+" ?")){
-      //this.experienceList.push(this.experienceList.splice(expToDeleteId, 1)[0]);
-      //this.experienceList.pop();
-    this.experienceList = this.experienceList.filter(experience => experience !== expToDelete);
-    for(let i=0;i<this.experienceList.length;i++){
-      this.experienceList[i].id=i;
+    if (window.confirm("Eliminar experiencia educativa en "+expToDelete.name+" ?")){
+    
+    return this.http.delete(`${this.localhost}/experiences/${expToDelete.id}`).subscribe(resp=>{
+      alert("Experiencia laboral eliminada");
+      location.reload();
+    });
     }
-    //delete this.experienceList[expToDeleteId];
-    this.experienceList$.next(this.experienceList);
-    alert("Experiencia laboral eliminada");
-    }
+    return null;
   }
-
-
-  /*private sharingObservablePrivate:BehaviorSubject<Experience>=new BehaviorSubject<Experience>({
-    id           : 0,
-    name         : '',
-    web          : '',
-    yearSince    : 0,
-    yearTo       : 0,
-    imageUrl     : '',
-    description  : '',
-    editing      : false,
-  });
-
-  
-
-  get sharingObservable(){
-    return this.sharingObservablePrivate.asObservable();
-  }
-
-  set sharingObservableData(data:Experience){
-    this.sharingObservablePrivate.next(data);
-  }*/
 }

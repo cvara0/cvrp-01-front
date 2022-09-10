@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/components/models/experience.models';
+import { EditService } from 'src/app/services/edit.service';
 import { ExperienceService } from 'src/app/services/exp.service';
 
 @Component({
@@ -10,17 +11,18 @@ import { ExperienceService } from 'src/app/services/exp.service';
 export class ExpComponent implements OnInit {
   
   experienceList         : Experience[];
-
-  constructor(private experienceService:ExperienceService) {
+  isEditAll              : boolean;
+  constructor(private experienceService:ExperienceService,private editService:EditService) {
+    this.experienceService.getExperienceList();
     this.experienceList=[];
-    
-    
-
-   }
-  ngOnInit(): void {
     this.experienceService.getExperienceList$().subscribe(experienceList=>{
-      this.experienceList=experienceList;
+    this.experienceList=experienceList;
     });
+    this.isEditAll=sessionStorage.getItem("editMode")=="true" && sessionStorage.getItem("userId")==this.editService.userId?true:false;
+  }
+
+  ngOnInit(): void {
+    this.experienceService.getExperienceList().subscribe();
   }
   
 

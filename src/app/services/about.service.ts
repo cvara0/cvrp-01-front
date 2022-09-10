@@ -26,8 +26,8 @@ export class AboutService {
 
  
   postAbout(aboutToAdd:About){
-    aboutToAdd.userId=Number(sessionStorage.getItem("userId"));
-    return this.http.post(this.localhost+"/abouts", aboutToAdd).subscribe(resp=>{
+    aboutToAdd.userId=Number(this.userId);
+    return this.http.post(`${this.localhost}/abouts`, aboutToAdd).subscribe(resp=>{
     alert("'Acerca de...' guardado");
     location.reload();
   });
@@ -36,7 +36,7 @@ export class AboutService {
 
   putAbout(aboutToEdit:About){
     
-    return this.http.put(this.localhost+"/abouts",aboutToEdit).subscribe(resp=>{//+educationToEdit.id
+    return this.http.put(`${this.localhost}/abouts`,aboutToEdit).subscribe(resp=>{//+educationToEdit.id
       alert("'Acerca de...' editado");
       location.reload();
       });
@@ -48,7 +48,7 @@ export class AboutService {
   }
 
   getAboutList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
-      return this.http.get(this.localhost+"/abouts/"+this.userId)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+      return this.http.get(`${this.localhost}/abouts/${this.userId}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
           this.aboutList=this.createAboutList(resp);
@@ -70,7 +70,7 @@ export class AboutService {
   
   deleteAbout(aboutToDelete:About){
     if (window.confirm("Eliminar acerca de...?")){
-    return this.http.delete(this.localhost+"/abouts/"+aboutToDelete.id).subscribe(resp=>{
+    return this.http.delete(`${this.localhost}/abouts/${aboutToDelete.id}`).subscribe(resp=>{
       alert("Acerca de...a eliminado");
       location.reload();
     });

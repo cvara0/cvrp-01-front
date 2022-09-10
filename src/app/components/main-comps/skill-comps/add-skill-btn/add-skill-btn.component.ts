@@ -10,8 +10,8 @@ import { SkillService } from 'src/app/services/skill.service';
 export class AddSkillBtnComponent implements OnInit {
 
 closeResult = '';
-addSkillForm!    :FormGroup;
-newSkill              :Skill;
+addSkillForm!        :FormGroup;
+newSkill             :Skill;
 levelList            :Number[];
 @Input() isHardSkill :boolean;
 
@@ -53,7 +53,9 @@ this.skillService.postSkill(
     this.addSkillForm.get('skillLevel')?.value,
     this.isHardSkill,
     this.addSkillForm.get('skillImageUrl')?.value,
-    this.addSkillForm.get('skillWeb')?.value
+    this.addSkillForm.get('skillWeb')?.value,
+    false,
+    0
   )
 ); 
 this.addSkillForm.reset();

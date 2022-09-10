@@ -8,7 +8,9 @@ export class Experience{
         public yearSince    : number=0,
         public yearTo       : number=0,
         public imageUrl     : string='',
-        public description  : string='', 
+        public description  : string='',
+        public deleted      : boolean=false,
+        public userId       : number=0 
     ){
 
     }

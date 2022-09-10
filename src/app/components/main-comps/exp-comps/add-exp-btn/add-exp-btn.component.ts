@@ -82,7 +82,9 @@ saveAddExperience(){
       this.addExperienceForm.get('expYearSince')?.value,
       this.addExperienceForm.get('expYearTo')?.value,
       this.addExperienceForm.get('expImage')?.value,
-      this.addExperienceForm.get('expDescription')?.value
+      this.addExperienceForm.get('expDescription')?.value,
+      false,
+      0
     )
   ); 
   this.addExperienceForm.reset();

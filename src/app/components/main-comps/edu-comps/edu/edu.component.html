@@ -1,9 +1,10 @@
-<h1 *ngIf="educationList.length==0" class="text-xl neonText row justify-content-start mt-xl  animate__animated animate__fadeInLeftBig" style="text-align: left;">
-    <app-add-edu-btn *ngIf="isEditAll" class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
+<h1 *ngIf="educationList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl  animate__animated animate__fadeInLeftBig" style="text-align: left;">
+    <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
 </h1>
 <div *ngIf="educationList.length>0">
     <div class="row mt-xl">
-        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;"><app-add-edu-btn></app-add-edu-btn> Experiencia Educativa:</h1>
+        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;">
+            <app-add-edu-btn *ngIf="isEditAll"></app-add-edu-btn> Experiencia Educativa:</h1>
     </div>
     
         <section class="container mt-lg" *ngFor="let education of educationList">

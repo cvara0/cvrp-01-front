@@ -53,7 +53,9 @@ this.skillService.putSkill(
     this.editSkillForm.get('skillLevel')?.value,
     this.skillToEdit.hard,
     this.editSkillForm.get('skillUrlImage')?.value,
-    this.editSkillForm.get('skillWeb')?.value
+    this.editSkillForm.get('skillWeb')?.value,
+    false,
+    Number(sessionStorage.getItem("userId"))
   )
 ); 
 

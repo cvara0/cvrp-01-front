@@ -11,7 +11,7 @@ import { EducationService } from 'src/app/services/edu.service';
 export class EduComponent implements OnInit {
 
   educationList         : Education[];
-  isEditAll           : boolean;
+  isEditAll             : boolean;
   constructor(private educationService:EducationService,private editService:EditService) {
     this.educationService.getEducationList();
     this.educationList=[];

@@ -25,7 +25,7 @@ export class BannerService {
  
   postBanner(bannerToAdd:Banner){
     alert("Procesando informacion, puede tardar algunos segundos");
-    bannerToAdd.userId=Number(sessionStorage.getItem("userId"));
+    bannerToAdd.userId=Number(this.userId);
     return this.http.post(`${this.localhost}/banners`, bannerToAdd).subscribe(resp=>{
     alert("Imagen de portada guardada");
     location.reload();});

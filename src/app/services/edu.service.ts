@@ -15,6 +15,8 @@ export class EducationService {
   private educationList: Education[];
   private educationList$: Subject<Education[]>;
 
+  public userId: string;
+
   constructor(private http:HttpClient) {
     this.localhost="http://localhost:8080"
     this.educationList=[];
@@ -26,7 +28,7 @@ export class EducationService {
   postEducation(educationToAdd:Education){
    
     educationToAdd.imageUrl=educationToAdd.imageUrl==""||educationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToAdd.imageUrl;
-    educationToAdd.userId=Number(sessionStorage.getItem("userId"));
+    educationToAdd.userId=Number(this.userId);
     return this.http.post(this.localhost+"/educations", educationToAdd).subscribe(resp=>{
     alert("Experiencia educativa agregada");
     location.reload();});
@@ -35,7 +37,7 @@ export class EducationService {
   putEducation(educationToEdit:Education){
     
     educationToEdit.imageUrl=educationToEdit.imageUrl==""||educationToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToEdit.imageUrl;
-    return this.http.put(this.localhost+"/educations",educationToEdit).subscribe(resp=>{//+educationToEdit.id
+    return this.http.put(`${this.localhost}/educations`,educationToEdit).subscribe(resp=>{//+educationToEdit.id
       alert("Experiencia educativa editada");
       location.reload();
       });
@@ -50,7 +52,7 @@ export class EducationService {
   }
 
   getEducationList(){
-      return this.http.get(this.localhost+"/educations/"+(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId")))
+      return this.http.get(`${this.localhost}/educations/${this.userId}`)
       .pipe(
         map(resp=>{
           this.educationList=this.createEduList(resp);
@@ -73,7 +75,7 @@ export class EducationService {
   deleteEducation(eduToDelete:Education){
     if (window.confirm("Eliminar experiencia educativa en "+eduToDelete.name+" ?")){
     
-    return this.http.delete(this.localhost+"/educations/"+eduToDelete.id).subscribe(resp=>{
+    return this.http.delete(`${this.localhost}/educations/${eduToDelete.id}`).subscribe(resp=>{
       alert("Experiencia educativa eliminada");
       location.reload();
     });

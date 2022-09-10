@@ -85,11 +85,14 @@ saveEditExperience(){
     new Experience(
       this.experienceToEdit.id,
       this.editExperienceForm.get('expName')?.value,
+      this.editExperienceForm.get('expPosition')?.value,
       this.editExperienceForm.get('expWeb')?.value,
       this.editExperienceForm.get('expYearSince')?.value,
       this.editExperienceForm.get('expYearTo')?.value,
       this.editExperienceForm.get('expImage')?.value,
       this.editExperienceForm.get('expDescription')?.value,
+      false,
+      Number(sessionStorage.getItem("userId"))
     )
   );
 
