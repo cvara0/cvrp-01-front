@@ -10,15 +10,20 @@ export class SkillService {
 
   private localhost;
 
-  private skillList: Skill[];
-  private skillList$: Subject<Skill[]>;
+  private hardSkillList: Skill[];
+  private hardSkillList$: Subject<Skill[]>;
+
+  private softSkillList: Skill[];
+  private softSkillList$: Subject<Skill[]>;
 
   public userId: string;
 
   constructor(private http:HttpClient) {
     this.localhost="http://localhost:8080"
-    this.skillList=[];
-    this.skillList$=new Subject();
+    this.hardSkillList=[];
+    this.hardSkillList$=new Subject();
+    this.softSkillList=[];
+    this.softSkillList$=new Subject();
     
    }
    
@@ -34,24 +39,38 @@ export class SkillService {
   putSkill(skillToEdit:Skill){
     
     skillToEdit.imageUrl=skillToEdit.imageUrl==""||skillToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":skillToEdit.imageUrl;
-    return this.http.put(`${this.localhost}/skills`,skillToEdit).subscribe(resp=>{//+educationToEdit.id
+    return this.http.put(`${this.localhost}/skills`,skillToEdit).subscribe(resp=>{
       alert("Skill editado");
       location.reload();
       });
   }
 
  
-  getSkillList$(): Observable<Skill[]>{
-    return this.skillList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+  getHardSkillList$(): Observable<Skill[]>{
+    return this.hardSkillList$.asObservable();
   }
 
-  getSkillList(){
-      return this.http.get(`${this.localhost}/skills/${this.userId}`)
+  getHardSkillList(){
+      return this.http.get(`${this.localhost}/skills/hard/${this.userId}`)
       .pipe(
         map(resp=>{
-          this.skillList=this.createSkillList(resp);
-          this.skillList$.next(this.skillList);
-        })//map transforma la info en fuincion de un metodo y regresa algo
+          this.hardSkillList=this.createSkillList(resp);
+          this.hardSkillList$.next(this.hardSkillList);
+        })
+      );
+  }
+
+  getSoftSkillList$(): Observable<Skill[]>{
+    return this.softSkillList$.asObservable();
+  }
+
+  getSoftSkillList(){
+      return this.http.get(`${this.localhost}/skills/soft/${this.userId}`)
+      .pipe(
+        map(resp=>{
+          this.softSkillList=this.createSkillList(resp);
+          this.softSkillList$.next(this.softSkillList);
+        })
       );
   }
 

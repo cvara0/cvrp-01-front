@@ -14,12 +14,12 @@ export class EditService {
   setIsEditAll(){
    if(this.userId==sessionStorage.getItem("userId")){
     if(sessionStorage.getItem("editMode")!=="true"){
-      alert("Modo edicion activado");
+      //alert("Modo edicion activado");
       sessionStorage.setItem("editMode","true");
       location.reload();
     }
     else{
-      alert("Modo edicion desactivado");
+      //alert("Modo edicion desactivado");
       sessionStorage.setItem("editMode","false");
       location.reload();
     }

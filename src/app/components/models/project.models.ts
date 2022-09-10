@@ -6,7 +6,9 @@ export class Project{
         public web          : string='',
         public date         : string='',
         public imageUrl     : string='',
-        public description  : string='' 
+        public description  : string='',
+        public deleted      : boolean=false,
+        public userId       : number=0 
     ){
 
     }

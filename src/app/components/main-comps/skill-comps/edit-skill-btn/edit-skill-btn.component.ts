@@ -51,7 +51,7 @@ this.skillService.putSkill(
     this.skillToEdit.id,
     this.editSkillForm.get('skillName')?.value,
     this.editSkillForm.get('skillLevel')?.value,
-    this.skillToEdit.hard,
+    this.skillToEdit.isHard,
     this.editSkillForm.get('skillUrlImage')?.value,
     this.editSkillForm.get('skillWeb')?.value,
     false,

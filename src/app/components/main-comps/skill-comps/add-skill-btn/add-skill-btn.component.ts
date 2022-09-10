@@ -30,7 +30,7 @@ createAddSkillForm(){
 
 this.addSkillForm=this.fb.group({
   skillName          : ['',[Validators.required,Validators.maxLength(18)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-  skillLevel         : [,Validators.required],
+  skillLevel         : [Validators.required],
   skillImageUrl      : ['',Validators.required],
   skillWeb           : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
 });
@@ -45,7 +45,7 @@ return this.addSkillForm.get('skillLevel')?.dirty;
 }
 
 saveAddSkill(){
-
+console.log(this.isHardSkill);
 this.skillService.postSkill(
   new Skill(
     0,
@@ -59,6 +59,8 @@ this.skillService.postSkill(
   )
 ); 
 this.addSkillForm.reset();
+
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////

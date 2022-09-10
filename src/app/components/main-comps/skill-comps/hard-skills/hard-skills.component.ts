@@ -9,19 +9,19 @@ import { SkillService } from 'src/app/services/skill.service';
 })
 export class HardSkillsComponent implements OnInit {
 
-  skillList         : Skill[];
-  isEditAll         : boolean;
+  hardSkillList         : Skill[];
+  isEditAll             : boolean;
   constructor(private skillService:SkillService,private editService:EditService) {
-    this.skillService.getSkillList();
-    this.skillList=[];
-    this.skillService.getSkillList$().subscribe(skillList=>{
-    this.skillList=skillList.filter(hardSkill=>hardSkill.hard==true);
+    this.skillService.getHardSkillList();
+    this.hardSkillList=[];
+    this.skillService.getHardSkillList$().subscribe(hardSkillList=>{
+    this.hardSkillList=hardSkillList;
     });
     this.isEditAll=sessionStorage.getItem("editMode")=="true" && sessionStorage.getItem("userId")==this.editService.userId?true:false;
   }
 
   ngOnInit(): void {
-    this.skillService.getSkillList().subscribe(); 
+    this.skillService.getHardSkillList().subscribe(); 
   }
 
 }

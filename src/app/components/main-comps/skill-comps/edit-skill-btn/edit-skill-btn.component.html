@@ -4,7 +4,7 @@
 
 <ng-template #editSkillModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="editSkillForm" (ngSubmit)="saveEditSkill()" autocomplete="off">
-        <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando habilidad {{this.skillToEdit.hard?"dura":"blanda"}}</h1>
+        <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando habilidad {{this.skillToEdit.isHard?"dura":"blanda"}}</h1>
         <label for="skillNameText">Nombre de la habilidad</label>    
             <small class="text-danger" *ngIf="validSkillName"><br>Ingrese entre 4 y 20 caracteres</small>
                 <input #skillNameText maxlength="21" class="mb-3 form-control" type="text" formControlName="skillName">

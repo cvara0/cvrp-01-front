@@ -4,7 +4,7 @@ export class Skill{
         public id           : number=0,
         public name         : string='',
         public level        : number=0,
-        public hard         : boolean=false,
+        public isHard         : boolean=false,
         public imageUrl     : string='',
         public web          : string='',
         public deleted      : boolean=false,

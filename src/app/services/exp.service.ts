@@ -41,12 +41,8 @@ export class ExperienceService {
       });
   }
 
-  /*getEducation(educationId:number){
-    return this.educationList[educationId];
-  }*/
-
   getExperienceList$(): Observable<Experience[]>{
-    return this.experienceList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+    return this.experienceList$.asObservable(); 
   }
 
   getExperienceList(){
@@ -55,7 +51,7 @@ export class ExperienceService {
         map(resp=>{
           this.experienceList=this.createExpList(resp);
           this.experienceList$.next(this.experienceList);
-        })//map transforma la info en fuincion de un metodo y regresa algo
+        })
       );
   }
 
@@ -64,7 +60,6 @@ export class ExperienceService {
     if(expListObj===null){return [];}
     Object.keys(expListObj).forEach(i=>{
       const exp:Experience=expListObj[i];
-      //edu.id=Number(i); si quiero cambiar los id
       expList.push(exp);
     })
     return expList;

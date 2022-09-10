@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Project } from '../components/models/project.models';
 
 @Injectable({
@@ -7,50 +8,72 @@ import { Project } from '../components/models/project.models';
 })
 export class ProjectService {
 
+  private localhost;
+
   private projectList: Project[];
   private projectList$: Subject<Project[]>;
 
-  constructor() {
+  public userId: string;
+
+  constructor(private http:HttpClient) {
+    this.localhost="http://localhost:8080"
     this.projectList=[];
     this.projectList$=new Subject();
     
    }
+   
 
   postProject(projectToAdd:Project){
-    projectToAdd.id=this.projectList.length;
+   
     projectToAdd.imageUrl=projectToAdd.imageUrl==""||projectToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":projectToAdd.imageUrl;
-    //console.log(projectToAdd.imageUrl);
-    this.projectList.push(projectToAdd);
-    this.projectList$.next(this.projectList);//con esto avisamos que ese array cambio
-    projectToAdd=new Project;
+    projectToAdd.userId=Number(this.userId);
+    return this.http.post(`${this.localhost}/projects`, projectToAdd).subscribe(resp=>{
     alert("Proyecto agregado");
+    location.reload();
+  });
   }
 
-  putProject(projectEdited:Project){
+  putProject(projectToEdit:Project){
     
-    projectEdited.imageUrl=projectEdited.imageUrl==""||projectEdited.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":projectEdited.imageUrl;
-    this.projectList[projectEdited.id]=projectEdited;
-    this.projectList$.next(this.projectList);
-    alert("Proyecto editado");
-  }
-
-  getProject(projectId:number){
-    return this.projectList[projectId];
+    projectToEdit.imageUrl=projectToEdit.imageUrl==""||projectToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":projectToEdit.imageUrl;
+    return this.http.put(`${this.localhost}/projects`,projectToEdit).subscribe(resp=>{//+educationToEdit.id
+      alert("Proyecto editado");
+      location.reload();
+      });
   }
 
   getProjectList$(): Observable<Project[]>{
-    return this.projectList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
+    return this.projectList$.asObservable(); 
+  }
+
+  getProjectList(){
+      return this.http.get(`${this.localhost}/projects/${this.userId}`)
+      .pipe(
+        map(resp=>{
+          this.projectList=this.createProList(resp);
+          this.projectList$.next(this.projectList);
+        })
+      );
+  }
+
+  private createProList(proListObj:any):Project[]{
+    const proList:Project[]=[];
+    if(proListObj===null){return [];}
+    Object.keys(proListObj).forEach(i=>{
+      const pro:Project=proListObj[i];
+      proList.push(pro);
+    })
+    return proList;
   }
 
   deleteProject(proToDelete:Project){
     if (window.confirm("Eliminar proyecto "+proToDelete.name+" ?")){
-    this.projectList = this.projectList.filter(project => project !== proToDelete);
-    //delete this.experienceList[expToDeleteId];
-    for(let i=0;i<this.projectList.length;i++){
-      this.projectList[i].id=i;
+    
+    return this.http.delete(`${this.localhost}/projects/${proToDelete.id}`).subscribe(resp=>{
+      alert("Proyecto eliminado");
+      location.reload();
+    });
     }
-    this.projectList$.next(this.projectList);
-    alert("Proyecto eliminado");
-    }
+    return null;
   }
 }

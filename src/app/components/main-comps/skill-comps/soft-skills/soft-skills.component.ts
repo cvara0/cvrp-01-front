@@ -9,19 +9,21 @@ import { SkillService } from 'src/app/services/skill.service';
 })
 export class SoftSkillsComponent implements OnInit {
 
-  skillList         : Skill[];
-  isEditAll         : boolean;
+  softSkillList         : Skill[];
+  isEditAll             : boolean;
+  
   constructor(private skillService:SkillService,private editService:EditService) {
-    this.skillService.getSkillList();
-    this.skillList=[];
-    this.skillService.getSkillList$().subscribe(skillList=>{
-    this.skillList=skillList.filter(hardSkill=>hardSkill.hard==false);
+    this.skillService.getSoftSkillList();
+    this.softSkillList=[];
+    this.skillService.getSoftSkillList$().subscribe(softSkillList=>{
+    this.softSkillList=softSkillList;
     });
     this.isEditAll=sessionStorage.getItem("editMode")=="true" && sessionStorage.getItem("userId")==this.editService.userId?true:false;
+    
   }
 
   ngOnInit(): void {
-    this.skillService.getSkillList().subscribe(); 
+    this.skillService.getSoftSkillList().subscribe(); 
   }
 
 }
