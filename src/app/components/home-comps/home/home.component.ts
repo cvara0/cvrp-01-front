@@ -7,6 +7,7 @@ import { EducationService } from 'src/app/services/edu.service';
 import { ExperienceService } from 'src/app/services/exp.service';
 import { NaproService } from 'src/app/services/napro.service';
 import { PhotoService } from 'src/app/services/photo.service';
+import { ProjectService } from 'src/app/services/project.service';
 import { SkillService } from 'src/app/services/skill.service';
 
 
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
     private educationService:EducationService,
     private experienceService:ExperienceService,
     private skillService:SkillService,
+    private projectService:ProjectService,
     private editService:EditService
     ) { 
     this.activatedRoute.params.subscribe( params => {
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
       this.educationService.userId=params['id'];
       this.experienceService.userId=params['id'];
       this.skillService.userId=params['id'];
-
+      this.projectService.userId=params['id'];
       this.editService.userId=params['id'];
   });
     

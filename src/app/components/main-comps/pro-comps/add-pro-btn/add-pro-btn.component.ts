@@ -78,10 +78,13 @@ saveAddProject(){
       +" / "
       +this.addProjectForm.get('proDate')?.value.year,
       this.addProjectForm.get('proImage')?.value,
-      this.addProjectForm.get('proDescription')?.value
+      this.addProjectForm.get('proDescription')?.value,
+      false,
+      0
     )
   ); 
   this.addProjectForm.reset();
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////

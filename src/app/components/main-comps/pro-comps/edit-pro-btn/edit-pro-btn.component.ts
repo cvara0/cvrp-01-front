@@ -68,7 +68,7 @@ saveEditProject(){
  console.log(this.editProjectForm.get('proDate')?.value)
   this.projectService.postProject(
     new Project(
-      0,
+      this.projectToEdit.id,
       this.editProjectForm.get('proName')?.value,
       this.editProjectForm.get('proWeb')?.value,
       this.editProjectForm.get('proDate')?.value.day
@@ -77,7 +77,9 @@ saveEditProject(){
       +" / "
       +this.editProjectForm.get('proDate')?.value.year,
       this.editProjectForm.get('proImage')?.value,
-      this.editProjectForm.get('proDescription')?.value
+      this.editProjectForm.get('proDescription')?.value,
+      false,
+      Number(sessionStorage.getItem("userId"))
     )
   ); 
   this.editProjectForm.reset();

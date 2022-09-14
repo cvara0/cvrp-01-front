@@ -1,10 +1,10 @@
 <h1 *ngIf="this.softSkillList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__zoomIn" style="text-align: left;">
     <app-add-skill-btn [isHardSkill]=false class="row justify-content-start"></app-add-skill-btn> Agregar soft skill 
 </h1>
-<section *ngIf="this.softSkillList.length>0" class="container mt-xl">
+<section *ngIf="this.softSkillList.length>0" class="container">
     <article class="row justify-content-center animate__animated animate__zoomIn">
         
-            <h1 class="text-xl neonText" style="text-align: left;">
+            <h1 class="text-xl neonText mt-xl" style="text-align: left;">
                     <app-add-skill-btn *ngIf="isEditAll" [isHardSkill]=false class="row justify-content-start"></app-add-skill-btn>
                 Soft Skills:</h1>
        

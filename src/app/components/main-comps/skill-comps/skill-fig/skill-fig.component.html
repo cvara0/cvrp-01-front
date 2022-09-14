@@ -1,10 +1,10 @@
 
-<div class="container mt-lg">
-  <div style="position: relative; top: 70px;left: -90px;">
+<div class="container">
+  <div style="position: relative; top: 70px;left: -100px;">
         <app-edit-skill-btn *ngIf="isEditAll" class="row justify-content-end" [skillToEdit]=skillToShow></app-edit-skill-btn>
        <app-delete-skill-btn *ngIf="isEditAll" class="row justify-content-end" [skillToDelete]=skillToShow></app-delete-skill-btn>
       </div>
-    <div class="col-6 animate__animated animate__zoomIn" style="height: 260px;width: 260px;">
+    <div class="col-6 animate__animated animate__zoomIn mt-xl" style="height: 260px;width: 260px;">
            
                 <h2 class="text-xl neonText" style="position: relative; top: -45px;"> {{skillToShow.name | uppercase}}</h2>
                 <a href="" target="_blank" class="btn-42 circle-btn-big neonBox skill-center-fig-style" style="background-image: url('{{skillToShow.imageUrl}}');position: relative; top: 47px;">

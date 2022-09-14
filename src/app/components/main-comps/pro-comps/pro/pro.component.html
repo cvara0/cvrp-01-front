@@ -1,9 +1,10 @@
-<h1 *ngIf="projectList.length==0" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
+<h1 *ngIf="projectList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
     <app-add-pro-btn class="row justify-content-start"></app-add-pro-btn> Agregar proyecto 
 </h1>
 <div *ngIf="projectList.length>0">
     <div class="row mt-xl">
-        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;"><app-add-pro-btn></app-add-pro-btn> Proyectos:</h1>
+        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;">
+            <app-add-pro-btn *ngIf="isEditAll"></app-add-pro-btn> Proyectos:</h1>
     </div>
     <section class="container mt-lg animate__animated" *ngFor="let project of projectList">
 
@@ -19,10 +20,10 @@
                 <p class="text-l rounded-box neonBox">
                     
                     <span>
-                        <app-edit-pro-btn [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
-                        <app-delete-pro-btn [proToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
+                        <app-edit-pro-btn *ngIf="isEditAll" [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
+                        <app-delete-pro-btn *ngIf="isEditAll" [proToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
                         <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{project.name}}</span> 
-                             <br>
+                             <br><br>
                              Realizacion: {{project.date}}
                         </h1>
                     </span>
