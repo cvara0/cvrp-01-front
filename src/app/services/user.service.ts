@@ -18,7 +18,7 @@ export class UserService {
   private token: string;
   
   constructor( private http:HttpClient,private router:Router) {
-    this.localhost='http://localhost:8080';
+    this.localhost='https://porfolio-ap-back-cvrp.herokuapp.com';
     this.userId=0;
     
     //this.isLogin=sessionStorage.getItem("userId")!==null;
