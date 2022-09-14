@@ -30,8 +30,9 @@ export class HomeComponent implements OnInit {
     private projectService:ProjectService,
     private editService:EditService
     ) { 
-    this.activatedRoute.params.subscribe( params => {
       
+    this.activatedRoute.params.subscribe( params => {
+      console.log(params['id']);
       this.bannerService.userId=params['id'];
       this.photoService.userId=params['id'];
       this.aboutService.userId=params['id'];

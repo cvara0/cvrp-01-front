@@ -62,21 +62,22 @@ export class UserService {
 
 
 
-  autoLogout(){
+  /*autoLogout(){
     
     this.http.post(this.localhost+"/logout",'').subscribe();
     sessionStorage.clear();
     location.reload();
     alert("Sesion caducada");
     
-  }
+  }*/
 
   logout(){
     if (window.confirm("Cerrar sesion?")){
       alert("Procesando informacion, puede tardar algunos segundos");
       sessionStorage.clear();
       window.location.href+'?eraseCache=true';
-      location.reload();
+      window.location.href=`/home`;
+      //location.reload();
       return null;//return this.http.post(this.localhost+"/logout",'').subscribe();
   }
      return null; 

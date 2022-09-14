@@ -12,6 +12,8 @@ export class EditService {
   }
   
   setIsEditAll(){
+    alert("sessionstorage: "+sessionStorage.getItem("userId"));
+    alert("userid: "+this.userId);
    if(this.userId==sessionStorage.getItem("userId")){
     if(sessionStorage.getItem("editMode")!=="true"){
       //alert("Modo edicion activado");
