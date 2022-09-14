@@ -16,7 +16,7 @@ export class PhotoService {
   private localhost;
   
   constructor(private http:HttpClient) { 
-    this.localhost="http://localhost:8080";
+    this.localhost="https://porfolio-ap-back-cvrp.herokuapp.com";
     this.photoList=[];
     this.photoList$=new Subject();
    

@@ -19,7 +19,7 @@ export class SkillService {
   public userId: string;
 
   constructor(private http:HttpClient) {
-    this.localhost="http://localhost:8080"
+    this.localhost="https://porfolio-ap-back-cvrp.herokuapp.com"
     this.hardSkillList=[];
     this.hardSkillList$=new Subject();
     this.softSkillList=[];
