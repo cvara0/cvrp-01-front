@@ -29,10 +29,10 @@ export class UserService {
   register(newUser: User){// : Observable<User>
     sessionStorage.clear();
     alert("Procesando informacion, puede tardar algunos segundos");
-      return this.http.post<Number>(this.localhost+"/auth/singup", newUser).subscribe(resp=>{
+      return this.http.post<Number>(`${this.localhost}/auth/singup`, newUser).subscribe(resp=>{
         if(resp!==null){
         sessionStorage.setItem("userId",resp.toString());
-        window.location.href=`/home/${resp}`;
+        window.location.href=`/home/${resp}`;//
       }
         //setTimeout(this.autoLogout, 10000);
         return resp!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
@@ -41,15 +41,15 @@ export class UserService {
 
   login(loginData: Login){
     
-    
+    sessionStorage.clear();
     alert("Procesando informacion, puede tardar algunos segundos");
-    return this.http.post<Login>(this.localhost+"/auth/singin", loginData).subscribe(resp=>{
+    return this.http.post<Login>(`${this.localhost}/auth/singin`, loginData).subscribe(resp=>{
       if(resp!==null){
-        sessionStorage.clear();
+        
         sessionStorage.setItem("userId",resp.toString());
         console.log(resp.toString());
         
-        //this.router.navigate(['/home',resp]);esta opcion no funciono pero dejo igual pa saber
+        //this.router.navigate(['/home',resp]); dejo pa saber
         window.location.href=`/home/${resp}`;
         
       }
@@ -62,14 +62,14 @@ export class UserService {
 
 
 
-  /*autoLogout(){
+  autoLogout(){
     
-    this.http.post(this.localhost+"/logout",'').subscribe();
     sessionStorage.clear();
-    location.reload();
+    window.location.href+'?eraseCache=true';
+    window.location.href=`/home`;
     alert("Sesion caducada");
     
-  }*/
+  }
 
   logout(){
     if (window.confirm("Cerrar sesion?")){

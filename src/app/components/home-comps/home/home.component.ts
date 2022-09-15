@@ -9,6 +9,7 @@ import { NaproService } from 'src/app/services/napro.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { SkillService } from 'src/app/services/skill.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -28,11 +29,14 @@ export class HomeComponent implements OnInit {
     private experienceService:ExperienceService,
     private skillService:SkillService,
     private projectService:ProjectService,
-    private editService:EditService
+    private editService:EditService,
+    private userService:UserService
     ) { 
       
+    setTimeout(this.userService.autoLogout, 10000);
+
     this.activatedRoute.params.subscribe( params => {
-      console.log(params['id']);
+      console.log('home params: '+params['id']);
       this.bannerService.userId=params['id'];
       this.photoService.userId=params['id'];
       this.aboutService.userId=params['id'];
