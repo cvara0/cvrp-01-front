@@ -48,7 +48,7 @@ export class AboutService {
   }
 
   getAboutList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
-      return this.http.get(`${this.localhost}/abouts/${this.userId}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+      return this.http.get(`${this.localhost}/abouts/${(this.userId?this.userId:"1")}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
           this.aboutList=this.createAboutList(resp);

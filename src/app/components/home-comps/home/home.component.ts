@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AboutService } from 'src/app/services/about.service';
 import { BannerService } from 'src/app/services/banner.service';
 import { EditService } from 'src/app/services/edit.service';
@@ -14,8 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
@@ -33,10 +32,9 @@ export class HomeComponent implements OnInit {
     private userService:UserService
     ) { 
       
-    setTimeout(this.userService.autoLogout, 10000);
+    setTimeout(this.userService.autoLogout,(108000*1000));
 
     this.activatedRoute.params.subscribe( params => {
-      console.log('home params: '+params['id']);
       this.bannerService.userId=params['id'];
       this.photoService.userId=params['id'];
       this.aboutService.userId=params['id'];

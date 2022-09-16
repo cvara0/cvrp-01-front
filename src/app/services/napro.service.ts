@@ -46,7 +46,7 @@ export class NaproService {
   }
 
   getNaproList(){
-      return this.http.get(this.localhost+"/napros/"+this.userId)
+      return this.http.get(`${this.localhost}/napros/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.naproList=this.createNaproList(resp);

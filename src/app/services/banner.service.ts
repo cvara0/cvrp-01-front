@@ -19,7 +19,6 @@ export class BannerService {
     this.localhost="https://porfolio-ap-back-cvrp.herokuapp.com";
     this.bannerList=[];
     this.bannerList$=new Subject();
-   
   }
 
  
@@ -46,7 +45,7 @@ export class BannerService {
   }
 
   getBannerList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
-      return this.http.get(`${this.localhost}/banners/`+this.userId)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+      return this.http.get(`${this.localhost}/banners/${(this.userId?this.userId:"1")}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
           this.bannerList=this.createBannerList(resp);

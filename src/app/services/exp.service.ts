@@ -46,7 +46,7 @@ export class ExperienceService {
   }
 
   getExperienceList(){
-      return this.http.get(`${this.localhost}/experiences/${this.userId}`)
+      return this.http.get(`${this.localhost}/experiences/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.experienceList=this.createExpList(resp);

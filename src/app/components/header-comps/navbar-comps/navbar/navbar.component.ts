@@ -10,13 +10,12 @@ import { UserService } from 'src/app/services/user.service';
 export class NavbarComponent implements OnInit {
 
   isLogin: boolean=false;
-  
+  isLoading: boolean=false;
+
   public editConfirmIcon:string;
   constructor(public userService:UserService,public editService:EditService) { 
     console.log(sessionStorage.getItem("userId"));
     this.isLogin=sessionStorage.getItem("userId")!==null;
-    //this.isLogin=sessionStorage.getItem("userId")!==null;
-    
   }
 
   ngOnInit(): void {

@@ -1,6 +1,12 @@
-<button (click)="open(loginModal)" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn">
+<button *ngIf="!this.isLoading" (click)="open(loginModal)" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn">
     <img class="circle-img" src={{loginIcon}} alt="navbar-login-btn">
 </button>
+
+
+<figure *ngIf="this.isLoading" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://c.tenor.com/Px_PMiYXFIMAAAAC/black-swirl.gif');background-position: 50% 50%;width: 48px;height: 48px;">
+ 
+</figure>
+
 
 <ng-template #loginModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="loginForm" (ngSubmit)="saveLogin()" autocomplete="off">

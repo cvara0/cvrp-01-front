@@ -12,50 +12,25 @@ export class UserService {
 
   private localhost:string
 
-
-
   private userId: number;
   private token: string;
+ 
   
   constructor( private http:HttpClient,private router:Router) {
     this.localhost='https://porfolio-ap-back-cvrp.herokuapp.com';
     this.userId=0;
     
-    //this.isLogin=sessionStorage.getItem("userId")!==null;
-    //this.isLogin$.next(this.isLogin);
-    
    }
    
-  register(newUser: User){// : Observable<User>
+  register(newUser: User){
     sessionStorage.clear();
-    alert("Procesando informacion, puede tardar algunos segundos");
-      return this.http.post<Number>(`${this.localhost}/auth/singup`, newUser).subscribe(resp=>{
-        if(resp!==null){
-        sessionStorage.setItem("userId",resp.toString());
-        window.location.href=`/home/${resp}`;//
-      }
-        //setTimeout(this.autoLogout, 10000);
-        return resp!==null?alert("Nuevo usuario agregado! Bienvenid@!"):alert("Ya existe una cuenta con este email!")
-      });//el tercer parametro es el header
+      return this.http.post<Number>(`${this.localhost}/auth/singup`, newUser);
   }
 
   login(loginData: Login){
     
     sessionStorage.clear();
-    alert("Procesando informacion, puede tardar algunos segundos");
-    return this.http.post<Login>(`${this.localhost}/auth/singin`, loginData).subscribe(resp=>{
-      if(resp!==null){
-        
-        sessionStorage.setItem("userId",resp.toString());
-        console.log(resp.toString());
-        
-        //this.router.navigate(['/home',resp]); dejo pa saber
-        window.location.href=`/home/${resp}`;
-        
-      }
-      //
-      //setTimeout(this.autoLogout, 10000);
-      return resp!==null?alert("Bienvenid@!"):alert("Email o contrasenia incorrectos!")});
+    return this.http.post<Login>(`${this.localhost}/auth/singin`, loginData);
    
   }
 

@@ -46,13 +46,26 @@ get validEditBannerUrl(){
 
 saveEditBanner(){
 
-  this.bannerService.postBanner(new Banner(
-    0,
-    this.editBannerForm.get('imageUrl')?.value,
-    false,
-    0
-  ));
+
+  if(this.bannerToEdit==null){
+      this.bannerService.postBanner(new Banner(
+      0,
+      this.editBannerForm.get('imageUrl')?.value,
+      false,
+      0
+    ));
+  }else{
+     this.bannerService.putBanner(new Banner(
+     this.bannerToEdit.id,
+     this.editBannerForm.get('imageUrl')?.value,
+     false,
+     Number(sessionStorage.getItem("userId"))
+    ));
+}
+
   }
+
+  
 
   /////////////////////////////////////////////////////////////////////////////////
 //lanza modal

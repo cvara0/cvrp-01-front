@@ -46,7 +46,7 @@ export class PhotoService {
   }
 
   getPhotoList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
-      return this.http.get(`${this.localhost}/photos/${this.userId}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
+      return this.http.get(`${this.localhost}/photos/${(this.userId?this.userId:"1")}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
           this.photoList=this.createPhotoList(resp);

@@ -13,6 +13,7 @@ export class NavbarRegisterBtnComponent implements OnInit {
   @Input() registerIcon   : string="";
   registerForm!: FormGroup;
   closeResult = '';
+  isLoading:boolean=false;
 
   constructor(private fb:FormBuilder,private modalService: NgbModal,private userService:UserService) { 
     this.createRegisterForm();
@@ -50,11 +51,18 @@ get validRegisterPassword(){
 }
 
 saveRegister(){
-  
+  this.isLoading=true;
   this.userService.register(
     new User(this.registerForm.get('emailRegister')?.value,
     this.registerForm.get('passwordRegister')?.value)
-    );
+    ).subscribe(resp=>{
+      if(resp!==null){
+      sessionStorage.setItem("userId",resp.toString());
+      window.location.href=`/home/${resp}`;
+    }
+    this.isLoading=false;
+      return resp==null?alert("Ya existe una cuenta con este email!"):null;
+    });
   
 }
 

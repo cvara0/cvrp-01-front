@@ -47,7 +47,7 @@ export class ProjectService {
   }
 
   getProjectList(){
-      return this.http.get(`${this.localhost}/projects/${this.userId}`)
+      return this.http.get(`${this.localhost}/projects/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.projectList=this.createProList(resp);

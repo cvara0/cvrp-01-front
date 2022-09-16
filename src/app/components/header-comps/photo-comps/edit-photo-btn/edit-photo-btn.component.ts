@@ -40,13 +40,22 @@ get validEditPhotoUrl(){
 
 
 saveEditPhoto(){
+if(this.photoToEdit==null){
+      this.photoService.postPhoto(new Photo(
+        0,
+        this.editPhotoForm.get('imageUrl')?.value,
+        false,
+        0
+      ));
+  }else{
+    this.photoService.putPhoto(new Photo(
+      this.photoToEdit.id,
+      this.editPhotoForm.get('imageUrl')?.value,
+      false,
+      Number(sessionStorage.getItem("userId"))
+    ));
+  }
 
-  this.photoService.postPhoto(new Photo(
-    0,
-    this.editPhotoForm.get('imageUrl')?.value,
-    false,
-    0
-  ));
   }
 
   /////////////////////////////////////////////////////////////////////////////////

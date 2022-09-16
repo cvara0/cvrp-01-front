@@ -51,7 +51,7 @@ export class SkillService {
   }
 
   getHardSkillList(){
-      return this.http.get(`${this.localhost}/skills/hard/${this.userId}`)
+      return this.http.get(`${this.localhost}/skills/hard/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.hardSkillList=this.createSkillList(resp);
@@ -65,7 +65,7 @@ export class SkillService {
   }
 
   getSoftSkillList(){
-      return this.http.get(`${this.localhost}/skills/soft/${this.userId}`)
+      return this.http.get(`${this.localhost}/skills/soft/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.softSkillList=this.createSkillList(resp);

@@ -52,7 +52,7 @@ export class EducationService {
   }
 
   getEducationList(){
-      return this.http.get(`${this.localhost}/educations/${this.userId}`)
+      return this.http.get(`${this.localhost}/educations/${(this.userId?this.userId:"1")}`)
       .pipe(
         map(resp=>{
           this.educationList=this.createEduList(resp);
