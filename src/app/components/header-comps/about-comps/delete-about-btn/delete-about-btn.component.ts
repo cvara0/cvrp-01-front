@@ -22,7 +22,8 @@ export class DeleteAboutBtnComponent implements OnInit {
     this.isLoading=false;
     location.reload();
   });
-}
+}else
+  this.isLoading=false;
 }
 
 //

@@ -23,7 +23,8 @@ export class DeleteProBtnComponent implements OnInit {
           this.isLoading=false;
           location.reload();
         });
-      }
+      }else
+      this.isLoading=false;
     }
 
 }
