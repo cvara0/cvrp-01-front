@@ -15,6 +15,7 @@ export class EditExpBtnComponent implements OnInit {
   yearSinceList:Year[];
   closeResult = '';
   editExperienceForm!: FormGroup;
+  isLoading:boolean=false;
 
   constructor(private experienceService:ExperienceService,public yearService:YearService,private fb:FormBuilder,private modalService: NgbModal) {
     
@@ -81,6 +82,7 @@ get validExpDescription(){
 
 
 saveEditExperience(){
+  this.isLoading=true;
   this.experienceService.putExperience(
     new Experience(
       this.experienceToEdit.id,
@@ -94,7 +96,10 @@ saveEditExperience(){
       false,
       Number(sessionStorage.getItem("userId"))
     )
-  );
+  ).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();
+    });
 
 }
 

@@ -1,24 +1,28 @@
-<button (click)="open(addProModal)"class="btn-42 circle-btn circle-img neonBox">
+<button *ngIf="!this.isLoading" (click)="open(addProModal)"class="btn-42 circle-btn circle-img neonBox">
     <img class="circle-img" src="https://i.postimg.cc/Hk1YMDMf/aniadir.png" alt="add-img">
 </button>
+
+<figure *ngIf="this.isLoading" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://c.tenor.com/Px_PMiYXFIMAAAAC/black-swirl.gif');background-position: 50% 50%;width: 48px;height: 48px;">
+ 
+</figure>
 
 <ng-template #addProModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="addProjectForm" (ngSubmit)="saveAddProject()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nuevo proyecto</h1>
-        <label for="proNameText">Nombre del proyecto:* </label>    
+        <label for="proNameText">Nombre del proyecto<span style="color: red;">*</span> </label>    
             <small class="form-text" *ngIf="validProName"><br>Ingrese entre 1 y 80 caracteres</small>
                 <input #proNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="proName">
-        <label for="proWebText">Link de la pagina web del proyecto:</label>    
+        <label for="proWebText">Link de la pagina web del proyecto</label>    
                 <input #proWebText class="mb-3 form-control" type="url" formControlName="proWeb">
-        <label for="proImageText">Link de una imagen o logo del proyecto:</label>
+        <label for="proImageText">Link de una imagen o logo del proyecto</label>
                 <input #proImageText class="mb-3 form-control" type="url" formControlName="proImage">
         
-        <label for="proDateText">Fecha de finalizacion estimada:*</label>
+        <label for="proDateText">Fecha de finalizacion real o estimada<span style="color: red;">*</span></label>
             <div class="input-group mb-3">
                 <input class="form-control" type="date" formControlName="proDate" ngbDatepicker #d="ngbDatepicker">
             </div>
      
-        <label for="proDescriptionText">Descripcion:</label>    
+        <label for="proDescriptionText">Descripcion</label>    
             <small class="text-danger mb-3" *ngIf="validProDescription"><br>Maximo 800 caracteres</small>
                 <textarea #proDescriptionText maxlength="801" class="mb-3 form-control" type="text" formControlName="proDescription">
                 </textarea>

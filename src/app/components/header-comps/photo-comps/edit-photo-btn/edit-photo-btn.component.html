@@ -1,11 +1,15 @@
-<button (click)="open(editPhotoModal)" class="btn-42 circle-btn circle-img neonBox">
+<button *ngIf="!this.isLoading" (click)="open(editPhotoModal)" class="btn-42 circle-btn circle-img neonBox">
     <img class="circle-img" src="https://i.postimg.cc/TPpTMdv5/editar.png" alt="edit-banner">
 </button>
+
+<figure *ngIf="this.isLoading" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://c.tenor.com/Px_PMiYXFIMAAAAC/black-swirl.gif');background-position: 50% 50%;width: 48px;height: 48px;">
+ 
+</figure>
 
 <ng-template #editPhotoModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="editPhotoForm" (ngSubmit)="saveEditPhoto()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Editando imagen de perfil</h1>
-        <label for="photoUrlInput">Url de la imagen</label>
+        <label for="photoUrlInput">Url de la imagen<span style="color: red;">*</span></label>
             <small class="form-text" *ngIf="(validEditPhotoUrl)"><br>Ingrese un enlace valido</small>
                 <input #photoUrlInput class="mb-3 form-control" type="text" formControlName="imageUrl">
            <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->

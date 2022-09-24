@@ -12,6 +12,8 @@ export class EditPhotoBtnComponent implements OnInit {
   closeResult = '';
   editPhotoForm!: FormGroup;
   urlPattern = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)';
+  isLoading:boolean=false;
+
   @Input() photoToEdit: Photo;
   constructor(
     private fb:FormBuilder,private modalService: NgbModal,
@@ -40,20 +42,26 @@ get validEditPhotoUrl(){
 
 
 saveEditPhoto(){
+  this.isLoading=true;
 if(this.photoToEdit==null){
       this.photoService.postPhoto(new Photo(
         0,
         this.editPhotoForm.get('imageUrl')?.value,
         false,
         0
-      ));
+      )).subscribe(resp=>{
+        this.isLoading=true;
+        location.reload();});
   }else{
     this.photoService.putPhoto(new Photo(
       this.photoToEdit.id,
       this.editPhotoForm.get('imageUrl')?.value,
       false,
       Number(sessionStorage.getItem("userId"))
-    ));
+    )).subscribe(resp=>{
+      this.isLoading=true;
+      location.reload();
+      });
   }
 
   }

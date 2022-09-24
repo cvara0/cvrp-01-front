@@ -1,22 +1,24 @@
-<button (click)="open(addNaproModal)" class="btn-42 circle-btn circle-img neonBox" style="position: relative;top:100px">
+<button *ngIf="!this.isLoading" (click)="open(addNaproModal)" class="btn-42 circle-btn circle-img neonBox" style="position: relative;top:100px">
     <img class="circle-img" src="https://i.postimg.cc/Hk1YMDMf/aniadir.png" alt="add-napro">
 </button>
-
+<figure *ngIf="this.isLoading" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://c.tenor.com/Px_PMiYXFIMAAAAC/black-swirl.gif');background-position: 50% 50%;width: 48px;height: 48px;">
+ 
+</figure>
 
 <ng-template #addNaproModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="addNaproForm" (ngSubmit)="saveAddNapro()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Nombre y profesion</h1>
-        <label for="naproNameInput">Nombre:</label>    
+        <label for="naproNameInput">Nombre<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validAddNaproName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #naproNameInput class="mb-3 form-control" type="text" formControlName="name">
-        <label for="surnameText">Apellido</label>    
+        <label for="surnameText">Apellido<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validAddNaproSurname"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #surnameText class="mb-3 form-control" type="text" formControlName="surname">
-        <label for="professionText">Profesion</label>
+        <label for="professionText">Profesion<span style="color: red;">*</span></label>
             <small class="form-text" *ngIf="validAddNaproProfession"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #professionText class="mb-3 form-control" type="text" formControlName="profession">
         
-        <label for="countryText">Pais</label>
+        <label for="countryText">Pais<span style="color: red;">*</span></label>
             <small class="form-text" *ngIf="validAddNaproCountryAndFlag"><br>Ingrese entre 4 y 80 caracteres</small>
                 <select class="form-select" #countryText formControlName="country">
                     <option *ngFor="let country of this.countryService.countryArray" value={{country.name}}>

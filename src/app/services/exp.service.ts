@@ -27,18 +27,13 @@ export class ExperienceService {
    
     experienceToAdd.imageUrl=experienceToAdd.imageUrl==""||experienceToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceToAdd.imageUrl;
     experienceToAdd.userId=Number(this.userId);
-    return this.http.post(`${this.localhost}/experiences`, experienceToAdd).subscribe(resp=>{
-    alert("Experiencia laboral agregada");
-    location.reload();});
+    return this.http.post(`${this.localhost}/experiences`, experienceToAdd);
   }
 
   putExperience(experienceToEdit:Experience){
     
     experienceToEdit.imageUrl=experienceToEdit.imageUrl==""||experienceToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":experienceToEdit.imageUrl;
-    return this.http.put(`${this.localhost}/experiences`,experienceToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("Experiencia laboral editada");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/experiences`,experienceToEdit);
   }
 
   getExperienceList$(): Observable<Experience[]>{
@@ -66,13 +61,6 @@ export class ExperienceService {
   }
 
   deleteExperience(expToDelete:Experience){
-    if (window.confirm("Eliminar experiencia educativa en "+expToDelete.name+" ?")){
-    
-    return this.http.delete(`${this.localhost}/experiences/${expToDelete.id}`).subscribe(resp=>{
-      alert("Experiencia laboral eliminada");
-      location.reload();
-    });
-    }
-    return null;
+    return this.http.delete(`${this.localhost}/experiences/${expToDelete.id}`);
   }
 }

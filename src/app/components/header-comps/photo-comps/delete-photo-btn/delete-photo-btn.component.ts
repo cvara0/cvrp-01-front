@@ -9,12 +9,20 @@ import { PhotoService } from 'src/app/services/photo.service';
 export class DeletePhotoBtnComponent implements OnInit {
 
   @Input() photoToDelete: Photo;
+  isLoading:boolean=false;
+
   constructor(private photoService:PhotoService) { }
 
   ngOnInit(): void {
   }
 delete(){
-  this.photoService.deletePhoto(this.photoToDelete);
+  this.isLoading=true;
+  if (window.confirm("Eliminar imagen de perfil?")){
+    this.photoService.deletePhoto(this.photoToDelete).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+    });
+ }
 }
 
 }

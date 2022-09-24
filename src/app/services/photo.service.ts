@@ -24,20 +24,14 @@ export class PhotoService {
 
  
   postPhoto(photoToAdd:Photo){
-    alert("Procesando informacion, puede tardar algunos segundos");
     photoToAdd.userId=Number(sessionStorage.getItem("userId"));
-    return this.http.post(`${this.localhost}/photos`, photoToAdd).subscribe(resp=>{
-    alert("Imagen de perfil");
-    location.reload();});
+    return this.http.post(`${this.localhost}/photos`, photoToAdd);
   }
 
 
   putPhoto(photoToEdit:Photo){
     alert("Procesando informacion, puede tardar algunos segundos");
-    return this.http.put(`${this.localhost}/photos`,photoToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("Imagen de perfil editada");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/photos`,photoToEdit);
   }
 
 
@@ -45,7 +39,7 @@ export class PhotoService {
     return this.photoList$.asObservable();//esto permite desde afuera suscribirse y asi ver los cambios y recuperar los valores
   }
 
-  getPhotoList(){//userId:string|nullTodo mandar todos los get como path variable home/1 home/2 etc
+  getPhotoList(){
       return this.http.get(`${this.localhost}/photos/${(this.userId?this.userId:"1")}`)//(sessionStorage.getItem("userId")==null?'0':sessionStorage.getItem("userId"))
       .pipe(
         map(resp=>{
@@ -67,12 +61,7 @@ export class PhotoService {
 
   
   deletePhoto(photoToDelete:Photo){
-    if (window.confirm("Eliminar imagen de perfil?")){
-    return this.http.delete(`${this.localhost}/photos/${photoToDelete.id}`).subscribe(resp=>{
-      alert("Imagen de perfil eliminada");
-      location.reload();
-    });
-    }
-    return null;
+    
+    return this.http.delete(`${this.localhost}/photos/${photoToDelete.id}`);
   }
 }

@@ -23,20 +23,14 @@ export class BannerService {
 
  
   postBanner(bannerToAdd:Banner){
-    alert("Procesando informacion, puede tardar algunos segundos");
+    
     bannerToAdd.userId=Number(this.userId);
-    return this.http.post(`${this.localhost}/banners`, bannerToAdd).subscribe(resp=>{
-    alert("Imagen de portada guardada");
-    location.reload();});
+    return this.http.post(`${this.localhost}/banners`, bannerToAdd);
   }
 
 
   putBanner(bannerToEdit:Banner){
-    alert("Procesando informacion, puede tardar algunos segundos");
-    return this.http.put(`${this.localhost}/banners`,bannerToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("Imagen de portada editada");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/banners`,bannerToEdit);
   }
 
 
@@ -66,14 +60,8 @@ export class BannerService {
 
   
   deleteBanner(bannerToDelete:Banner){
-    if (window.confirm("Eliminar imagen de portada?")){
-    return this.http.delete(`${this.localhost}/banners/${bannerToDelete.id}`).subscribe(resp=>{
-      alert("Imagen de portada eliminada");
-      location.reload();
-    });
-    }
-    
-    return null;
+
+    return this.http.delete(`${this.localhost}/banners/${bannerToDelete.id}`);
   }
 }
 //https://i.gifer.com/3OO15.gif

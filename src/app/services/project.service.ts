@@ -27,19 +27,13 @@ export class ProjectService {
    
     projectToAdd.imageUrl=projectToAdd.imageUrl==""||projectToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":projectToAdd.imageUrl;
     projectToAdd.userId=Number(this.userId);
-    return this.http.post(`${this.localhost}/projects`, projectToAdd).subscribe(resp=>{
-    alert("Proyecto agregado");
-    location.reload();
-  });
+    return this.http.post(`${this.localhost}/projects`, projectToAdd);
   }
 
   putProject(projectToEdit:Project){
     
     projectToEdit.imageUrl=projectToEdit.imageUrl==""||projectToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":projectToEdit.imageUrl;
-    return this.http.put(`${this.localhost}/projects`,projectToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("Proyecto editado");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/projects`,projectToEdit);
   }
 
   getProjectList$(): Observable<Project[]>{
@@ -67,13 +61,8 @@ export class ProjectService {
   }
 
   deleteProject(proToDelete:Project){
-    if (window.confirm("Eliminar proyecto "+proToDelete.name+" ?")){
     
-    return this.http.delete(`${this.localhost}/projects/${proToDelete.id}`).subscribe(resp=>{
-      alert("Proyecto eliminado");
-      location.reload();
-    });
-    }
-    return null;
+    return this.http.delete(`${this.localhost}/projects/${proToDelete.id}`);
+   
   }
 }

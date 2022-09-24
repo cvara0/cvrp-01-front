@@ -9,13 +9,21 @@ import { NaproService } from 'src/app/services/napro.service';
 export class DeleteNaproBtnComponent implements OnInit {
 
   @Input() naproToDelete: Napro;
+  isLoading:boolean=false;
+
   constructor(private naproService:NaproService) { }
 
   ngOnInit(): void {
   }
 
  delete() {
-  this.naproService.deleteNapro(this.naproToDelete); 
+  this.isLoading=true;
+  if (window.confirm("Eliminar informacion personal?")){
+    this.naproService.deleteNapro(this.naproToDelete).subscribe(resp=>{
+      this.isLoading=true;
+      location.reload();
+    }); 
+  }
 }
 
 }

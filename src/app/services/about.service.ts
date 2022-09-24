@@ -27,19 +27,12 @@ export class AboutService {
  
   postAbout(aboutToAdd:About){
     aboutToAdd.userId=Number(this.userId);
-    return this.http.post(`${this.localhost}/abouts`, aboutToAdd).subscribe(resp=>{
-    alert("'Acerca de...' guardado");
-    location.reload();
-  });
+    return this.http.post(`${this.localhost}/abouts`, aboutToAdd);
   }
 
 
   putAbout(aboutToEdit:About){
-    
-    return this.http.put(`${this.localhost}/abouts`,aboutToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("'Acerca de...' editado");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/abouts`,aboutToEdit);
   }
 
 
@@ -69,13 +62,9 @@ export class AboutService {
 
   
   deleteAbout(aboutToDelete:About){
-    if (window.confirm("Eliminar acerca de...?")){
-    return this.http.delete(`${this.localhost}/abouts/${aboutToDelete.id}`).subscribe(resp=>{
-      alert("Acerca de...a eliminado");
-      location.reload();
-    });
-    }
-    return null;
+    
+    return this.http.delete(`${this.localhost}/abouts/${aboutToDelete.id}`)
+    
   }
 
 }

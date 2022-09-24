@@ -18,7 +18,7 @@ export class EditEduBtnComponent implements OnInit {
   editEducationForm!: FormGroup;
   educationLevel      :string[];
   educationStatus     :string[];
-
+  isLoading:boolean=false;
   constructor(private educationService:EducationService,public yearService:YearService,private fb:FormBuilder,private modalService: NgbModal) {
     
     //this.experienceToEdit=this.experienceService.getExperience(this.expToEditId);
@@ -94,9 +94,9 @@ get validEduLevel(){
 
 
 saveEditEducation(){
+  this.isLoading=true;
   this.educationService.putEducation(
     new Education(
-      
       this.educationToEdit.id,
       this.editEducationForm.get('eduName')?.value,
       this.editEducationForm.get('eduCarrer')?.value,
@@ -110,7 +110,10 @@ saveEditEducation(){
       false,
       Number(sessionStorage.getItem("userId"))
     )
-  );
+  ).subscribe(resp=>{
+    this.isLoading=false;
+      location.reload();
+    });
   //this.editExperienceForm.reset;
 }
 

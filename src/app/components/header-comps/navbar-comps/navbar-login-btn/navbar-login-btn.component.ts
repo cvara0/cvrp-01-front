@@ -28,8 +28,8 @@ export class NavbarLoginBtnComponent implements OnInit {
 //////////////////////////////////////////////////////////////////////////////////
 createLoginForm(){
   this.loginForm=this.fb.group({
-    emailLogin        : ['usuario1@usuario.com',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-    passwordLogin     : ['123456789',[Validators.required,Validators.minLength(8),Validators.maxLength(80)]]
+    emailLogin        : ['',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+    passwordLogin     : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(80)]]
    
   });
 }

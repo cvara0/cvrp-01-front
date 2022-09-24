@@ -1,6 +1,8 @@
 <h1 *ngIf="this.hardSkillList.length==0 && isEditAll" class="text-xl neonText row justify-content-start animate__animated animate__zoomIn mt-xl" style="text-align: left;">
     <app-add-skill-btn [isHardSkill]=true class="row justify-content-start"></app-add-skill-btn> Agregar hard skill 
 </h1>
+
+
 <section *ngIf="this.hardSkillList.length>0" class="container">
     <article class="row justify-content-center">
         

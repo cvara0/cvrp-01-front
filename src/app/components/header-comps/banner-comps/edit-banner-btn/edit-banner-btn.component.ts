@@ -17,6 +17,7 @@ export class EditBannerBtnComponent implements OnInit {
   closeResult = '';
   editBannerForm!: FormGroup;
   urlPattern = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)';
+  isLoading:boolean=false;
 
   constructor(
     private fb:FormBuilder,private modalService: NgbModal,
@@ -46,21 +47,26 @@ get validEditBannerUrl(){
 
 saveEditBanner(){
 
-
+  this.isLoading=true;
   if(this.bannerToEdit==null){
       this.bannerService.postBanner(new Banner(
       0,
       this.editBannerForm.get('imageUrl')?.value,
       false,
       0
-    ));
+    )).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();});
   }else{
      this.bannerService.putBanner(new Banner(
      this.bannerToEdit.id,
      this.editBannerForm.get('imageUrl')?.value,
      false,
      Number(sessionStorage.getItem("userId"))
-    ));
+    )).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+      });
 }
 
   }

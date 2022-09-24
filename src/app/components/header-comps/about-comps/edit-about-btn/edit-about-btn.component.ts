@@ -12,6 +12,9 @@ export class EditAboutBtnComponent implements OnInit {
   closeResult = '';
   editAboutForm!: FormGroup;
   @Input() aboutToEdit: About;
+
+  isLoading:boolean=false;
+
   constructor(
     private fb:FormBuilder,private modalService: NgbModal,
     private aboutService:AboutService) { 
@@ -29,7 +32,7 @@ createEditAboutForm(){
 
   this.editAboutForm=this.fb.group({
     //primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    aboutText       : [this.aboutToEdit.aboutText,[Validators.maxLength(800)]]
+    aboutText       : [this.aboutToEdit.aboutText,[Validators.maxLength(800),Validators.minLength(20),Validators.nullValidator,Validators.required]]
   });
 }
 
@@ -39,13 +42,16 @@ get validEditAbout(){
 
 
 saveEditAbout(){
-
+  this.isLoading=true;
   this.aboutService.postAbout(new About(
     this.aboutToEdit.id,
     this.editAboutForm.get('aboutText')?.value,
     false,
     Number(sessionStorage.getItem("userId"))
-  ));
+  )).subscribe(resp=>{
+    this.isLoading=false;
+      location.reload();
+      });
   }
 
   /////////////////////////////////////////////////////////////////////////////////

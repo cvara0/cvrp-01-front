@@ -8,12 +8,18 @@ import { EducationService } from 'src/app/services/edu.service';
 })
 export class DeleteEduBtnComponent implements OnInit {
   @Input() public eduToDelete : Education;
+  isLoading: boolean=false;
   constructor(private educationService:EducationService) { }
-
+  
   ngOnInit(): void {
   }
   delete() {
-  
-    this.educationService.deleteEducation(this.eduToDelete);
+    this.isLoading=true;
+    if (window.confirm("Eliminar experiencia educativa en "+this.eduToDelete.name+" ?")){
+    this.educationService.deleteEducation(this.eduToDelete).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+    });
+  }
   }
 }

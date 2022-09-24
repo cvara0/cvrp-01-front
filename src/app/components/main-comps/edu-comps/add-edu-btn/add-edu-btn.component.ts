@@ -21,6 +21,8 @@ export class AddEduBtnComponent implements OnInit {
   educationLevel      :string[];
   educationStatus     :string[];
 
+  isLoading:boolean=false;
+
   constructor(private fb:FormBuilder,private modalService: NgbModal,private educationService:EducationService,public yearService:YearService) {
     this.yearSinceList=yearService.getYearSinceList();
     this.yearToList=[];
@@ -38,8 +40,8 @@ export class AddEduBtnComponent implements OnInit {
 createAddEducationForm(){
   
   this.addEducationForm=this.fb.group({
-    eduName         : ['eduName',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    eduCarrer       : ['eduCarrer',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
+    eduName         : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],//primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
+    eduCarrer       : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
     eduStatus       : [,[Validators.required]],
     eduWeb          : ['',[Validators.minLength(1),Validators.maxLength(2048),Validators.pattern('https?://.+')]],
     eduYearSince    : [,[Validators.required]],
@@ -86,7 +88,7 @@ get validEduLevel(){
 }
 
 saveAddEducation(){
- 
+  this.isLoading=true;
   this.educationService.postEducation(
     new Education(
       0,
@@ -102,7 +104,9 @@ saveAddEducation(){
       false,
       0
     )
-  ); 
+  ).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();}); 
   this.addEducationForm.reset();
 }
 

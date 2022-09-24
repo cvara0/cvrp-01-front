@@ -17,6 +17,7 @@ export class AddExpBtnComponent implements OnInit {
   yearSinceList       :Year[];
   yearToList          :Year[];
   yearSelected        :number;
+  isLoading:boolean=false;
 
   constructor(private fb:FormBuilder,private modalService: NgbModal,private experienceService:ExperienceService,public yearService:YearService) {
     
@@ -72,7 +73,7 @@ get validExpDescription(){
 }
 
 saveAddExperience(){
- 
+  this.isLoading=true;
   this.experienceService.postExperience(
     new Experience(
       0,
@@ -86,7 +87,9 @@ saveAddExperience(){
       false,
       0
     )
-  ); 
+  ).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();}); 
   this.addExperienceForm.reset();
 }
 

@@ -8,13 +8,21 @@ import { AboutService } from 'src/app/services/about.service';
 export class DeleteAboutBtnComponent implements OnInit {
 
   @Input() aboutToDelete: About;
+  isLoading:boolean=false;
+
   constructor(private aboutService:AboutService) { }
 
   ngOnInit(): void {
   }
 
  delete() {
-  this.aboutService.deleteAbout(this.aboutToDelete); 
+  this.isLoading=true;
+  if (window.confirm("Eliminar acerca de...?")){
+  this.aboutService.deleteAbout(this.aboutToDelete).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();
+  });
+}
 }
 
 //

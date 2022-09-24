@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Education } from '../components/models/education.models';
-import { EducationListMy } from '../components/models/educationListMy.models';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +28,13 @@ export class EducationService {
    
     educationToAdd.imageUrl=educationToAdd.imageUrl==""||educationToAdd.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToAdd.imageUrl;
     educationToAdd.userId=Number(this.userId);
-    return this.http.post(this.localhost+"/educations", educationToAdd).subscribe(resp=>{
-    alert("Experiencia educativa agregada");
-    location.reload();});
+    return this.http.post(this.localhost+"/educations", educationToAdd);
   }
 
   putEducation(educationToEdit:Education){
     
     educationToEdit.imageUrl=educationToEdit.imageUrl==""||educationToEdit.imageUrl==null?"https://i.postimg.cc/MHZyq9ms/sin-imagen-chica.jpg":educationToEdit.imageUrl;
-    return this.http.put(`${this.localhost}/educations`,educationToEdit).subscribe(resp=>{//+educationToEdit.id
-      alert("Experiencia educativa editada");
-      location.reload();
-      });
+    return this.http.put(`${this.localhost}/educations`,educationToEdit);
   }
 
   /*getEducation(educationId:number){
@@ -73,14 +67,9 @@ export class EducationService {
   }
 
   deleteEducation(eduToDelete:Education){
-    if (window.confirm("Eliminar experiencia educativa en "+eduToDelete.name+" ?")){
     
-    return this.http.delete(`${this.localhost}/educations/${eduToDelete.id}`).subscribe(resp=>{
-      alert("Experiencia educativa eliminada");
-      location.reload();
-    });
-    }
-    return null;
+    return this.http.delete(`${this.localhost}/educations/${eduToDelete.id}`);
+   
   }
 
 }

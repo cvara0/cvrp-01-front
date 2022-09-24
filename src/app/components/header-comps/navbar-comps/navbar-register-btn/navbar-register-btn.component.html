@@ -9,16 +9,16 @@
 <ng-template #registerModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="registerForm" (ngSubmit)="saveRegister()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Registrarse</h1>
-        <label for="nameRegisterText">Nombre</label>    
+        <label for="nameRegisterText">Nombre<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validRegisterName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #nameRegisterText class="mb-3 form-control" type="text" formControlName="nameRegister">
-        <label for="surnameRegisterText">Apellido</label>    
+        <label for="surnameRegisterText">Apellido<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validRegisterSurname"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #surnameRegisterText class="mb-3 form-control" type="text" formControlName="surnameRegister">
-        <label for="emailRegisterText">Email</label>
+        <label for="emailRegisterText">Email<span style="color: red;">*</span></label>
             <small class="form-text" *ngIf="validRegisterEmail"><br>Ingrese email valido</small>
                 <input #emailRegisterText class="mb-3 form-control" type="email" formControlName="emailRegister">
-        <label for="passwordRegisterText">Contrasenia</label>
+        <label for="passwordRegisterText">Contrasenia<span style="color: red;">*</span></label>
             <small class="form-text" *ngIf="validRegisterPassword"><br>Ingrese entre 8 y 80 caracteres (ver cantidad de caracteres para clave)</small>
                 <input #passwordRegisterText class="mb-3 form-control" type="password" formControlName="passwordRegister"> 
         <!-- <h1 class="text-xl neonText mb-3" style="text-align: left;">Cambios guardados</h1> si recive un codigo 200-->

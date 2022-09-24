@@ -25,19 +25,13 @@ export class NaproService {
  
   postNapro(naproToAdd:Napro){
     naproToAdd.userId=Number(sessionStorage.getItem("userId"));
-    console.log(naproToAdd.country);
-    return this.http.post(this.localhost+"/napros", naproToAdd).subscribe(resp=>{
-    alert("Datos personales guardados!");
-    location.reload();});
+    return this.http.post(this.localhost+"/napros", naproToAdd);
   }
 
 
   putNapro(naproToEdit:Napro){
     
-    return this.http.put(this.localhost+"/napros",naproToEdit).subscribe(resp=>{
-      alert("Datos personales guardados!");
-      location.reload();
-      });
+    return this.http.put(this.localhost+"/napros",naproToEdit);
   }
 
 
@@ -67,13 +61,9 @@ export class NaproService {
 
   
   deleteNapro(naproToDelete:Napro){
-    if (window.confirm("Eliminar informacion personal?")){
-    return this.http.delete(this.localhost+"/napros/"+naproToDelete.id).subscribe(resp=>{
-      alert("Informacion personal eliminada");
-      location.reload();
-    });
-    }
-    return null;
+    
+    return this.http.delete(this.localhost+"/napros/"+naproToDelete.id);
+    
   }
 
 }

@@ -16,6 +16,7 @@ export class AddProBtnComponent implements OnInit {
   newProject         :Project;
   
   model: NgbDateStruct;
+  isLoading:boolean=false;
 
   constructor(private fb:FormBuilder,private modalService: NgbModal,private projectService:ProjectService,private calendar: NgbCalendar) {
     
@@ -66,7 +67,7 @@ get validProDescription(){
 
 
 saveAddProject(){
- console.log(this.addProjectForm.get('proDate')?.value)
+  this.isLoading=true;
   this.projectService.postProject(
     new Project(
       0,
@@ -82,7 +83,10 @@ saveAddProject(){
       false,
       0
     )
-  ); 
+  ).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();
+  }); 
   this.addProjectForm.reset();
 
 }

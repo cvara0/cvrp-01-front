@@ -10,13 +10,20 @@ import { ProjectService } from 'src/app/services/project.service';
 export class DeleteProBtnComponent implements OnInit {
 
   @Input() public proToDelete : Project;
+  isLoading:boolean=false;
+
   constructor(private projectService:ProjectService) { }
 
   ngOnInit(): void {
   }
   delete() {
-  
-    this.projectService.deleteProject(this.proToDelete);
-  }
+    this.isLoading=true;
+    if (window.confirm("Eliminar proyecto "+this.proToDelete.name+" ?")){
+        this.projectService.deleteProject(this.proToDelete).subscribe(resp=>{
+          this.isLoading=false;
+          location.reload();
+        });
+      }
+    }
 
 }

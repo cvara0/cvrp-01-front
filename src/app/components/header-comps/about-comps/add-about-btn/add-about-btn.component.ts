@@ -11,7 +11,8 @@ export class AddAboutBtnComponent implements OnInit {
 
   closeResult = '';
   addAboutForm!: FormGroup;
-
+  isLoading:boolean=false;
+  
   constructor(
     private fb:FormBuilder,private modalService: NgbModal,
     private aboutService:AboutService) { 
@@ -29,7 +30,7 @@ createAddAboutForm(){
 
   this.addAboutForm=this.fb.group({
     //primera posicion valor por defecto, segunda, validadores sincronos, tercera validadores asincronos
-    aboutText       : ['',[Validators.maxLength(800),Validators.minLength(20)]]
+    aboutText       : ['',[Validators.maxLength(800),Validators.minLength(20),Validators.nullValidator,Validators.required]]
   });
 }
 
@@ -39,13 +40,16 @@ get validAddAbout(){
 
 
 saveAddAbout(){
-
+  this.isLoading=true;
   this.aboutService.postAbout(new About(
     0,
     this.addAboutForm.get('aboutText')?.value,
     false,
     0
-  ));
+  )).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+    });
   }
 
   /////////////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,7 @@ export class UserService {
     return this.http.post<Login>(`${this.localhost}/auth/singin`, loginData);
    
   }
-
+/*todo llevar todos los suscribe a los ts de los botones correspondientes , junto con los isLoading y el gif de carga*/
 
 
 
@@ -48,7 +48,6 @@ export class UserService {
 
   logout(){
     if (window.confirm("Cerrar sesion?")){
-      alert("Procesando informacion, puede tardar algunos segundos");
       sessionStorage.clear();
       window.location.href+'?eraseCache=true';
       window.location.href=`/home`;

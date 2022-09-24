@@ -12,14 +12,21 @@ export class DeleteSkillBtnComponent implements OnInit {
   @Input() skillToDelete: Skill;
 
   closeResult = '';
+  isLoading:boolean=false;
+
   constructor(private skillService:SkillService) { }
 
   ngOnInit(): void {
   }
  
 delete() {
-  
-    this.skillService.deleteSkill(this.skillToDelete);
+  this.isLoading=true;
+  if (window.confirm("Eliminar skill "+this.skillToDelete.name+" ?")){
+    this.skillService.deleteSkill(this.skillToDelete).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+    });
+  }
 }
 
 }

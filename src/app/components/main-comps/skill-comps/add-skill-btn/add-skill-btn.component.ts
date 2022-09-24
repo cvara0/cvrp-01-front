@@ -14,6 +14,7 @@ addSkillForm!        :FormGroup;
 newSkill             :Skill;
 levelList            :Number[];
 @Input() isHardSkill :boolean;
+isLoading:boolean=false;
 
 constructor(private fb:FormBuilder,private modalService: NgbModal,private skillService:SkillService) {
     this.levelList=[1,2,3,4,5,6,7,8];
@@ -45,6 +46,7 @@ return this.addSkillForm.get('skillLevel')?.dirty;
 }
 
 saveAddSkill(){
+this.isLoading=true;
 console.log(this.isHardSkill);
 this.skillService.postSkill(
   new Skill(
@@ -57,7 +59,9 @@ this.skillService.postSkill(
     false,
     0
   )
-); 
+).subscribe(resp=>{
+  this.isLoading=false;
+  location.reload();}); 
 this.addSkillForm.reset();
 
 

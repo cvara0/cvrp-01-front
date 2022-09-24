@@ -15,6 +15,8 @@ export class EditNaproBtnComponent implements OnInit {
   closeResult = '';
   editNaproForm!: FormGroup;
   @Input() naproToEdit:Napro;
+  isLoading:boolean=false;
+
   constructor(
     private fb:FormBuilder,
     private modalService: NgbModal,
@@ -62,6 +64,7 @@ get validEditNaproCountryAndFlag(){
 }
 
 saveEditNapro(){
+  this.isLoading=true;
   let flag;
   for(let country of this.countryService.countryArray){
     if(country.name==this.editNaproForm.get('country')?.value){
@@ -80,7 +83,10 @@ saveEditNapro(){
     flag,
     false,
     Number(sessionStorage.getItem("userId"))
-  ));
+  )).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();
+    });
  
   }
 

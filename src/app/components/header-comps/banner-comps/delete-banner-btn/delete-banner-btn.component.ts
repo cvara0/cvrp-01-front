@@ -8,12 +8,20 @@ import { BannerService } from 'src/app/services/banner.service';
 export class DeleteBannerBtnComponent implements OnInit {
  
   @Input() bannerToDelete: Banner;
+  isLoading:boolean=false;
+
   constructor(private bannerService:BannerService) { }
 
   ngOnInit(): void {
   }
 delete(){
-  this.bannerService.deleteBanner(this.bannerToDelete);
+  this.isLoading=true;
+    if (window.confirm("Eliminar imagen de portada?")){
+      this.bannerService.deleteBanner(this.bannerToDelete).subscribe(resp=>{
+        this.isLoading=false;
+        location.reload();
+      });
+  }
 }
 
 

@@ -13,7 +13,7 @@ export class AddNaproBtnComponent implements OnInit {
 
   closeResult = '';
   addNaproForm!: FormGroup;
-
+  isLoading:boolean=false;
   constructor(
     private fb:FormBuilder,
     private modalService: NgbModal,
@@ -59,7 +59,7 @@ get validAddNaproCountryAndFlag(){
 
 
 saveAddNapro(){
-
+  this.isLoading=true;
   let flag;
   for(let country of this.countryService.countryArray){
     if(country.name==this.addNaproForm.get('country')?.value){
@@ -78,7 +78,9 @@ saveAddNapro(){
     flag,
     false,
     0
-  ));
+  )).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();});
   }
 
   /////////////////////////////////////////////////////////////////////////////////

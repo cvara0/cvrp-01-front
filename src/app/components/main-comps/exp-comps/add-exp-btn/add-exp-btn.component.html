@@ -1,25 +1,29 @@
-<button (click)="open(addExpModal)"class="btn-42 circle-btn circle-img neonBox">
+<button *ngIf="!this.isLoading" (click)="open(addExpModal)"class="btn-42 circle-btn circle-img neonBox">
     <img class="circle-img" src="https://i.postimg.cc/Hk1YMDMf/aniadir.png" alt="add-img">
 </button>
+
+<figure *ngIf="this.isLoading" class="btn-42 circle-btn-big neonBox animate__animated animate__zoomIn" style="background-image: url('https://c.tenor.com/Px_PMiYXFIMAAAAC/black-swirl.gif');background-position: 50% 50%;width: 48px;height: 48px;">
+ 
+</figure>
 
 <ng-template #addExpModal let-modal>
     <form class="text-l rounded-box neonBox" [formGroup]="addExperienceForm" (ngSubmit)="saveAddExperience()" autocomplete="off">
         <h1 class="text-xl neonText mb-3" style="text-align: left;">Aniadiendo nuevo puesto</h1>
-        <label for="expNameText">Nombre de la empresa:*</label>    
+        <label for="expNameText">Nombre de la empresa<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validExpName"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #expNameText maxlength="81" class="mb-3 form-control" type="text" formControlName="expName">
 
-        <label for="expPositionText">Cargo:*</label>    
+        <label for="expPositionText">Cargo<span style="color: red;">*</span></label>    
             <small class="form-text" *ngIf="validExpPosition"><br>Ingrese entre 4 y 80 caracteres</small>
                 <input #expPositionText maxlength="81" class="mb-3 form-control" type="text" formControlName="expPosition">
 
-        <label for="expWebText">Link de la pagina web de la empresa:</label>    
+        <label for="expWebText">Link de la pagina web de la empresa</label>    
                 <input #expWebText class="mb-3 form-control" type="url" formControlName="expWeb">
 
-        <label for="expImageText">Link de una imagen o logo de la empresa:</label>
+        <label for="expImageText">Link de una imagen o logo de la empresa</label>
                 <input #expImageText class="mb-3 form-control" type="url" formControlName="expImage">
         
-        <label for="expYearSinceText">Anio desde:*</label>
+        <label for="expYearSinceText">Año desde<span style="color: red;">*</span></label>
                 <select class="form-select mb-3" formControlName="expYearSince">
                     <option *ngFor="let year of this.yearSinceList" value={{year.yearNumber}}>
                         {{year.yearNumber}}
@@ -27,7 +31,7 @@
                 </select>
     
         <div *ngIf="validExpYearSince">
-        <label for="expYearToText">Anio hasta:*</label>
+        <label for="expYearToText">Año hasta<span style="color: red;">*</span></label>
                 <select class="form-select mb-3" formControlName="expYearTo">
                     <option *ngFor="let year of getYearToList" value={{year.yearNumber}}>
                         {{year.yearNumber}}

@@ -13,8 +13,8 @@ export class EditProBtnComponent implements OnInit {
   @Input() public projectToEdit :Project;
   closeResult = '';
   editProjectForm!  :FormGroup;
-  
   model: NgbDateStruct;
+  isLoading:boolean=false;
 
   constructor(private fb:FormBuilder,private modalService: NgbModal,private projectService:ProjectService,private calendar: NgbCalendar) {
     
@@ -65,7 +65,7 @@ get validProDescription(){
 
 
 saveEditProject(){
- console.log(this.editProjectForm.get('proDate')?.value)
+  this.isLoading=true;
   this.projectService.postProject(
     new Project(
       this.projectToEdit.id,
@@ -81,7 +81,10 @@ saveEditProject(){
       false,
       Number(sessionStorage.getItem("userId"))
     )
-  ); 
+  ).subscribe(resp=>{
+    this.isLoading=false;
+    location.reload();
+    }); 
   this.editProjectForm.reset();
 }
 

@@ -14,6 +14,7 @@ export class EditSkillBtnComponent implements OnInit {
 closeResult = '';
 editSkillForm!        :FormGroup;
 levelList            :Number[];
+isLoading:boolean=false;
 
 constructor(private fb:FormBuilder,private modalService: NgbModal,private skillService:SkillService) {
     this.levelList=[1,2,3,4,5,6,7,8];
@@ -45,7 +46,7 @@ return this.editSkillForm.get('skillLevel')?.dirty;
 }
 
 saveEditSkill(){
-
+  this.isLoading=true;
 this.skillService.putSkill(
   new Skill(
     this.skillToEdit.id,
@@ -57,7 +58,10 @@ this.skillService.putSkill(
     false,
     Number(sessionStorage.getItem("userId"))
   )
-); 
+).subscribe(resp=>{
+  this.isLoading=false;
+  location.reload();
+  }); 
 
 }
 

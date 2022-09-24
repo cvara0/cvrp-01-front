@@ -8,14 +8,21 @@ import { ExperienceService } from 'src/app/services/exp.service';
 export class DeleteExpBtnComponent implements OnInit {
   @Input() public expToDelete : Experience;
   closeResult = '';
+  isLoading:boolean=false;
+
   constructor(private experienceService:ExperienceService) { }
 
   ngOnInit(): void {
   }
  
 delete() {
-  
-    this.experienceService.deleteExperience(this.expToDelete);
+  this.isLoading=true;
+  if (window.confirm("Eliminar experiencia laboral en "+this.expToDelete.name+" ?")){
+    this.experienceService.deleteExperience(this.expToDelete).subscribe(resp=>{
+      this.isLoading=false;
+      location.reload();
+    });
+  }
 }
 
 }
