@@ -6,10 +6,12 @@
     <h1 class="text-xl neonText" style="text-align: left;">
         <app-edit-about-btn *ngIf="isEditAll" [aboutToEdit]=aboutList[0] class="row justify-content-end"></app-edit-about-btn>
         <app-delete-about-btn *ngIf="isEditAll" [aboutToDelete]=aboutList[0] class="row justify-content-end"></app-delete-about-btn>
-        Acerca de: 
+        Acerca de:
     </h1>
     <br> 
     <p class="text-l">
         {{aboutList[0].aboutText}}
     </p>
+    <br>
+    <h1 class="text-l">Nota: Sitio en mantenimiento, el servidor de backend de este sitio ha dejado de funcionar, por lo tanto los cambios al editar y/o eliminar no pueden guardarse. </h1>
 </section>

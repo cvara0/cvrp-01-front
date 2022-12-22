@@ -14,10 +14,30 @@ export class NameProfessionComponent implements OnInit {
   isEditAll         : boolean;
   constructor(private naproService:NaproService,private editService:EditService,private countryService:CountryService) {
     this.naproService.getNaproList();
-    this.naproList=[];
-    this.naproService.getNaproList$().subscribe(naproList=>{
+
+    /* id               : number=0,
+        public name             : string="",
+        public surname          : string="",
+        public profession       : string="",
+        public country          : string="",
+        public flag             : string="",
+        public deleted          : boolean=false,
+        public userId*/
+
+    this.naproList=[new Napro(
+      1,
+      'Cristian V.R.',
+      'Parra',
+      'Desarrollador Full Stack Jr.',
+      'Argentina',
+      'https://flagcdn.com/ar.svg',
+      false,
+      1
+    )];
+
+    /*this.naproService.getNaproList$().subscribe(naproList=>{
     this.naproList=naproList;
-    });
+    });*/
     this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false;//si esta en otra cuenta que ni aprezca el de editar
 
    }

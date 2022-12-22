@@ -14,10 +14,23 @@ export class PhotoComponent implements OnInit {
   constructor(private photoService:PhotoService,private editService:EditService) {
 
     this.photoService.getPhotoList();
-    this.photoList=[];
-    this.photoService.getPhotoList$().subscribe(photoList=>{
+
+    /* public id           : number=0,
+        public imageUrl     : string="",
+        public deleted      : boolean=false,
+        public userId  */
+
+    this.photoList=[new Photo(
+      1,
+      'https://i.postimg.cc/bwJV7g8w/Captura-de-pantalla-de-2022-11-06-21-19-43.png',
+      false,
+      1
+    )];
+
+
+   /* this.photoService.getPhotoList$().subscribe(photoList=>{
     this.photoList=photoList;
-    });
+    });*/
     this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false; 
    }
   

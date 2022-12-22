@@ -10,6 +10,7 @@ export class FooterComponent implements OnInit {
   actualYear :number;
   constructor() { 
     this.actualYear=new Date().getFullYear();
+    console.log(this.actualYear);
 
   }
 
