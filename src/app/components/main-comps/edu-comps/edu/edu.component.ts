@@ -12,6 +12,8 @@ export class EduComponent implements OnInit {
 
   educationList         : Education[];
   isEditAll             : boolean;
+  educationListStyle    : string='hideContent';
+  isShowEducation       : boolean=false;
   constructor(private educationService:EducationService,private editService:EditService) {
     this.educationService.getEducationList();
     /*
@@ -114,6 +116,11 @@ export class EduComponent implements OnInit {
 
   ngOnInit(): void {
     this.educationService.getEducationList().subscribe();
+  }
+  
+  showEducation(){
+    this.isShowEducation=!this.isShowEducation;
+    this.educationListStyle=this.isShowEducation?"showContent":"hideContent";
   }
 
 }

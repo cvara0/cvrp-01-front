@@ -1,13 +1,13 @@
 <h1 *ngIf="educationList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInLeftBig" style="text-align: left;">
     <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
 </h1>
-<div *ngIf="educationList.length>0">
+<div *ngIf="educationList.length>0" (click)="showEducation()" class="animate__animated animate__zoomIn">
     <div class="row mt-xl">
-        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;">
-            <app-add-edu-btn *ngIf="isEditAll"></app-add-edu-btn> Educación:</h1>
+        <h1 class="text-xxl neonBox neonText btn-42" style="border-radius: 20px; font-size: xx-large; font-weight: lighter;" >
+            <app-add-edu-btn *ngIf="isEditAll"></app-add-edu-btn> Educación</h1>
     </div>
     
-        <section class="container mt-lg" *ngFor="let education of educationList">
+        <section class="container mt-lg {{this.educationListStyle}}" *ngFor="let education of educationList">
 
             <div class="row">
                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
@@ -38,5 +38,9 @@
                 </article>
             </div>
         </section>
-
+</div>
+<div class="row mb-xl mt-lg {{this.educationListStyle}}" >
+    <h1 (click)="showEducation()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
+        <img class="circle-img" src="assets/images/flecha-arriba-logo.png" alt="navbar-btns">
+    </h1>
 </div>

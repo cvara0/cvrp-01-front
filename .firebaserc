@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "porfolio-ap-front-cvrp"
-  }
+    "default": "porfolio-cvr",
+    "cvr-porfolio": "cvr-porfolio"
+  },
+  "targets": {},
+  "etags": {}
 }
