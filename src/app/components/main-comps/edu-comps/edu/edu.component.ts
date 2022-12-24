@@ -13,6 +13,8 @@ export class EduComponent implements OnInit {
   educationList         : Education[];
   isEditAll             : boolean;
   educationListStyle    : string='hideContent';
+  educationFadeStyle1    : string='animate__fadeInLeftBig';
+  educationFadeStyle2    : string='animate__fadeInRightBig';
   isShowEducation       : boolean=false;
   constructor(private educationService:EducationService,private editService:EditService) {
     this.educationService.getEducationList();
@@ -40,7 +42,7 @@ export class EduComponent implements OnInit {
         'https://www.fio.unam.edu.ar/',
         2018,
         2020,
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ingenieria-Universidad-Nacional-de-Misiones-Obera-1.JPG/250px-Ingenieria-Universidad-Nacional-de-Misiones-Obera-1.JPG',
+        'assets/images/unam_logo.jpg',
         'Excelente institución, exigente y de gran nivel, deje estos estudios para buscar empleo y otro camino dedicado exclusivamente al desarrollo de software.',
         'Universitario',
         false,
@@ -54,7 +56,7 @@ export class EduComponent implements OnInit {
         'https://issd.edu.ar/',
         2020,
         2023,
-        'https://www.universidades.com.ar/logos/original/logo-instituto-superior-santo-domingo.png',
+        'assets/images/issd_logo.jpg',
         'Excelente institución, con horarios flexibles se ajusta a mis necesidades, y el contenido es totalmente de mi interés.',
         'Terciario',
         false,
@@ -71,7 +73,7 @@ export class EduComponent implements OnInit {
         'https://sceu.frba.utn.edu.ar/e-learning/',
         2019,
         2019,
-        'https://yt3.ggpht.com/ytc/AMLnZu-mbEw754q4d4ECHd0GUBRKnAT_oesGZcHvK_0utA=s900-c-k-c0x00ffffff-no-rj',
+        'assets/images/elarning_logo.jpg',
         'Fueron cursos que tomé cuando decidí dedicarme de lleno al desarrollo de software.',
         'Curso',
         false,
@@ -85,7 +87,7 @@ export class EduComponent implements OnInit {
         'https://www.argentina.gob.ar/economia/conocimiento/argentina-programa',
         2022,
         2022,
-        'https://i.postimg.cc/2860Tdf2/ap-logo-circular.png',
+        'assets/images/ap_logo.jpg',
         'Fue un curso impulsado por el gobierno argentino, pertenecí a la 2da cohorte, me brindó algunas de las herramientas básicas para realizar este sitio.',
         'Curso',
         false,
@@ -99,7 +101,7 @@ export class EduComponent implements OnInit {
         'https://eggeducacion.com/es-AR/',
         2022,
         2022,
-        'https://images.squarespace-cdn.com/content/v1/56250c0de4b058efb0c7c62c/1537234883576-Z1CU3FZSHG9PGDXXMYOI/Screen+Shot+2018-09-17+at+10.39.43+PM.png?format=1500w',
+        'assets/images/egg_logo.jpg',
         'Fue un curso impulsado por el gobierno argentino, el mismo fue de mucho aprendizaje y también me sirvió para llevar a cabo este sitio.',
         'Curso',
         false,
@@ -119,8 +121,22 @@ export class EduComponent implements OnInit {
   }
   
   showEducation(){
-    this.isShowEducation=!this.isShowEducation;
-    this.educationListStyle=this.isShowEducation?"showContent":"hideContent";
+    this.educationFadeStyle1 ='animate__fadeInLeftBig';
+    this.educationFadeStyle2 ='animate__fadeInRightBig';
+    if(!this.isShowEducation){
+      this.educationListStyle="showContent";
+      this.isShowEducation=!this.isShowEducation;
+    }
+    else
+      this.hideEducation();
   }
+
+  hideEducation(){
+    this.isShowEducation=!this.isShowEducation;
+    this.educationFadeStyle1 ='animate__fadeOutLeftBig';
+    this.educationFadeStyle2 ='animate__fadeOutRightBig';
+    setTimeout(() => {this.educationListStyle="hideContent";}, 500);
+  }
+  
 
 }

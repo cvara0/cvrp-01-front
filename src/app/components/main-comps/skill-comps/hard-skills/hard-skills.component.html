@@ -3,14 +3,19 @@
 </h1>
 
 
-<section *ngIf="this.hardSkillList.length>0" class="dropButton mt-lg animate__animated animate__zoomIn">
+<section *ngIf="this.hardSkillList.length>0" class="mt-lg">
     <article class="row justify-content-center"> 
-            <h1 class="text-xxl neonBox neonText btn-42" style="border-radius: 20px; font-size: xx-large; font-weight: lighter;">
+            <h1 (click)="show()" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__zoomIn">
                     <app-add-skill-btn *ngIf="isEditAll" [isHardSkill]=true class="row justify-content-start"></app-add-skill-btn>
-                Hard Skills:</h1>
+                Lenguajes de programación, frameworks y otras herramientas </h1>
        
-        <div *ngFor="let skill of this.hardSkillList" class="dropContent col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-lg">
-            <app-skill-fig [skillToShow]=skill></app-skill-fig>
+        <div *ngFor="let skill of this.hardSkillList" class="{{this.listStyle}} dropContent col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-lg">
+            <app-skill-fig [skillToShow]=skill class="animate__animated {{this.fadeStyle1}}"></app-skill-fig>
         </div>
     </article>
 </section>
+<div class="row mb-xl mt-lg {{this.listStyle}}" >
+    <h1 (click)="hide()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
+        <img class="circle-img" src="assets/images/flecha-arriba-logo.png" alt="navbar-btns">
+    </h1>
+</div>
