@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "porfolio-cvr",
-    "cvr-porfolio": "cvr-porfolio"
+    "default": "cvr-resume",
+    "cvr-resume": "cvr-resume"
   },
   "targets": {},
   "etags": {}

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Education } from 'src/app/components/models/education.models';
-import { Year } from 'src/app/components/models/year.models';
-import { EditService } from 'src/app/services/edit.service';
-import { EducationService } from 'src/app/services/edu.service';
 
 @Component({
   selector: 'app-edu',
@@ -11,15 +8,15 @@ import { EducationService } from 'src/app/services/edu.service';
 export class EduComponent implements OnInit {
 
   educationList         : Education[];
-  isEditAll             : boolean;
-  educationListStyle    : string='hideContent';
-  educationFadeStyle1    : string='animate__fadeInLeftBig';
-  educationFadeStyle2    : string='animate__fadeInRightBig';
-  isShowEducation       : boolean=false;
-  constructor(private educationService:EducationService,private editService:EditService) {
-    this.educationService.getEducationList();
+  
+  listStyle    : string='hideContent';
+  fadeStyle1    : string='animate__fadeInLeftBig';
+  fadeStyle2    : string='animate__fadeInRightBig';
+  isShow       : boolean=false;
+  constructor() {
+    
     /*
-    public id           : number=0,
+   
         public name         : string='',
         public carrer       : string='',
         public status       : string='',
@@ -29,41 +26,33 @@ export class EduComponent implements OnInit {
         public imageUrl     : string='',
         public description  : string='',
         public level        : string='',
-        public deleted      : boolean=false,
-        public userId
+      
     */
 
     this.educationList=[
       new Education(
-        1,
         'Universidad Nacional de Misiones',
         'Ing. en Computacion',
         'Experiencia',
         'https://www.fio.unam.edu.ar/',
         2018,
         2020,
-        'assets/images/unam_logo.jpg',
+        'assets/images/education_images/unam_icon.png',
         'Excelente institución, exigente y de gran nivel, deje estos estudios para buscar empleo y otro camino dedicado exclusivamente al desarrollo de software.',
-        'Universitario',
-        false,
-        1
+        'Universitario'
       ),
       new Education(
-        2,
         'Instituto Superior Santo Domingio',
         'Tec. Sup. en Desarrollo de Software',
         'Finalizando',
         'https://issd.edu.ar/',
         2020,
         2023,
-        'assets/images/issd_logo.jpg',
+        'assets/images/education_images/issd_icon.png',
         'Excelente institución, con horarios flexibles se ajusta a mis necesidades, y el contenido es totalmente de mi interés.',
-        'Terciario',
-        false,
-        1
+        'Terciario'
       ),
       new Education(
-        3,
         'UTN Centro de e-Learning',
         `- Diplomatura en Python
          - Professional Testing Master
@@ -73,69 +62,56 @@ export class EduComponent implements OnInit {
         'https://sceu.frba.utn.edu.ar/e-learning/',
         2019,
         2019,
-        'assets/images/elarning_logo.jpg',
+        'assets/images/education_images/elearning_icon.png',
         'Fueron cursos que tomé cuando decidí dedicarme de lleno al desarrollo de software.',
-        'Curso',
-        false,
-        1
+        'Curso'
       ),
       new Education(
-        4,
         'Instituto Nacional de Tecnología Industrial',
         `Argentina Programa: Desarrollador Web Full Stack Jr.`,
         'Finalizado',
         'https://www.argentina.gob.ar/economia/conocimiento/argentina-programa',
         2022,
         2022,
-        'assets/images/ap_logo.jpg',
+        'assets/images/education_images/ap_icon.png',
         'Fue un curso impulsado por el gobierno argentino, pertenecí a la 2da cohorte, me brindó algunas de las herramientas básicas para realizar este sitio.',
-        'Curso',
-        false,
-        1
+        'Curso'
       ),
       new Education(
-        5,
         'Programa Nacional T.TEC junto a Egg Educacion',
         `Desarrollador Web Full Stack Jr.`,
         'Finalizado',
         'https://eggeducacion.com/es-AR/',
         2022,
         2022,
-        'assets/images/egg_logo.jpg',
+        'assets/images/education_images/egg_icon.png',
         'Fue un curso impulsado por el gobierno argentino, el mismo fue de mucho aprendizaje y también me sirvió para llevar a cabo este sitio.',
-        'Curso',
-        false,
-        1
+        'Curso'
       )
-
     ];
 
-    /*this.educationService.getEducationList$().subscribe(educationList=>{
-    this.educationList=educationList;
-    });*/
-    this.isEditAll=sessionStorage.getItem("editMode")=="true"&&sessionStorage.getItem("userId")==this.editService.userId?true:false;
   }
 
   ngOnInit(): void {
-    this.educationService.getEducationList().subscribe();
+  
   }
   
-  showEducation(){
-    this.educationFadeStyle1 ='animate__fadeInLeftBig';
-    this.educationFadeStyle2 ='animate__fadeInRightBig';
-    if(!this.isShowEducation){
-      this.educationListStyle="showContent";
-      this.isShowEducation=!this.isShowEducation;
+  show(){
+    this.fadeStyle1 ='animate__fadeInLeftBig';
+    this.fadeStyle2 ='animate__fadeInRightBig';
+    if(!this.isShow){
+      this.listStyle="showContent";
+      this.isShow=!this.isShow;
     }
     else
-      this.hideEducation();
+      this.hide();
   }
 
-  hideEducation(){
-    this.isShowEducation=!this.isShowEducation;
-    this.educationFadeStyle1 ='animate__fadeOutLeftBig';
-    this.educationFadeStyle2 ='animate__fadeOutRightBig';
-    setTimeout(() => {this.educationListStyle="hideContent";}, 500);
+  hide(){
+    this.isShow=!this.isShow;
+    this.fadeStyle1 ='animate__fadeOutLeftBig';
+    this.fadeStyle2 ='animate__fadeOutRightBig';
+    setTimeout(() => {this.listStyle="hideContent";}, 500);
   }
   
 

@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/components/models/experience.models';
-import { EditService } from 'src/app/services/edit.service';
-import { ExperienceService } from 'src/app/services/exp.service';
 
 @Component({
   
@@ -11,19 +9,38 @@ import { ExperienceService } from 'src/app/services/exp.service';
 export class ExpComponent implements OnInit {
   
   experienceList         : Experience[];
-  isEditAll              : boolean;
-  constructor(private experienceService:ExperienceService,private editService:EditService) {
-    this.experienceService.getExperienceList();
+
+  listStyle    : string='hideContent';
+  fadeStyle1    : string='animate__fadeInLeftBig';
+  fadeStyle2    : string='animate__fadeInRightBig';
+  isShow       : boolean=false;
+  
+  constructor() {
+    
     this.experienceList=[];
-    this.experienceService.getExperienceList$().subscribe(experienceList=>{
-    this.experienceList=experienceList;
-    });
-    this.isEditAll=sessionStorage.getItem("editMode")=="true" && sessionStorage.getItem("userId")==this.editService.userId?true:false;
+   
   }
 
   ngOnInit(): void {
-    this.experienceService.getExperienceList().subscribe();
+  
   }
   
+  show(){
+    this.fadeStyle1 ='animate__fadeInLeftBig';
+    this.fadeStyle2 ='animate__fadeInRightBig';
+    if(!this.isShow){
+      this.listStyle="showContent";
+      this.isShow=!this.isShow;
+    }
+    else
+      this.hide();
+  }
+
+  hide(){
+    this.isShow=!this.isShow;
+    this.fadeStyle1 ='animate__fadeOutLeftBig';
+    this.fadeStyle2 ='animate__fadeOutRightBig';
+    setTimeout(() => {this.listStyle="hideContent";}, 500);
+  }
 
 }

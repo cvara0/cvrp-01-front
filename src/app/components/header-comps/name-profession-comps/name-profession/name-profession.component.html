@@ -1,13 +1,8 @@
-<h1 *ngIf="naproList.length==0 && isEditAll" class="text-xl neonText row justify-content-end mt-xl animate__animated animate__fadeInLeftBig" style="text-align: left;">
-    <app-add-napro-btn class="row justify-content-end"></app-add-napro-btn> Agregar informacion personal 
-</h1>
 
-<section *ngIf="naproList.length>0">
-    <app-edit-napro-btn *ngIf="isEditAll" [naproToEdit]=naproList[0] class="row justify-content-end animate__animated animate__fadeInLeftBig"></app-edit-napro-btn>
-    <app-delete-napro-btn *ngIf="isEditAll" [naproToDelete]=naproList[0] class="row justify-content-end animate__animated animate__fadeInLeftBig"></app-delete-napro-btn>
-    <h1 class="text-xxl neonText mt-lg mb-lg animate__animated animate__fadeInLeftBig">{{naproList[0].name}} {{naproList[0].surname}} </h1>
+<section>
+    
+    <h1 class="text-xxl neonText mt-lg animate__animated animate__fadeInLeftBig">{{naproList[0].name}} {{naproList[0].surname}} </h1>
     <br>
-    <h1 class="text-xl neonText animate__animated animate__fadeInRightBig">{{naproList[0].profession}}</h1>
-    <br>
-    <h1 class="text-xl neonText  animate__animated animate__fadeInLeftBig"><img class="circle-img-static" style="margin-right: 20px; border-radius:5px;height: 30px;width: 50px;" src="{{naproList[0].flag}}" alt="ubi-img">  {{naproList[0].country}}</h1>
+    <h1 class="text-l neonText animate__animated animate__fadeInRightBig" style="text-align: center;">{{naproList[0].profession}}</h1>
+    
 </section>

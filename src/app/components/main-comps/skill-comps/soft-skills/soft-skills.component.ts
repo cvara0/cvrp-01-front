@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/components/models/skill.models';
-import { EditService } from 'src/app/services/edit.service';
-import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-soft-skills',
@@ -10,20 +8,99 @@ import { SkillService } from 'src/app/services/skill.service';
 export class SoftSkillsComponent implements OnInit {
 
   softSkillList         : Skill[];
-  isEditAll             : boolean;
+
+  listStyle    : string='hideContent';
+  fadeStyle1    : string='animate__zoomIn';
+  isShow       : boolean=false;
   
-  constructor(private skillService:SkillService,private editService:EditService) {
-    this.skillService.getSoftSkillList();
-    this.softSkillList=[];
-    this.skillService.getSoftSkillList$().subscribe(softSkillList=>{
-    this.softSkillList=softSkillList;
-    });
-    this.isEditAll=sessionStorage.getItem("editMode")=="true" && sessionStorage.getItem("userId")==this.editService.userId?true:false;
-    
+  constructor() {
+
+
+    this.softSkillList=[
+          new Skill(
+            'perseverante',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'creativo',
+            0,
+            false,
+            'assets/images/foco-logo.jpg',
+            ''
+          ),new Skill(
+            'flexible',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'adaptable',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'autonomo',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'comunicativo',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'resiliente',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'ordenado',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'experimental',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),new Skill(
+            'cooperativo',
+            0,
+            false,
+            'assets/images/persev-logo.jpg',
+            ''
+          ),];
+  
   }
 
   ngOnInit(): void {
-    this.skillService.getSoftSkillList().subscribe(); 
+   
+  }
+
+  show(){
+    this.fadeStyle1 ='animate__zoomIn';
+    
+    if(!this.isShow){
+      this.listStyle="showContent";
+      this.isShow=!this.isShow;
+    }
+    else
+      this.hide();
+  }
+
+  hide(){
+    this.isShow=!this.isShow;
+    this.fadeStyle1 ='animate__zoomOut';
+    
+    setTimeout(() => {this.listStyle="hideContent";}, 600);
   }
 
 }

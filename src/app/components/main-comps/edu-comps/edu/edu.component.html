@@ -1,27 +1,22 @@
-<h1 *ngIf="educationList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInLeftBig" style="text-align: left;">
-    <app-add-edu-btn class="row justify-content-start"></app-add-edu-btn> Agregar experiencia educativa 
-</h1>
-<div *ngIf="educationList.length>0">
+<div>
     <div class="row mt-xl">
-        <h1 (click)="showEducation()" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__zoomIn">
-            <app-add-edu-btn *ngIf="isEditAll"></app-add-edu-btn> Educación</h1>
+        <h1 (click)="show()" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__fadeInRight">
+            Educación</h1>
     </div>
     
-        <section class="container mt-lg {{this.educationListStyle}}" *ngFor="let education of educationList">
+        <section class="container mt-lg {{this.listStyle}}" *ngFor="let education of educationList">
 
             <div class="row">
                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
                     <br><br>
-                    <a type="hidden" target="_blank" href={{education.web}} class="btn-42 circle-btn-big neonBox animate__animated {{this.educationFadeStyle1}}" style="background-image: url('{{education.imageUrl}}'); background-position: 50% 50%;">
+                    <a type="hidden" target="_blank" href={{education.web}} class="btn-42 circle-btn-big neonBox animate__animated {{this.fadeStyle1}}" style="background-image: url('{{education.imageUrl}}'); background-position: 50% 50%;">
                     </a> 
                 </div>
                 
-                <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12 animate__animated {{this.educationFadeStyle2}}">
+                <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12 animate__animated {{this.fadeStyle2}}">
                     <br><br>
                     <p class="text-l rounded-box neonBox">
                         <span>
-                            <app-edit-edu-btn *ngIf="isEditAll" [educationToEdit]=education class="row justify-content-end"></app-edit-edu-btn>
-                            <app-delete-edu-btn *ngIf="isEditAll" [eduToDelete]=education class="row justify-content-end"></app-delete-edu-btn>
                             <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{education.carrer}}</span> 
                                 ({{education.status}})
                                 <br>
@@ -39,8 +34,8 @@
             </div>
         </section>
 </div>
-<div class="row mb-xl mt-lg {{this.educationListStyle}}" >
-    <h1 (click)="hideEducation()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
+<div class="row mb-xl mt-lg {{this.listStyle}}" >
+    <h1 (click)="hide()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
         <img class="circle-img" src="assets/images/flecha-arriba-logo.png" alt="navbar-btns">
     </h1>
 </div>

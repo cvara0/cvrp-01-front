@@ -1,37 +1,8 @@
-<h1 *ngIf="projectList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
-    <app-add-pro-btn class="row justify-content-start"></app-add-pro-btn> Agregar proyecto 
-</h1>
-<div *ngIf="projectList.length>0">
-    <div class="row mt-xl">
-        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;">
-            <app-add-pro-btn *ngIf="isEditAll"></app-add-pro-btn> Proyectos:</h1>
-    </div>
-    <section class="container mt-lg animate__animated" *ngFor="let project of projectList">
 
-        <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
-                <br><br>
-                <a type="hidden" target="_blank" href={{project.web}} class="btn-42 circle-btn-big neonBox animate__animated animate__fadeInLeftBig" style="background-image: url('{{project.imageUrl}}'); background-position: 50% 50%;">
-                </a> 
-            </div>
-            
-            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12 animate__animated animate__fadeInRightBig">
-                <br><br>
-                <p class="text-l rounded-box neonBox">
-                    
-                    <span>
-                        <app-edit-pro-btn *ngIf="isEditAll" [projectToEdit]=project class="row justify-content-end"></app-edit-pro-btn>
-                        <app-delete-pro-btn *ngIf="isEditAll" [proToDelete]=project class="row justify-content-end"></app-delete-pro-btn>
-                        <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{project.name}}</span> 
-                             <br><br>
-                             Realizacion: {{project.date}}
-                        </h1>
-                    </span>
-                    {{project.description}}
-                </p>
-                    
-            </article>
-        </div>
-    </section>
+<div class="row mt-lg">
+    <a href="" target="_blank" style="text-decoration: none; color: aliceblue;" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__fadeInLeftBig">
+             Proyectos</a>
 </div>
+   
+
 

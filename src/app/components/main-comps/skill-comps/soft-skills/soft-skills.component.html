@@ -1,15 +1,19 @@
-<h1 *ngIf="this.softSkillList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__zoomIn" style="text-align: left;">
-    <app-add-skill-btn [isHardSkill]=false class="row justify-content-start"></app-add-skill-btn> Agregar soft skill 
-</h1>
-<section *ngIf="this.softSkillList.length>0" class="container">
-    <article class="row justify-content-center animate__animated animate__zoomIn">
+
+<section *ngIf="this.softSkillList.length>0" class="mt-lg">
+    <article class="row justify-content-center">
         
-            <h1 class="text-xl neonText mt-xl" style="text-align: left;">
-                    <app-add-skill-btn *ngIf="isEditAll" [isHardSkill]=false class="row justify-content-start"></app-add-skill-btn>
-                Soft Skills:</h1>
+            <h1 (click)="show()" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__fadeInRightBig">
+                    
+                Competencias</h1>
        
-        <div *ngFor="let skill of this.softSkillList" class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-lg">
-            <app-skill-fig [skillToShow]=skill></app-skill-fig>
+        <div *ngFor="let skill of this.softSkillList" class="{{this.listStyle}} dropContent col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-lg">
+            <app-skill-fig [skillToShow]=skill class="animate__animated {{this.fadeStyle1}}"></app-skill-fig>
         </div>
+    
     </article>
 </section>
+<div class="row mb-xl mt-xl {{this.listStyle}}" >
+    <h1 (click)="hide()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
+        <img class="circle-img" src="assets/images/flecha-arriba-logo.png" alt="navbar-btns">
+    </h1>
+</div>

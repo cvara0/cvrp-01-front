@@ -1,27 +1,23 @@
 
-<h1 *ngIf="experienceList.length==0 && isEditAll" class="text-xl neonText row justify-content-start mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
-    <app-add-exp-btn class="row justify-content-start"></app-add-exp-btn> Agregar experiencia laboral 
-</h1>
-<div *ngIf="experienceList.length>0">
+<!--
+<div>
     <div class="row mt-xl">
-        <h1  class="text-xl neonText animate__animated animate__fadeInRightBig" style="text-align: left;">
-            <app-add-exp-btn *ngIf="isEditAll"></app-add-exp-btn> Experiencia Laboral:</h1>
+        <h1  (click)="show()" class="text-xxl neonBox neonText btn-42 rounded-box animate__animated animate__fadeInLeftBig">
+             Experiencia laboral</h1>
     </div>
-    <section class="container mt-lg" *ngFor="let experience of experienceList;">
+    <section class="container mt-lg {{this.listStyle}}" *ngFor="let experience of experienceList;">
 
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
                 <br><br>
-                <a type="hidden" target="_blank" href={{experience.web}} class="btn-42 circle-btn-big neonBox  animate__animated animate__fadeInLeftBig" style="background-image: url('{{experience.imageUrl}}'); background-position: 50% 50%;">
+                <a type="hidden" target="_blank" href={{experience.web}} class="btn-42 circle-btn-big neonBox  animate__animated {{this.fadeStyle1}}" style="background-image: url('{{experience.imageUrl}}'); background-position: 50% 50%;">
                 </a> 
             </div>
             
-            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12  animate__animated animate__fadeInRightBig">
+            <article class="col-xxl-9 col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12  animate__animated {{this.fadeStyle2}}">
                 <br><br>
                 <p class="text-l rounded-box neonBox">
                     <span>
-                        <app-edit-exp-btn *ngIf="isEditAll" [experienceToEdit]=experience class="row justify-content-end"></app-edit-exp-btn>
-                        <app-delete-exp-btn *ngIf="isEditAll" [expToDelete]=experience class="row justify-content-end"></app-delete-exp-btn>
                         <h1 class="text-xl neonText" style="text-align: left;"><span class="neonText" style="font-weight: bold;font-size:larger;">{{experience.position}}</span> en {{experience.name}} 
                         </h1>
                         {{(experience.yearTo-experience.yearSince)>0?" Desde "+experience.yearSince+" hasta "+ experience.yearTo+" ( "+(experience.yearTo-experience.yearSince)+" anio/s de experiencia ) " :experience.yearSince+" ( casi 1 anio de experiencia )"}}
@@ -34,3 +30,9 @@
         </div>
     </section>
 </div>
+<div class="row mb-xl mt-lg {{this.listStyle}}" >
+    <h1 (click)="hide()" class="btn-42 circle-btn circle-img neonBox animate__animated animate__zoomIn" style="margin: auto;">
+        <img class="circle-img" src="assets/images/flecha-arriba-logo.png" alt="navbar-btns">
+    </h1>
+</div>
+-->

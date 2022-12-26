@@ -1,7 +1,7 @@
 export class Experience{
     
     constructor(
-        public id           : number=0,
+       
         public name         : string='',
         public position     : string='',
         public web          : string='',
@@ -9,8 +9,6 @@ export class Experience{
         public yearTo       : number=0,
         public imageUrl     : string='',
         public description  : string='',
-        public deleted      : boolean=false,
-        public userId       : number=0 
     ){
 
     }

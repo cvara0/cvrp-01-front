@@ -1,17 +1,7 @@
-<h1 *ngIf="aboutList.length==0 && isEditAll" class="text-xl neonText row justify-content-end mt-xl animate__animated animate__fadeInRightBig" style="text-align: left;">
-    <app-add-about-btn *ngIf="isEditAll" class="row justify-content-end"></app-add-about-btn> Agregar "Acerca de..." 
-</h1>
 
-<section *ngIf="aboutList.length>0" class="container neonBox rounded-box mt-xl animate__animated animate__fadeInRightBig">
-    <h1 class="text-xl neonText" style="text-align: left;">
-        <app-edit-about-btn *ngIf="isEditAll" [aboutToEdit]=aboutList[0] class="row justify-content-end"></app-edit-about-btn>
-        <app-delete-about-btn *ngIf="isEditAll" [aboutToDelete]=aboutList[0] class="row justify-content-end"></app-delete-about-btn>
-        Acerca de:
-    </h1>
-    <br> 
+<section class="container neonBox rounded-box mt-xl animate__animated animate__fadeInRightBig">
     <p class="text-l">
         {{aboutList[0].aboutText}}
     </p>
-    <br>
-    <h1 class="text-l neonText" >Nota: Sitio en mantenimientotanto. </h1>
+    
 </section>
